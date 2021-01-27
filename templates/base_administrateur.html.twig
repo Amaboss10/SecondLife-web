@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}{% endblock %}</title>
+    </head>
+    <body>
+        <header>
+            <!--le logo-->
+            <a href={{path('secondLife_accueil')}} class="logo_site">
+                <img src="logo_site.jpg" alt="logo du site">
+            </a>
+            <!--la barre de recherche-->
+            <form class="barre_recherche" action={{path('secondLife_barre_recherche') }} method="get">
+                <input type="search" name="barre_recherche" class="zone_saisie" placeholder="mot clé">
+                <input type="submit" value="rechercher" class="bouton_recherche">
+            </form>
+            <!--le menu-->
+            <nav>
+                <ul class="menu">
+                    <li class="page_creer_annonce"><a href={{path('secondLife_creer_annonce')}}>créer une annonce</a></li>
+                    <li class="page_faq"><a href={{path('secondLife_faq')}}>FAQ/Aide</a></li>
+                    <!-- il y aura une condition php qui testera si l'utilisateur est connecté ou pas
+                     si non connecté,on affiche se connecter et les liens messagerie et favoris pointeront vers la page de connexion
+                        <li class="page_favoris"><a href={{path('secondLife_connexion')}}>Favoris</a></li>
+                        <li class="page_messagerie"><a href={{path('secondLife_connexion')}}>Messagerie</a></li>
+                        <li class="page_compte_se_connecter"><a href={{path('secondLife_connexion')}}>Creer un compte/Se connecter</a></li>
+                    si connecté ,on affiche
+                    -->
+                    <li class="page_favoris"><a href={{path('secondLife_favoris')}}>Favoris</a></li>
+                    <li class="page_messagerie"><a href={{path('secondLife_messagerie')}}>Messagerie</a></li>
+                    <li class="page_compte_se_connecter"><a href={{path('secondLife_mon_compte')}}>Compte/Se connecter</a></li>
+                    <li class="page_deconnexion"><a href={{path('secondLife_deconnexion')}}>Deconnexion</a></li>
+                </ul>
+            </nav>
+        </header>
+
+       <!--le contenu de chaque page--> 
+        <div class="conteneur_principal">
+            {% block body %}{% endblock %}
+        </div>
+
+        <footer>
+            <div class="a_propos">
+                <h3 class="titre_section_footer">A propos</h1>
+                <span class="qui_sommes_nous"><a href={{path('secondLife_qui_sommes_nous')}}>Qui sommes-nous?</a></span>    
+            </div>
+
+            <div class="reseaux_sociaux">
+                <h3 class="titre_section_footer">Reseaux sociaux</h1>
+                <div>
+                    <a href="https://www.facebook.com/" target="blank" class="facebook"><img src="logo_facebook.png" alt="logo_facebook"></a><br>
+                    <a href="https://www.instagram.com" target="blank" class="instagram"><img src="logo_instagram.jpg" alt="logo_instagram"></a><br>
+                    <a href="https://www.twitter.com" target="blank" class="twitter"><img src="logo_twitter.png" alt="logo_twitter"></a><br>
+                    <a href="https://www.linkedin.com" target="blank" class="linkedin"><img src="logo_linkedin.png" alt="logo_linkedin"></a><br>
+                 </div>
+            </div>
+
+            <div class="informations_legales">
+                <h3 class="titre_section_footer">Informations légales</h1>
+                <div>
+                    <span class="mentions_legales"><a href={{path('secondLife_mentions_legales')}}>Mentions légales</a></span><br>     
+                    <span class="conditions_generales_utilisation"><a href={{path('secondLife_conditions_generales_utilisation')}}>Conditions générales d'utilisation</a></span>
+                </div>
+            </div>
+
+            <div class="applications_mobiles">
+                <h3 class="titre_section_footer">Applications mobiles</h1>
+                <div>
+                    <a href="https://www.playstore.com" target="blank" class="lien_application"><img src="image_googleplay.jpg" alt="image_playstore"></a><br>
+                    <a href="https://www.appstore.com" target="blank" class="lien_application"><img src="image_appstore.png" alt="image_appstore"></a>
+                </div>
+            </div>
+        </footer>
+    </body>
+</html>
