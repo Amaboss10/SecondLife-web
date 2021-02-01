@@ -3,34 +3,35 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}{% endblock %}</title>
+        {% block stylesheets %}{{ encore_entry_link_tags('app') }}{% endblock %}
     </head>
     <body>
-        <header>
+        <header class="row">
             <!--le logo-->
-            <a href={{path('secondLife_accueil')}} class="logo_site">
+            <a href={{path('secondLife_accueil')}} class=" col-xl-2 logo_site">
                 <img src="logo_site.jpg" alt="logo du site">
             </a>
             <!--la barre de recherche-->
-            <form class="barre_recherche" action={{path('secondLife_barre_recherche') }} method="get">
+            <form class=" col-xl-4 barre_recherche" action={{path('secondLife_barre_recherche') }} method="get">
                 <input type="search" name="barre_recherche" class="zone_saisie" placeholder="mot clé">
                 <input type="submit" value="rechercher" class="bouton_recherche">
             </form>
             <!--le menu-->
-            <nav>
-                <ul class="menu">
-                    <li class="page_creer_annonce"><a href={{path('secondLife_creer_annonce')}}>créer une annonce</a></li>
-                    <li class="page_faq"><a href={{path('secondLife_faq')}}>FAQ/Aide</a></li>
+            <nav class=" col-xl-6">
+                <ul class="row menu">
+                    <li class="col page_creer_annonce"><a href={{path('secondLife_creer_annonce')}}>créer une annonce</a></li>
+                    <li class=" col page_faq"><a href={{path('secondLife_faq')}}>FAQ/Aide</a></li>
                     <!-- il y aura une condition php qui testera si l'utilisateur est connecté ou pas
                      si non connecté,on affiche se connecter et les liens messagerie et favoris pointeront vers la page de connexion
-                        <li class="page_favoris"><a href={{path('secondLife_connexion')}}>Favoris</a></li>
-                        <li class="page_messagerie"><a href={{path('secondLife_connexion')}}>Messagerie</a></li>
-                        <li class="page_compte_se_connecter"><a href={{path('secondLife_connexion')}}>Creer un compte/Se connecter</a></li>
+                        <li class="col page_favoris"><a href={{path('secondLife_connexion')}}>Favoris</a></li>
+                        <li class="col page_messagerie"><a href={{path('secondLife_connexion')}}>Messagerie</a></li>
+                        <li class="col page_compte_se_connecter"><a href={{path('secondLife_connexion')}}>Creer un compte/Se connecter</a></li>
                     si connecté ,on affiche
                     -->
-                    <li class="page_favoris"><a href={{path('secondLife_favoris')}}>Favoris</a></li>
-                    <li class="page_messagerie"><a href={{path('secondLife_messagerie')}}>Messagerie</a></li>
-                    <li class="page_compte_se_connecter"><a href={{path('secondLife_mon_compte')}}>Compte/Se connecter</a></li>
-                    <li class="page_deconnexion"><a href={{path('secondLife_deconnexion')}}>Deconnexion</a></li>
+                    <li class="col page_favoris"><a href={{path('secondLife_favoris')}}>Favoris</a></li>
+                    <li class="col page_messagerie"><a href={{path('secondLife_messagerie')}}>Messagerie</a></li>
+                    <li class="col page_compte_se_connecter"><a href={{path('secondLife_mon_compte')}}>Compte/Se connecter</a></li>
+                    <li class="col page_deconnexion"><a href={{path('secondLife_deconnexion')}}>Deconnexion</a></li>
                 </ul>
             </nav>
         </header>
@@ -40,13 +41,13 @@
             {% block body %}{% endblock %}
         </div>
 
-        <footer>
-            <div class="a_propos">
+        <footer class="row">
+            <div class="col a_propos">
                 <h3 class="titre_section_footer">A propos</h1>
                 <span class="qui_sommes_nous"><a href={{path('secondLife_qui_sommes_nous')}}>Qui sommes-nous?</a></span>    
             </div>
 
-            <div class="reseaux_sociaux">
+            <div class="col reseaux_sociaux">
                 <h3 class="titre_section_footer">Reseaux sociaux</h1>
                 <div>
                     <a href="https://www.facebook.com/" target="blank" class="facebook"><img src="logo_facebook.png" alt="logo_facebook"></a><br>
@@ -56,7 +57,7 @@
                  </div>
             </div>
 
-            <div class="informations_legales">
+            <div class="col informations_legales">
                 <h3 class="titre_section_footer">Informations légales</h1>
                 <div>
                     <span class="mentions_legales"><a href={{path('secondLife_mentions_legales')}}>Mentions légales</a></span><br>     
@@ -64,7 +65,7 @@
                 </div>
             </div>
 
-            <div class="applications_mobiles">
+            <div class="col applications_mobiles">
                 <h3 class="titre_section_footer">Applications mobiles</h1>
                 <div>
                     <a href="https://www.playstore.com" target="blank" class="lien_application"><img src="image_googleplay.jpg" alt="image_playstore"></a><br>
@@ -72,5 +73,6 @@
                 </div>
             </div>
         </footer>
+        {% block javascripts %}{{ encore_entry_script_tags('app') }}{% endblock %}
     </body>
 </html>
