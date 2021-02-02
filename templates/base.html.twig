@@ -7,7 +7,7 @@
         {% block stylesheets %}{{ encore_entry_link_tags('app') }}{% endblock %}
        <!--<link rel="stylesheet" href="./assets/styles/style.css">-->
     </head>
-    <body>
+    <body class="container-fluid">
         <header class="row">
            
             <nav class=" navbar navbar-expand-lg navbar-dark bg-dark">
@@ -60,10 +60,14 @@
             <div class="col reseaux_sociaux  col-xl-3 col-sm-6 col-xs-6">
                 <h3 class="titre_section_footer">Reseaux sociaux</h1>
                 <div>
-                    <a href="https://www.facebook.com/" target="blank" class="facebook"><img src="logo_facebook.png" alt="logo_facebook"></a><br>
-                    <a href="https://www.instagram.com" target="blank" class="instagram"><img src="logo_instagram.png" alt="logo_instagram"></a><br>
-                    <a href="https://www.twitter.com" target="blank" class="twitter"><img src="logo_twitter.png" alt="logo_twitter"></a><br>
-                    <a href="https://www.linkedin.com" target="blank" class="linkedin"><img src="logo_linkedin.png" alt="logo_linkedin"></a><br>
+                    <div class="row" style="margin:10%">
+                        <a href="https://www.facebook.com/" target="blank" class="facebook col"><img src="logo_facebook.png" alt="logo_facebook"></a><br>
+                        <a href="https://www.instagram.com" target="blank" class="instagram col"><img src="logo_instagram.png" alt="logo_instagram"></a><br>
+                    </div>
+                    <div class="row" style="margin:10%">
+                        <a href="https://www.twitter.com" target="blank" class="twitter col"><img src="logo_twitter.png" alt="logo_twitter"></a><br>
+                        <a href="https://www.linkedin.com" target="blank" class="linkedin col"><img src="logo_linkedin.png" alt="logo_linkedin"></a><br>
+                    </div>
                  </div>
             </div>
 
@@ -78,8 +82,12 @@
             <div class="col applications_mobiles  col-xl-3 col-sm-6 col-xs-6">
                 <h3 class="titre_section_footer">Applications mobiles</h1>
                 <div>
-                    <a href="https://www.playstore.com" target="blank" class="lien_application"><img src="image_googleplay.png" alt="image_playstore"></a><br>
-                    <a href="https://www.appstore.com" target="blank" class="lien_application"><img src="image_appstore.png" alt="image_appstore"></a>
+                    <div class="row"  style="margin:10%">
+                        <a href="https://www.playstore.com" target="blank" class="lien_application"><img src="image_googleplay.png" alt="image_playstore"></a><br>
+                    </div>
+                    <div class="row"  style="margin:10%">
+                        <a href="https://www.appstore.com" target="blank" class="lien_application"><img src="image_appstore.png" alt="image_appstore"></a>
+                    </div>
                 </div>
             </div>
         </footer>

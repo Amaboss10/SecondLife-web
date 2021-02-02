@@ -3,67 +3,67 @@
 {% block title %}{{titre_page}}{% endblock %}
 
 {% block body %}
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col col-xl-2 col-sm-4 col-12 p-3">
-                <form >
-                    <label class="form-label col-form-label-lg">Tier par :</label>
-                    <select id="tri" class="form-control form-select form-select-sm" name="tri">
-                        <option value="prix_croissant">Prix Croissant</option>
-                        <option value="prix_decroissant">Prix Décroissant</option>
-                        <option value="plus_recent">Plus Récent</option>
-                        <option value="plus_ancien">Plus Ancien</option>
-                    </select>
-                    <br>
-                    <label class="form-label col-form-label-lg">Filtrer par :</label>
-                    <select id="fitre" class="form-control form-select form-select-sm" name="fitre">
-                        <option value="telephonie">Téléphonie</option>
-                        <option value="ordinateur">Ordinateur</option>
-                        <option value="console">Console</option>
-                        <option value="television">Télévision</option>
-                    </select>
-                    <br>
-                    <div class="row">
-                        <input type="text" class="col form-control form-text" placeholder="Prix min">
-                        <input type="text" class="col form-control form-text" placeholder="Prix max">
-                    </div>
-                    <br>
-                    <select id="livraison" class="form-control form-select form-select-sm" name="livraison">
-                        <option value="remise_en_main_propre">Remise en main propre</option>
-                        <option value="la_poste">La Poste</option>
-                        <option value="mondial-relay">Mondial Relay</option>
-                    </select>
-                    <br>
-                    <select id="marque" class="form-control form-select form-select-sm" name="marques">
-                        <option value="samsung">Samsung</option>
-                        <option value="apple">Apple</option>
-                        <option value="huawei">Huawei</option>
-                        <option value="sony">Sony</option>
-                        <option value="acer">Acer</option>
-                        <option value="asus">Asus</option>
-                        <option value="msi">MSI</option>
-                        <option value="xiaomi">Xiaomi</option>
-                        <option value="toshiba">Toshiba</option>
-                        <option value="philips">Philips</option>
-                        <option value="dell">Dell</option>
-                        <option value="hp">HP</option>
-                        <option value="autres">Autres</option>
-                    </select>
-                    <br>
-                    <input type="text" class="form-control form-text" placeholder="ville">
-                </form>
-            </div>
-            <div class="col col-xl-8 col-sm-8 col-12" style="background-color:red">
-                <!--annonces-->
-            </div>
-            <div class="col col-xl-2 col-sm-12 col-12" style="background-color:blue">
-                <!--pub-->
-                <p>
-                    <br>
-                    <br>
-                </p>
-            </div>
+    <div class="row">
+        <div class="col col-xl-2 col-sm-4 col-12">
+            <form>
+                <label class="form-label col-form-label-lg">Tier par :</label>
+                <select id="tri" class="form-control form-select form-select-sm" name="tri">
+                    <option value="prix_croissant">Prix Croissant</option>
+                    <option value="prix_decroissant">Prix Décroissant</option>
+                    <option value="plus_recent">Plus Récent</option>
+                    <option value="plus_ancien">Plus Ancien</option>
+                </select>
+                <br>
+                <label class="form-label col-form-label-lg">Filtrer par :</label>
+                <select id="fitre" class="form-control form-select form-select-sm" name="fitre">
+                    <option value="telephonie">Téléphonie</option>
+                    <option value="ordinateur">Ordinateur</option>
+                    <option value="console">Console</option>
+                    <option value="television">Télévision</option>
+                </select>
+                <br>
+                <div class="row">
+                    <input type="text" class="col form-control form-text" placeholder="Prix min">
+                    <input type="text" class="col form-control form-text" placeholder="Prix max">
+                </div>
+                <br>
+                <select id="livraison" class="form-control form-select form-select-sm" name="livraison">
+                    <option value="remise_en_main_propre">Remise en main propre</option>
+                    <option value="la_poste">La Poste</option>
+                    <option value="mondial-relay">Mondial Relay</option>
+                </select>
+                <br>
+                <select id="marque" class="form-control form-select form-select-sm" name="marques">
+                    <option value="samsung">Samsung</option>
+                    <option value="apple">Apple</option>
+                    <option value="huawei">Huawei</option>
+                    <option value="sony">Sony</option>
+                    <option value="acer">Acer</option>
+                    <option value="asus">Asus</option>
+                    <option value="msi">MSI</option>
+                    <option value="xiaomi">Xiaomi</option>
+                    <option value="toshiba">Toshiba</option>
+                    <option value="philips">Philips</option>
+                    <option value="dell">Dell</option>
+                    <option value="hp">HP</option>
+                    <option value="autres">Autres</option>
+                </select>
+                <br>
+                <input type="text" class="form-control form-text" placeholder="ville">
+                <br>
+            </form>
+        </div>
+        <div class="col col-xl-8 col-sm-8 col-12" style="background-color:red">
+            <!--annonces-->
+        </div>
+        <div class="col col-xl-2 col-sm-12 col-12" style="background-color:blue">
+            <!--pub-->
+            <p>
+                <br>
+                <br>
+            </p>
         </div>
     </div>
+    
     
 {% endblock %}
