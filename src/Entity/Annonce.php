@@ -77,8 +77,15 @@ class Annonce
      */
     private $poids_annonce;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $validation;
+
     public function __construct()
     {
+        $this->validation=false;
+        $this->etat_annonce=false;
         $this->photoAnnonces = new ArrayCollection();
         $this->favoris = new ArrayCollection();
     }
@@ -249,6 +256,18 @@ class Annonce
     public function setPoidsAnnonce(?float $poids_annonce): self
     {
         $this->poids_annonce = $poids_annonce;
+
+        return $this;
+    }
+
+    public function getValidation(): ?bool
+    {
+        return $this->validation;
+    }
+
+    public function setValidation(bool $validation): self
+    {
+        $this->validation = $validation;
 
         return $this;
     }
