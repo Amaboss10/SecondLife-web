@@ -2,57 +2,39 @@
 <html>
     <head>
         <meta charset="UTF-8">
-       
+
         <title>{% block title %}{% endblock %}</title>
-<<<<<<< HEAD
-<<<<<<< HEAD
-        {% block stylesheets %}{% endblock %}
-    </head>
-    <body>
-        <header>
-            <!--le logo-->
-            <a href={{path('secondLife_admin_accueil')}} class="logo_site">
-                <img src="logo_site.jpg" alt="logo du site">
-            </a>
-            <!--la barre de recherche-->
-            <form class="barre_recherche" action={{path('secondLife_barre_recherche') }} method="get">
-                <input type="search" name="barre_recherche" class="zone_saisie" placeholder="mot clé">
-                <input type="submit" value="rechercher" class="bouton_recherche">
-            </form>
-            <!--le menu-->
-            <nav>
-                <ul class="menu">
-                    <li class="col nav-item page_accueil"><a class="nav-link"  href={{path('secondLife_admin_accueil')}}>Accueil</a></li>
-                    <li class="col nav-item page_gerer_annonces"><a class="nav-link"  href={{path('secondLife_admin_gerer_annonces')}}>Annonces</a></li>
-                    <li class="col nav-item page_gerer_faq"><a class="nav-link"  href={{path('secondLife_admin_gerer_faq')}}>FAQ</a></li>
-                    {# ne pas oublier le bouton deconnexion#}
-=======
         {% block stylesheets %}{{ encore_entry_link_tags('app') }}{% endblock %}
-        
+
        <!--<link rel="stylesheet" href="./assets/styles/style.css">-->
     </head>
 =======
         {% block stylesheets %}{{ encore_entry_link_tags('app') }}{% endblock %}
-        
+
+       <!--<link rel="stylesheet" href="./assets/styles/style.css">-->
+    </head>
+=======
+        {% block stylesheets %}{{ encore_entry_link_tags('app') }}{% endblock %}
+
        <!--<link rel="stylesheet" href="./assets/styles/style.css">-->
     </head>
 >>>>>>> df13e2f6caa11666414d6bd395e213baebe31378
     <body class="container-fluid">
         <header class="row">
-           
+
             <nav class=" navbar navbar-expand-lg navbar-dark bg-dark">
                 <!--le logo-->
-                
+
                 <a href={{path('secondLife_accueil')}} class=" navbar-brand logo_site">
                     <img src="logo_site.jpg" class="img-thumbnail" alt="logo du site">
                 </a>
-                
+
                 <!--la barre de recherche-->
                 <form class="d-flex barre_recherche col-xl-5" action={{path('secondLife_barre_recherche') }} method="get">
                     <input type="search" name="barre_recherche" class="form-control zone_saisie" placeholder="mot clé">
                     <input type="submit" value="rechercher" class="btn btn-outline-success bouton_recherche">
                 </form>
-                
+
                 <!--le menu-->
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -60,7 +42,7 @@
 
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="row navbar-nav menu">
-{#                   
+{#
                         <li class="col nav-item page_creer_annonce"><a class="nav-link" href={{path('secondLife_creer_annonce')}}>créer une annonce</a></li>
                         <li class=" col nav-item page_faq"><a class="nav-link" href={{path('secondLife_faq')}}>FAQ/Aide</a></li>
                         <li class="col  nav-item page_favoris"><a class="nav-link" href={{path('secondLife_favoris')}}>Favoris</a></li>
@@ -77,26 +59,24 @@
                             <li class="col nav-item page_compte_se_connecter"><a class="nav-link"  href={{path('secondLife_mon_compte')}}>Compte</a></li>
                             <li class="col nav-item page_faq"><a class="nav-link"  href={{path('secondLife_faq')}}>FAQ/Aide</a></li>
                             <li class="col nav-item page_deconnexion"><a class="nav-link"  href={{path('secondLife_deconnexion')}}>Deconnexion</a></li>
-                    <!--si utlisateur non connecté--> 
+                    <!--si utlisateur non connecté-->
                         {% else %}
                             <li class="col nav-item page_accueil"><a class="nav-link"  href={{path('secondLife_accueil')}}>Accueil</a></li>
                             <li class="col nav-item page_creer_annonce"><a class="nav-link"  href={{path('secondLife_connexion')}}>créer une annonce</a></li>
                             <li class="col nav-item page_favoris"><a class="nav-link"  href={{path('secondLife_connexion')}}>Favoris</a></li>
                             <li class="col nav-item page_messagerie"><a class="nav-link"  href={{path('secondLife_connexion')}}>Messagerie</a></li>
-                            <li class="col nav-item page_compte_se_connecter"><a class="nav-link"  href={{path('secondLife_connexion')}}>Se connecter</a></li> 
+                            <li class="col nav-item page_compte_se_connecter"><a class="nav-link"  href={{path('secondLife_connexion')}}>Se connecter</a></li>
                             <li class="col nav-item page_faq"><a class="nav-link"  href={{path('secondLife_faq')}}>FAQ/Aide</a></li>
                         {% endif %}
-                        
+
                     <div>
-<<<<<<< HEAD
->>>>>>> df13e2f6caa11666414d6bd395e213baebe31378
 =======
 >>>>>>> df13e2f6caa11666414d6bd395e213baebe31378
                 </ul>
             </nav>
         </header>
 
-       <!--le contenu de chaque page--> 
+       <!--le contenu de chaque page-->
         <div class="conteneur_principal">
             {% block body %}{% endblock %}
         </div>
@@ -104,7 +84,7 @@
         <footer class="row bg-dark text-white" >
             <div class="col a_propos col-xl-3 col-sm-6 col-xs-6">
                 <h3 class="titre_section_footer">A propos</h3>
-                <span class="qui_sommes_nous"><a href={{path('secondLife_qui_sommes_nous')}}>Qui sommes-nous?</a></span>    
+                <span class="qui_sommes_nous"><a href={{path('secondLife_qui_sommes_nous')}}>Qui sommes-nous?</a></span>
             </div>
 
             <div class="col reseaux_sociaux  col-xl-3 col-sm-6 col-xs-6">
@@ -124,7 +104,7 @@
             <div class="col informations_legales  col-xl-3 col-sm-6 col-xs-6">
                 <h3 class="titre_section_footer">Informations légales</h3>
                 <div>
-                    <span class="mentions_legales"><a href={{path('secondLife_mentions_legales')}}>Mentions légales</a></span><br>     
+                    <span class="mentions_legales"><a href={{path('secondLife_mentions_legales')}}>Mentions légales</a></span><br>
                     <span class="conditions_generales_utilisation"><a href={{path('secondLife_conditions_generales_utilisation')}}>Conditions générales d'utilisation</a></span>
                 </div>
             </div>
@@ -141,9 +121,7 @@
                 </div>
             </div>
         </footer>
-<<<<<<< HEAD
-<<<<<<< HEAD
-        {% block javascripts %}{% endblock %}
+       {% block javascripts %}{{ encore_entry_script_tags('app') }}{% endblock %}
 =======
        {% block javascripts %}{{ encore_entry_script_tags('app') }}{% endblock %}
 >>>>>>> df13e2f6caa11666414d6bd395e213baebe31378
