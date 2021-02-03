@@ -4,6 +4,31 @@
 
 {% block body %}
     <h1>{{ titre_page }}</h1>
+    <div class="rubriques">
+    {% if rubriques==null %}
+        <p class="no_faq">Pas de rubrique FAQ/Aide</p>
+    {% endif %}
 
+    {% for rubrique in rubriques %}
+        <div class="rubrique">
+            <button class="titre_rubrique">{{rubrique.titreProbleme}}</button>
+            
+            <div class="detail_rubrique" >
+                <h3 class="titre_probleme">{{rubrique.titreProbleme}}</h3>
+                
+                <p class="description_probleme">{{rubrique.descriptionProbleme}}</p>
+                
+                <p class="solution_probleme">{{rubrique.solutionProbleme}}</p>
+                
+                <video class="lien_tutoriel" controls poster>
+                    <source src={{rubrique.lienTutoriel}} type="video/mp4">
+                    <p>Votre navigateur ne prend pas en charge les vidéos HTML5.
+                        Voici <a href={{rubrique.lienTutoriel}}> un lien pour télécharger la vidéo</a>.
+                    </p>
+                </video>
+                
+            </div>
+        </div> 
+    {% endfor %}
 
 {% endblock %}

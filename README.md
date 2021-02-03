@@ -1,6 +1,6 @@
 # Stage_Partie_Site_Web
  Projet: Développement d'une plateforme de vente de composants électroniques et accessoires d'occasion en ligne
- # Pour tester avec le contenu de la base de données
+ # A. Pour tester avec le contenu de la base de données
   # 1.configuration BD sur Symfony
     Dans le fichier .env, secondLifeUser est le nom de votre bd vous pouvez la modifier
     #DATABASE_URL="sqlite:///%kernel.project_dir%/var/data.db"
