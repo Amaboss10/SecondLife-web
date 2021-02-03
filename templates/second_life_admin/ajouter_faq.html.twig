@@ -1,0 +1,21 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block title %}{{titre_page}}{% endblock %}
+
+{% block body %}
+    <h1>{% if etat %} Modidier une  rubrique de la FAQ
+        {% else %} Ajouter une rubrique à la FAQ
+        {% endif %}
+    </h1>
+    
+    {{form_start(formulaire)}}
+        {{form_row(formulaire)}}
+        <button type="submit">
+        {% if etat %} Modifier la rubrique
+        {% else %} Ajouter la rubrique
+        {% endif %}
+        </button>
+    {{form_end(formulaire)}}
+    
+
+{% endblock %}

@@ -1,7 +1,15 @@
 security:
+    encoders:
+        App\Entity\User:
+            algorithm: auto
+
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
-        users_in_memory: { memory: null }
+        #users_in_memory: { memory: null }
+        secondLife_user_provider:
+            entity:
+                class: App\Entity\User
+                property: email_personne
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
@@ -9,10 +17,28 @@ security:
         main:
             anonymous: true
             lazy: true
-            provider: users_in_memory
+            provider: secondLife_user_provider
+            guard:
+                authenticators:
+                    - App\Security\UserAuthenticator
+            #deconnexion
+            logout:
+                path: secondLife_deconnexion
+                # where to redirect after logout
+                # target: app_any_route
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#firewalls-authentication
+            
+            #option se souvenir de moi
+            remember_me:
+                secret: '%kernel.secret%'
+                lifetime: 604800 # 1 week in seconds
+                path:     /
+                # by default, the feature is enabled by checking a
+                # checkbox in the login form (see below), uncomment the
+                # following line to always enable it.
+                #always_remember_me: true
 
             # https://symfony.com/doc/current/security/impersonating_user.html
             # switch_user: true

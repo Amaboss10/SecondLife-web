@@ -2,14 +2,15 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Repository\FAQRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class SecondLifeController extends AbstractController
 {
     /**
-     * @Route("/secondLife", name="secondLife_accueil")
+     * @Route("/", name="secondLife_accueil")
      */
     public function index(): Response
     {
@@ -24,7 +25,6 @@ class SecondLifeController extends AbstractController
     public function creer_annonce(): Response
     {
         return $this->render('second_life/creer_annonce.html.twig', [
-            'controller_name' => 'SecondLifeController',
             'titre_page'=>'Creer une annonce'
         ]);
     }
@@ -35,7 +35,6 @@ class SecondLifeController extends AbstractController
     public function favoris(): Response
     {
         return $this->render('second_life/favoris.html.twig', [
-            'controller_name' => 'SecondLifeController',
             'titre_page'=>'Mes favoris'
         ]);
     }
@@ -46,7 +45,6 @@ class SecondLifeController extends AbstractController
     public function messagerie(): Response
     {
         return $this->render('second_life/messagerie.html.twig', [
-            'controller_name' => 'SecondLifeController',
             'titre_page'=>'Messagerie'
         ]);
     }
@@ -57,18 +55,19 @@ class SecondLifeController extends AbstractController
     public function mon_compte(): Response
     {
         return $this->render('second_life/mon_compte.html.twig', [
-            'controller_name' => 'SecondLifeController',
-            'titre_page'=>'mon_compte'
+            'titre_page'=>'Mon compte'
         ]);
     }
 
     /**
      * @Route("/faq", name="secondLife_faq")
      */
-    public function faq(): Response
+    public function faq(FAQRepository $repository): Response
     {
+        $rubriques=$repository->findAll();
         return $this->render('second_life/faq.html.twig', [
-            'titre_page'=>'FAQ/Aide'
+            'titre_page'=>'FAQ/Aide',
+            'rubriques' => $rubriques
         ]);
     }
 
@@ -108,7 +107,6 @@ class SecondLifeController extends AbstractController
     public function conditions_generales_utilisation(): Response
     {
         return $this->render('second_life/index.html.twig', [
-            'controller_name' => 'SecondLifeController',
             'titre_page'=>'Conditions générales d\'utilisation'
         ]);
     }
@@ -119,19 +117,19 @@ class SecondLifeController extends AbstractController
     public function barre_recherche(): Response
     {
         return $this->render('second_life/index.html.twig', [
-            'controller_name' => 'SecondLifeController',
             'titre_page'=>'Resultats de la recherche'
         ]);
     }
-
+    //temporaire
     /**
-     * @Route("/connexion", name="secondLife_connexion")
+     * @Route("/inscription", name="secondLife_inscription")
      */
-    public function connexion(): Response
+    public function inscription(): Response
     {
         return $this->render('second_life/connexion_inscription.html.twig', [
-            'controller_name' => 'SecondLifeController',
-            'titre_page'=>'connexion/inscription'
+            'titre_page'=>'connexion/inscription',
+            'sous_titre_connexion'=>'Dejà membre?',
+            'sous_titre_inscription'=>'Pas encore membre?'
         ]);
     }
 }

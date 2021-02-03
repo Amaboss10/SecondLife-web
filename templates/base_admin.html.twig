@@ -2,7 +2,9 @@
 <html>
     <head>
         <meta charset="UTF-8">
+
         <title>{% block title %}{% endblock %}</title>
+        {% block stylesheets %}{% endblock %}
     </head>
     <body>
         <header>
@@ -18,19 +20,7 @@
             <!--le menu-->
             <nav>
                 <ul class="menu">
-                    <li class="page_creer_annonce"><a href={{path('secondLife_creer_annonce')}}>créer une annonce</a></li>
-                    <li class="page_faq"><a href={{path('secondLife_faq')}}>FAQ/Aide</a></li>
-                    <!-- il y aura une condition php qui testera si l'utilisateur est connecté ou pas
-                     si non connecté,on affiche se connecter et les liens messagerie et favoris pointeront vers la page de connexion
-                        <li class="page_favoris"><a href={{path('secondLife_connexion')}}>Favoris</a></li>
-                        <li class="page_messagerie"><a href={{path('secondLife_connexion')}}>Messagerie</a></li>
-                        <li class="page_compte_se_connecter"><a href={{path('secondLife_connexion')}}>Creer un compte/Se connecter</a></li>
-                    si connecté ,on affiche
-                    -->
-                    <li class="page_favoris"><a href={{path('secondLife_favoris')}}>Favoris</a></li>
-                    <li class="page_messagerie"><a href={{path('secondLife_messagerie')}}>Messagerie</a></li>
-                    <li class="page_compte_se_connecter"><a href={{path('secondLife_mon_compte')}}>Compte/Se connecter</a></li>
-                    <li class="page_deconnexion"><a href={{path('secondLife_deconnexion')}}>Deconnexion</a></li>
+                    <li class="col nav-item page_gerer_faq"><a class="nav-link"  href={{path('secondLife_admin_gerer_faq')}}>FAQ</a></li>
                 </ul>
             </nav>
         </header>
@@ -72,5 +62,6 @@
                 </div>
             </div>
         </footer>
+        {% block javascripts %}{% endblock %}
     </body>
 </html>
