@@ -3,76 +3,79 @@
 {% block title %}{{titre_page}}{% endblock %}
 
 {% block body %}
-<div clas="row">
-    <div class="col col-xl-6">
-        <h1>{{ titre_page }}</h1>
-        <div class="row">
-            <label class="col form-label col-form-label-sm">Titre Annonce :</label>
-            <input type="text" class="col form-control form-text" placeholder="Samsung S10 128Go Noir">
+   <div class="row">
+        <div class="col col-xl-6 col-sm-6 col-12">
+            <form>
+                <h1>{{ titre_page }}</h1>
+                <div class="row">
+                    <label class="col form-label col-form-label-sm">Titre Annonce :</label>
+                    <input type="text" class="col form-control form-text" placeholder="Samsung S10 128Go Noir">
+                </div>
+                <div class="row">
+                    <label class="col form-label col-form-label-sm">Catégorie :</label>
+                        <select id="categorie" class="col form-control form-select form-select-sm" name="categorie">
+                            <option value="telephonie">Téléphonie</option>
+                            <option value="ordinateur">Ordinateur</option>
+                            <option value="console">Console</option>
+                            <option value="television">Télévision</option>
+                        </select>
+                </div>
+                <div class="row">
+                    <label class="col form-label col-form-label-sm">Sous Categorie :</label>
+                        <select id="sous_categorie" class="col form-control form-select form-select-sm" name="sous_categorie">
+                            <option value=""></option>
+                            <option value=""></option>
+                            <option value=""></option>
+                            <option value=""></option>
+                        </select>
+                </div>
+                <div class="row">
+                    <label class="col form-label col-form-label-sm">Ville :</label>
+                    <input type="text" class="col form-control form-text" placeholder="Limoges">
+                </div>
+                <div class="row">
+                    <label class="col form-label col-form-label-sm">Prix :</label>
+                    <input type="text" class="col form-control form-text" placeholder="100"> Euros
+                </div>
+                <div class="row">
+                    <label class="col form-label col-form-label-sm">Marque :</label>
+                    <select id="marque" class="col form-control form-select form-select-sm" name="marques">
+                            <option value="samsung">Samsung</option>
+                            <option value="apple">Apple</option>
+                            <option value="huawei">Huawei</option>
+                            <option value="sony">Sony</option>
+                            <option value="acer">Acer</option>
+                            <option value="asus">Asus</option>
+                            <option value="msi">MSI</option>
+                            <option value="xiaomi">Xiaomi</option>
+                            <option value="toshiba">Toshiba</option>
+                            <option value="philips">Philips</option>
+                            <option value="dell">Dell</option>
+                            <option value="hp">HP</option>
+                            <option value="autres">Autres</option>
+                        </select>
+                </div>
+                <div class="row">
+                    <label class="col form-label col-form-label-sm">Description :</label>
+                    <textarea class="col form-control form-text" id="description" name="descrition" rows="10" cols="50">
+        
+                    </textarea>
+                </div>
+                <div class="row">
+                    <label class="col form-label col-form-label-sm">Images :</label>
+                    <input class="col" type="file" id="image" name="image">
+                </div>
+            </form>
         </div>
-        <div class="row">
-            <label class="col form-label col-form-label-sm">Catégorie :</label>
-                <select id="categorie" class="col form-control form-select form-select-sm" name="categorie">
-                    <option value="telephonie">Téléphonie</option>
-                    <option value="ordinateur">Ordinateur</option>
-                    <option value="console">Console</option>
-                    <option value="television">Télévision</option>
-                </select>
+        <div class="col col-xl-4 col-sm-6 col-12" style="background-color:red">
+            <!--annonces-->
         </div>
-        <div class="row">
-            <label class="col form-label col-form-label-sm">Sous Categorie :</label>
-                <select id="sous_categorie" class="col form-control form-select form-select-sm" name="sous_categorie">
-                    <option value=""></option>
-                    <option value=""></option>
-                    <option value=""></option>
-                    <option value=""></option>
-                </select>
-        </div>
-        <div class="row">
-            <label class="col form-label col-form-label-sm">Ville :</label>
-            <input type="text" class="col form-control form-text" placeholder="Limoges">
-        </div>
-        <div class="row">
-            <label class="col form-label col-form-label-sm">Prix :</label>
-            <input type="text" class="col form-control form-text" placeholder="100"> Euros
-        </div>
-        <div class="row">
-            <label class="col form-label col-form-label-sm">Marque :</label>
-            <select id="marque" class="col form-control form-select form-select-sm" name="marques">
-                    <option value="samsung">Samsung</option>
-                    <option value="apple">Apple</option>
-                    <option value="huawei">Huawei</option>
-                    <option value="sony">Sony</option>
-                    <option value="acer">Acer</option>
-                    <option value="asus">Asus</option>
-                    <option value="msi">MSI</option>
-                    <option value="xiaomi">Xiaomi</option>
-                    <option value="toshiba">Toshiba</option>
-                    <option value="philips">Philips</option>
-                    <option value="dell">Dell</option>
-                    <option value="hp">HP</option>
-                    <option value="autres">Autres</option>
-                </select>
-        </div>
-        <div class="row">
-            <label class="col form-label col-form-label-sm">Description :</label>
-            <textarea class="col form-control form-text" id="description" name="descrition" rows="10" cols="50">
- 
-            </textarea>
-        </div>
-        <div class="row">
-             <label class="col form-label col-form-label-sm">Images :</label>
+        <div class="col col-xl-2 col-sm-12 col-12" style="background-color:blue">
+            <!--pub-->
+            <p>
+                <br>
+                <br>
+            </p>
         </div>
     </div>
-    <div class="col col-xl-4"  style="background-color:red">
-        <h1>Mes Annonces</h1>
-    </div>
-    <div class="col col-xl-2"  style="background-color:blue">
-        <p>
-            <br>
-            <br>
-            <br>
-        </p>
-    </div>
-</div>
 {% endblock %}
