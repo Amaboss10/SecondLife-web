@@ -5,6 +5,7 @@
 
         <title>{% block title %}{% endblock %}</title>
         {% block stylesheets %}{{ encore_entry_link_tags('app') }}{% endblock %}
+       
        <!--<link rel="stylesheet" href="./assets/styles/style.css">-->
     </head>
     <body class="container-fluid">
@@ -28,37 +29,13 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="row navbar-nav menu">
-{#
-                        <li class="col nav-item page_creer_annonce"><a class="nav-link" href={{path('secondLife_creer_annonce')}}>créer une annonce</a></li>
-                        <li class=" col nav-item page_faq"><a class="nav-link" href={{path('secondLife_faq')}}>FAQ/Aide</a></li>
-                        <li class="col  nav-item page_favoris"><a class="nav-link" href={{path('secondLife_favoris')}}>Favoris</a></li>
-                        <li class="col  nav-item page_messagerie"><a class="nav-link" href={{path('secondLife_messagerie')}}>Messagerie</a></li>
-                        <li class="col  nav-item page_compte_se_connecter"><a class="nav-link" href={{path('secondLife_mon_compte')}}>Compte/Se connecter</a></li>
-                        <li class="col  nav-item page_deconnexion"><a class="nav-link" href={{path('secondLife_deconnexion')}}>Deconnexion</a></li>
-#}
-                    <!--si utilisateur connecté-->
-                        {% if app.user %}
-                            <li class="col nav-item page_accueil"><a class="nav-link" href={{path('secondLife_accueil')}}>Accueil</a></li>
-                            <li class="col nav-item page_creer_annonce"><a class="nav-link"  href={{path('secondLife_creer_annonce')}}>créer une annonce</a></li>
-                            <li class="col nav-item page_favoris"><a class="nav-link"  href={{path('secondLife_favoris')}}>Favoris</a></li>
-                            <li class="col nav-item page_messagerie"><a class="nav-link"  href={{path('secondLife_messagerie')}}>Messagerie</a></li>
-                            <li class="col nav-item page_compte_se_connecter"><a class="nav-link"  href={{path('secondLife_mon_compte')}}>Compte</a></li>
-                            <li class="col nav-item page_faq"><a class="nav-link"  href={{path('secondLife_faq')}}>FAQ/Aide</a></li>
-                            <li class="col nav-item page_deconnexion"><a class="nav-link"  href={{path('secondLife_deconnexion')}}>Deconnexion</a></li>
-                    <!--si utlisateur non connecté-->
-                        {% else %}
-                            <li class="col nav-item page_accueil"><a class="nav-link"  href={{path('secondLife_accueil')}}>Accueil</a></li>
-                            <li class="col nav-item page_creer_annonce"><a class="nav-link"  href={{path('secondLife_connexion')}}>créer une annonce</a></li>
-                            <li class="col nav-item page_favoris"><a class="nav-link"  href={{path('secondLife_connexion')}}>Favoris</a></li>
-                            <li class="col nav-item page_messagerie"><a class="nav-link"  href={{path('secondLife_connexion')}}>Messagerie</a></li>
-                            <li class="col nav-item page_compte_se_connecter"><a class="nav-link"  href={{path('secondLife_connexion')}}>Se connecter</a></li>
-                            <li class="col nav-item page_faq"><a class="nav-link"  href={{path('secondLife_faq')}}>FAQ/Aide</a></li>
-                        {% endif %}
-
-                    <div>
-                </ul>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="row navbar-nav menu">
+                        <li class="col nav-item page_accueil"><a class="nav-link"  href={{path('secondLife_admin_accueil')}}>Accueil</a></li>
+                        <li class="col nav-item page_gerer_annonces"><a class="nav-link"  href={{path('secondLife_admin_gerer_annonces')}}>Annonces</a></li>
+                        <li class="col nav-item page_gere_faq"><a class="nav-link"  href={{path('secondLife_admin_gerer_faq')}}>FAQ</a></li>
+                    </ul>
+                </div>
             </nav>
         </header>
 
