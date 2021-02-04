@@ -4,17 +4,20 @@
 
 {% block body %}
     <h1>{{ titre_page }}</h1>
-    <a href={{path('secondLife_admin_ajouter_faq')}} class="ajouter_rubrique"><button class="btn_crud">Ajouter une rubrique</button></a>
-    
+    <div class="row">
+        <h3 class="col-6 col-sm-9 col-xl-6">Les rubriques</h3>
+        <a href={{path('secondLife_admin_ajouter_faq')}} class="ajouter_rubrique col-xl-2 col-sm-3 col-6"><button class="btn_crud btn-sm btn-outline-success "  type="button">Ajouter une rubrique</button></a>
+    </div>
     <div class="rubriques">
     {% if rubriques==null %}
         <p class="no_faq">Pas de rubrique FAQ/Aide</p>
     {% endif %}
     {% for rubrique in rubriques %}
-        <div class="rubrique">
-            <button class="titre_rubrique">{{rubrique.titreProbleme}}</button>
+        <div class="rubrique row">
+           
+            <button class="titre_rubriquebtn btn-sm btn-outline-secondary col-2 col-sm-2 col-xl-2" type="button">{{rubrique.titreProbleme}}</button>
             
-            <div class="detail_rubrique" >
+            <div class="detail_rubrique col-12 col-sm-8 col-xl-9  " >
                 <h3 class="titre_probleme">{{rubrique.titreProbleme}}</h3>
                 
                 <p class="description_probleme">{{rubrique.descriptionProbleme}}</p>
@@ -29,8 +32,8 @@
                 </video>
                 
                 <div class="btns_crud">
-                    <a href={{path('secondLife_admin_modifier_faq',{'id':rubrique.id})}} class="modifier_rubrique"><button class="btn_crud">Modifier la rubrique</button></a>
-                    <a href={{path('secondLife_admin_supprimer_faq',{'id':rubrique.id})}} class="supprimer_rubrique"><button class="btn_crud">Supprimer la rubrique</button></a>
+                    <a href={{path('secondLife_admin_modifier_faq',{'id':rubrique.id})}} class="modifier_rubrique"><button class="btn_crud btn-sm btn-outline-success" type="button">Modifier la rubrique</button></a>
+                    <a href={{path('secondLife_admin_supprimer_faq',{'id':rubrique.id})}} class="supprimer_rubrique"><button class="btn_crud btn-sm btn-outline-success" type="button">Supprimer la rubrique</button></a>
                 </div>
             </div>
         </div> 

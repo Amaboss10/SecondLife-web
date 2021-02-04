@@ -4,30 +4,33 @@
 
 {% block body %}
     <h1>{{ titre_page }}</h1>
-    <h3>Foire aux questions</h3>
+    
     <div class="rubriques">
     {% if rubriques==null %}
         <p class="no_faq">Pas de rubrique FAQ/Aide</p>
     {% endif %}
     <div class="row">
         <div class="col">
+            <h3>Foire aux questions</h3>
             {% for rubrique in rubriques %}
                 <div class="rubrique row">
-                    <button class="titre_rubrique btn btn-sm btn-outline-secondary col-12 col-sm-4 col-xl-2  " type="button">{{rubrique.titreProbleme}}</button>
+                    <button class="titre_rubrique btn btn-sm btn-outline-secondary col-12 col-sm-4 col-xl-2" data-bs-toggle="collapse" data-bs-target="#CollapseExample1" aria-expanded="false" aria-controls="CollapseExample1" type="button">{{rubrique.titreProbleme}}</button>
                     
-                    <div class="detail_rubrique col-12 col-sm-8 col-xl-6  " >
-                        <h3 class="titre_probleme">{{rubrique.titreProbleme}}</h3>
+                    <div class="detail_rubrique col-12 col-sm-8 col-xl-6 collapse" id="CollapseExample1">
+                        <div class="card card-body">
+                            <h3 class="titre_probleme">{{rubrique.titreProbleme}}</h3>
                         
-                        <p class="description_probleme">{{rubrique.descriptionProbleme}}</p>
+                            <p class="description_probleme">{{rubrique.descriptionProbleme}}</p>
                         
-                        <p class="solution_probleme">{{rubrique.solutionProbleme}}</p>
+                            <p class="solution_probleme">{{rubrique.solutionProbleme}}</p>
                         
-                        <video class="lien_tutoriel" controls poster>
-                            <source src={{rubrique.lienTutoriel}} type="video/mp4">
-                            <p>Votre navigateur ne prend pas en charge les vidéos HTML5.
-                                Voici <a href={{rubrique.lienTutoriel}}> un lien pour télécharger la vidéo</a>.
-                            </p>
-                        </video>
+                            <video class="lien_tutoriel" controls poster>
+                                <source src={{rubrique.lienTutoriel}} type="video/mp4">
+                                <p>Votre navigateur ne prend pas en charge les vidéos HTML5.
+                                 Voici <a href={{rubrique.lienTutoriel}}> un lien pour télécharger la vidéo</a>.
+                                </p>
+                            </video>
+                        </div>
                     </div>
                     
                 </div> 
