@@ -7,11 +7,11 @@
         <div class="col col-xl-6 col-sm-6 col-12">
             <form>
                 <h1>{{ titre_page }}</h1>
-                <div class="row">
+                <div class="row titre">
                     <label class="col form-label col-form-label-sm">Titre Annonce :</label>
                     <input type="text" class="col form-control form-text" placeholder="Samsung S10 128Go Noir">
                 </div>
-                <div class="row">
+                <div class="row categorie_objet">
                     <label class="col form-label col-form-label-sm">Catégorie :</label>
                         <select id="categorie" class="col form-control form-select form-select-sm" name="categorie">
                             <option value="telephonie">Téléphonie</option>
@@ -20,7 +20,7 @@
                             <option value="television">Télévision</option>
                         </select>
                 </div>
-                <div class="row">
+                <div class="row sous_categorie_objet">
                     <label class="col form-label col-form-label-sm">Sous Categorie :</label>
                         <select id="sous_categorie" class="col form-control form-select form-select-sm" name="sous_categorie">
                             <option value=""></option>
@@ -29,15 +29,15 @@
                             <option value=""></option>
                         </select>
                 </div>
-                <div class="row">
+                <div class="row ville">
                     <label class="col form-label col-form-label-sm">Ville :</label>
                     <input type="text" class="col form-control form-text" placeholder="Limoges">
                 </div>
-                <div class="row">
+                <div class="row prix">
                     <label class="col form-label col-form-label-sm">Prix :</label>
                     <input type="text" class="col form-control form-text" placeholder="100"> Euros
                 </div>
-                <div class="row">
+                <div class="row marque_objet">
                     <label class="col form-label col-form-label-sm">Marque :</label>
                     <select id="marque" class="col form-control form-select form-select-sm" name="marques">
                             <option value="samsung">Samsung</option>
@@ -55,25 +55,23 @@
                             <option value="autres">Autres</option>
                         </select>
                 </div>
-                <div class="row">
+                <div class="row description">
                     <label class="col form-label col-form-label-sm">Description :</label>
                     <textarea class="col form-control form-text" id="description" name="descrition" rows="10" cols="50">
         
                     </textarea>
                 </div>
-                <div class="row">
+                <div class="row image_objet">
                     <label class="col form-label col-form-label-sm">Images :</label>
                     <input class="col" type="file" id="image" name="image">
                 </div>
-                <div>
-                    <input type="submit" classe="btn-link" value="Crée l'Annonce">
-                </div>
+                <button type="button" class="btn btn-lg btn-outline-success">Crée l'Annonce</button>
             </form>
         </div>
-        <div class="col col-xl-4 col-sm-6 col-12" style="background-color:red">
+        <div class="annonces col col-xl-4 col-sm-6 col-12" style="background-color:red">
             <!--annonces-->
         </div>
-        <div class="col col-xl-2 col-sm-12 col-12" style="background-color:blue">
+        <div class="pub col col-xl-2 col-sm-12 col-12" style="background-color:blue">
             <!--pub-->
             <p>
                 <br>

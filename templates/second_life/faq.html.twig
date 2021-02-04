@@ -4,31 +4,52 @@
 
 {% block body %}
     <h1>{{ titre_page }}</h1>
+    <h3>Foire aux questions</h3>
     <div class="rubriques">
     {% if rubriques==null %}
         <p class="no_faq">Pas de rubrique FAQ/Aide</p>
     {% endif %}
-
-    {% for rubrique in rubriques %}
-        <div class="rubrique">
-            <button class="titre_rubrique">{{rubrique.titreProbleme}}</button>
-            
-            <div class="detail_rubrique" >
-                <h3 class="titre_probleme">{{rubrique.titreProbleme}}</h3>
-                
-                <p class="description_probleme">{{rubrique.descriptionProbleme}}</p>
-                
-                <p class="solution_probleme">{{rubrique.solutionProbleme}}</p>
-                
-                <video class="lien_tutoriel" controls poster>
-                    <source src={{rubrique.lienTutoriel}} type="video/mp4">
-                    <p>Votre navigateur ne prend pas en charge les vidéos HTML5.
-                        Voici <a href={{rubrique.lienTutoriel}}> un lien pour télécharger la vidéo</a>.
-                    </p>
-                </video>
-                
-            </div>
-        </div> 
-    {% endfor %}
-
+    <div class="row">
+        <div class="col">
+            {% for rubrique in rubriques %}
+                <div class="rubrique row">
+                    <button class="titre_rubrique btn btn-sm btn-outline-secondary col-12 col-sm-4 col-xl-2  " type="button">{{rubrique.titreProbleme}}</button>
+                    
+                    <div class="detail_rubrique col-12 col-sm-8 col-xl-6  " >
+                        <h3 class="titre_probleme">{{rubrique.titreProbleme}}</h3>
+                        
+                        <p class="description_probleme">{{rubrique.descriptionProbleme}}</p>
+                        
+                        <p class="solution_probleme">{{rubrique.solutionProbleme}}</p>
+                        
+                        <video class="lien_tutoriel" controls poster>
+                            <source src={{rubrique.lienTutoriel}} type="video/mp4">
+                            <p>Votre navigateur ne prend pas en charge les vidéos HTML5.
+                                Voici <a href={{rubrique.lienTutoriel}}> un lien pour télécharger la vidéo</a>.
+                            </p>
+                        </video>
+                    </div>
+                    
+                </div> 
+            {% endfor %}
+        </div>
+        <div class="nous_contacter col-12 col-sm-12 col-xl-4">
+            <form>
+                <h3>Nous Contacter</h3>
+                <p> vous n'avez pas trouvé de solution parmis celles proposées?<p>
+                <input type="text" class="form-control form-text" placeholder="Nom : DUPOND">
+                <input type="text" class="form-control form-text" placeholder="Prénom : Richard">
+                <input type="email" class="form-control form-text" placeholder="Email : name@exemple.com">
+                <input type="text" class="form-control form-text" placeholder="Sujet : Comment ajouter une annonce">
+                <textarea class="col form-control form-text" id="message" name="message" rows="10" cols="50">
+        
+                </textarea>
+                <div class="row image_objet">
+                    <label class="col form-label col-form-label-sm">Images :</label>
+                    <input class="col" type="file" id="image" name="image">
+                </div>
+                <button type="button" class="btn btn-sm btn-outline-success">Envoyé</button>
+            </form>
+        </div>
+    </div>
 {% endblock %}
