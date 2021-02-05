@@ -14,7 +14,7 @@
             <h3>Foire aux questions</h3>
             {% for rubrique in rubriques %}
                 <div class="rubrique row">
-                    <button class="titre_rubrique btn btn-sm btn-outline-secondary col-12 col-sm-4 col-xl-2" data-bs-toggle="collapse" data-bs-target="#CollapseExample1" aria-expanded="false" aria-controls="CollapseExample1" type="button">{{rubrique.titreProbleme}}</button>
+                    <button class="titre_rubrique btn btn-sm btn-outline-secondary col-12 col-sm-4 col-xl-2" type="button" data-bs-toggle="collapse" data-bs-target="#CollapseExample1" aria-expanded="false" aria-controls="CollapseExample1" >{{rubrique.titreProbleme}}</button>
                     
                     <div class="detail_rubrique col-12 col-sm-8 col-xl-6 collapse" id="CollapseExample1">
                         <div class="card card-body">
