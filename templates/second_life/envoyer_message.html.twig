@@ -4,6 +4,52 @@
 
 {% block body %}
     <h1>{{ titre_page }}</h1>
+    <div class="row">
+        <div class="col-xl-10 col-sm-12 col-12">
+            <div class="row">
+                <div class="col-xl-2 col-sm-2 col-2">
+                <!--A changer-->
+                    <img src="image_profil.png" class="img-thumbnail" alt="photo de profil">
+                </div>
+                <div class="col-xl-10 col-sm-10 col-10">
+                    <div class="row">
+                        <label class="col form-label col-form-label-lg">Expéditeur  : </label>
+                        <input type="text" class="col form-control form-text" placeholder="Viiper">
+                    </div>
+                    <div class="row">
+                        <label class="col form-label col-form-label-lg">Destinataire  : </label>
+                        <input type="text" class="col form-control form-text" placeholder="Scubrina">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <label class="col form-label col-form-label-lg">Objet  : </label>
+                <input type="text" class="col form-control form-text" placeholder="Demande de renseignement">
+            </div>
+            <div class="row">
+                <label class="colform-label col-form-label-lg">contenu du message  : </label>
+                <textarea class="col form-control form-text" id="description" name="descrition" rows="10" cols="50">
+        
+                </textarea>
+            </div>
 
+            <div class="row">
+                <label class="col form-label col-form-label-lg">Pieces Jointes  : </label>
+                <input class="col" type="file" id="image" name="image">
+            </div>
+            <div class="row">
+                    <button type="button" class="col btn btn-sm btn-outline-secondary">Envoyer</button>
+
+            </div>
+        </div>
+        <div class="col-xl-2 col-sm-12 col-12" style="background-color:blue">
+            <!--pub-->
+            <p>
+                <br>
+                <br>
+            </p>
+        </div>
+    </div>
+   
 
 {% endblock %}
