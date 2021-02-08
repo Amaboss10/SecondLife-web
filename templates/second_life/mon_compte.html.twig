@@ -3,7 +3,63 @@
 {% block title %}{{titre_page}}{% endblock %}
 
 {% block body %}
-    <h1>{{ titre_page }}</h1>
-
+    <div class="row">
+        <div class="col-xl-10 xol-sm-12 xol-12">
+            <div class="row">
+                <h1 class="col">{{ titre_page }}</h1>
+                <button type="button" class="col btn btn-sm btn-outline-secondary">voir mon profil</button>
+            </div>
+            <div class="row">
+                <h3> Mes information personnelles <h3>
+                <div class="row">
+                    <input class="col-xl-2 col-sm-6 col-12" type="file" id="image" name="image">
+                    <div class=" offset-xl-0 col-xl-3 offset-md-6 col-sm-6 col-12">
+                        <input type="text" class="form-control form-text" placeholder="Pseudo : Viiper">
+                        <input type="text" class="form-control form-text" placeholder=" DUPOND">
+                        <input type="text" class="form-control form-text" placeholder=" Richard">
+                    </div>
+                    <div class=" offset-xl-0 col-xl-3 offset-md-6 col-sm-6 col-12">
+                        <input type="tel" class="form-control form-text" placeholder=" 06 48 97 16 52">
+                        <input type="text" class="form-control form-text" placeholder="Paris">
+                        <input type="number" class="form-control form-text" placeholder="75000">
+                    </div>
+                    <div class=" offset-xl-0 col-xl-4 offset-md-6  col-sm-6 col-12">
+                        <input type="date" class="form-label col-form-label-lg" id="anniversaire" name="anniversaire">
+                        <button type="button" class="btn btn-sm btn-outline-secondary">Modifier mes informations</button>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <h3> Gérer mes annonces </h3>
+                <div class="row">
+                    <button type="button" class="col btn btn-sm btn-outline-secondary">Ajouter une annonce</button>
+                    <button type="button" class="col btn btn-sm btn-outline-secondary">Gérer mes annonces</button>
+                </div>
+            </div>
+            <div class="row">
+                <h3>Paramètres</h3>
+                <div class="col-xl-4 col-sm-4 col-12">
+                    <input type="email" class="form-control form-text" placeholder="Email : name@exemple.com">
+                    <button type="button" class="col btn btn-sm btn-outline-secondary">modifier adresse mail</button>
+                </div>
+                <div class="col-xl-4 col-sm-4 col-12">
+                    <input type="password" class="form-control form-text" placeholder="ancien mot de passe">
+                    <input type="password" class="form-control form-text" placeholder="nouveau mot de passe">
+                    <button type="button" class="col btn btn-sm btn-outline-secondary">modifier le mot de passe</button>
+                </div>
+                <div class="col-xl-4 col-sm-4 col-12">
+                     <button type="button" class="col btn btn-sm btn-outline-secondary">supprimer mon compte</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-2 col-sm-12 col-12" style="background-color:blue">
+            <!--pub-->
+            <p>
+                <br>
+                <br>
+            </p>
+        </div>
+    </div>
+   
 
 {% endblock %}
