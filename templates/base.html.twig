@@ -9,7 +9,7 @@
        <!--<link rel="stylesheet" href="./assets/styles/style.css">-->
     </head>
     <body class="container-fluid">
-        <header class="row">
+        <header class="row" style="text-align:center">
            
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
                 <!--le logo-->
@@ -29,8 +29,8 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
-                    <div class="col collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="row navbar-nav menu">
+                <div class="col collapse navbar-collapse" id="navbarSupportedContent" >
+                    <ul class="row navbar-nav menu">
 {#                   
                         <li class="col nav-item page_creer_annonce"><a class="nav-link" href={{path('secondLife_creer_annonce')}} class="link-secondary">créer une annonce</a></li>
                         <li class=" col nav-item page_faq"><a class="nav-link" href={{path('secondLife_faq')}} class="link-secondary">FAQ/Aide</a></li>
@@ -39,7 +39,7 @@
                         <li class="col  nav-item page_compte_se_connecter"><a class="nav-link" href={{path('secondLife_mon_compte')}} class="link-secondary">Compte/Se connecter</a></li>
                         <li class="col  nav-item page_deconnexion"><a class="nav-link" href={{path('secondLife_deconnexion')}} class="link-secondary">Deconnexion</a></li>
 #}
-                    <!--si utilisateur connecté-->
+                        <!--si utilisateur connecté-->
                         {% if app.user %}
                             <li class="col nav-item page_accueil "><a class="nav-link" href={{path('secondLife_accueil')}} class="link-secondary">Accueil</a></li>
                             <li class="col nav-item page_creer_annonce"><a class="nav-link"  href={{path('secondLife_creer_annonce')}} class="link-secondary">créer une annonce</a></li>
@@ -48,7 +48,7 @@
                             <li class="col nav-item page_compte_se_connecter"><a class="nav-link"  href={{path('secondLife_mon_compte')}} class="link-secondary">Compte</a></li>
                             <li class="col nav-item page_faq"><a class="nav-link"  href={{path('secondLife_faq')}} class="link-secondary">FAQ/Aide</a></li>
                             <li class="col nav-item page_deconnexion"><a class="nav-link"  href={{path('secondLife_deconnexion')}} class="link-secondary">Deconnexion</a></li>
-                    <!--si utlisateur non connecté--> 
+                        <!--si utlisateur non connecté--> 
                         {% else %}
                             <li class="col nav-item page_accueil"><a class="nav-link"  href={{path('secondLife_accueil')}} class="link-secondary">Accueil</a></li>
                             <li class="col nav-item page_creer_annonce"><a class="nav-link"  href={{path('secondLife_connexion')}} class="link-secondary">créer une annonce</a></li>
@@ -57,9 +57,8 @@
                             <li class="col nav-item page_compte_se_connecter"><a class="nav-link"  href={{path('secondLife_connexion')}} class="link-secondary">Se connecter</a></li> 
                             <li class="col nav-item page_faq"><a class="nav-link"  href={{path('secondLife_faq')}} class="link-secondary">FAQ/Aide</a></li>
                         {% endif %}
-                        
-                    <div>
-                </ul>
+                    </ul>
+                <div>
             </nav>
         </header>
 
@@ -68,9 +67,9 @@
             {% block body %}{% endblock %}
         </div>
 
-        <footer class="row bg-dark text-white" >
+        <footer class="row bg-dark text-white" style="text-align:center">
             <div class="col a_propos col-xl-3 col-sm-6 col-xs-6">
-                <h3 class="titre_section_footer">A propos</h3>
+                <h3 class="titre_section_footer" >A propos</h3>
                 <span class="qui_sommes_nous"><a href={{path('secondLife_qui_sommes_nous')}} class="link-secondary">Qui sommes-nous?</a></span>    
             </div>
 
