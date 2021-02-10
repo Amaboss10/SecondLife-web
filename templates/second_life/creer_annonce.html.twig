@@ -4,16 +4,16 @@
 
 {% block body %}
    <div class="row">
-        <div class="col col-xl-6 col-sm-6 col-12">
-            <form>
-                <h1>{{ titre_page }}</h1>
-                <div class="row titre">
-                    <label class="col form-label col-form-label-sm">Titre Annonce :</label>
-                    <input type="text" class="col form-control form-text" placeholder="Samsung S10 128Go Noir">
+        <div class="col col-xl-5 col-sm-12 col-12" style="margin:1%">
+            <form style=" margin:2%; padding:1%">
+                <h1 style="padding-bottom:0.5%">{{ titre_page }}</h1>
+                <div class="row titre" style="padding-bottom:0.5%">
+                    <label class="col-3  form-label col-form-label-sm">Titre Annonce :</label>
+                    <input type="text" class="col form-control form-text bg-light" placeholder="Samsung S10 128Go Noir">
                 </div>
-                <div class="row categorie_objet">
-                    <label class="col form-label col-form-label-sm">Catégorie :</label>
-                        <select id="categorie" class="col form-control form-select form-select-sm" name="categorie">
+                <div class="row categorie_objet"  style="padding-bottom:0.5%">
+                    <label class="col-3 form-label col-form-label-sm">Catégorie :</label>
+                        <select id="categorie" class="col form-control form-select form-select-sm bg-light" name="categorie">
                             <option value="telephonie">Téléphonie</option>
                             <option value="ordinateur">Ordinateur</option>
                             <option value="console">Console</option>
@@ -21,8 +21,8 @@
                         </select>
                 </div>
                 <div class="row sous_categorie_objet">
-                    <label class="col form-label col-form-label-sm">Sous Categorie :</label>
-                        <select id="sous_categorie" class="col form-control form-select form-select-sm" name="sous_categorie">
+                    <label class="col-3 form-label col-form-label-sm">Sous Categorie :</label>
+                        <select id="sous_categorie" class="col form-control form-select form-select-sm bg-light" name="sous_categorie">
                             <option value=""></option>
                             <option value=""></option>
                             <option value=""></option>
@@ -30,16 +30,17 @@
                         </select>
                 </div>
                 <div class="row ville">
-                    <label class="col form-label col-form-label-sm">Ville :</label>
-                    <input type="text" class="col form-control form-text" placeholder="Limoges">
+                    <label class="col-3 form-label col-form-label-sm">Ville :</label>
+                    <input type="text" class="col form-control form-text bg-light" placeholder="Limoges">
                 </div>
-                <div class="row prix">
-                    <label class="col form-label col-form-label-sm">Prix :</label>
-                    <input type="text" class="col form-control form-text" placeholder="100"> Euros
+                <div class="row prix"  style="padding-bottom:0.5%">
+                    <label class="col-3 form-label col-form-label-sm">Prix :</label>
+                    <input type="text" class="col form-control form-text bg-light" placeholder="100"> 
+                    <p class="col-1" style="padding-top:1.2%"> Euros</p>
                 </div>
                 <div class="row marque_objet">
-                    <label class="col form-label col-form-label-sm">Marque :</label>
-                    <select id="marque" class="col form-control form-select form-select-sm" name="marques">
+                    <label class="col-3 form-label col-form-label-sm">Marque :</label>
+                    <select id="marque" class="col form-control form-select form-select-sm bg-light" name="marques">
                             <option value="samsung">Samsung</option>
                             <option value="apple">Apple</option>
                             <option value="huawei">Huawei</option>
@@ -55,23 +56,29 @@
                             <option value="autres">Autres</option>
                         </select>
                 </div>
-                <div class="row description">
-                    <label class="col form-label col-form-label-sm">Description :</label>
-                    <textarea class="col form-control form-text" id="description" name="descrition" rows="10" cols="50">
+                <div class="row description"  style="padding-bottom:0.5%">
+                    <label class="col-3 form-label col-form-label-sm">Description :</label>
+                    <textarea class="col form-control form-text bg-light" id="description" name="descrition" rows="10" cols="50">
         
                     </textarea>
                 </div>
-                <div class="row image_objet">
-                    <label class="col form-label col-form-label-sm">Images :</label>
+                <div class="row image_objet"  style="padding-bottom:0.5%">
+                    <label class="col-3 form-label col-form-label-sm">Images :</label>
                     <input class="col" type="file" id="image" name="image">
                 </div>
-                <button type="button" class="btn btn-lg btn-outline-success">Crée l'Annonce</button>
+                <div style="text-align:center">
+                    <button type="button" class="btn btn-lg btn-outline-success"  style="margin-top:3%">Crée l'Annonce</button>
+                </div>
             </form>
         </div>
-        <div class="annonces col col-xl-4 col-sm-6 col-12" style="background-color:red">
+        <div class="annonces col col-xl-4 col-sm-12 col-12" style="background-color:red" style="margin:1%">
             <!--annonces-->
+            <p>
+                <br>
+                <br>
+            </p>
         </div>
-        <div class="pub col col-xl-2 col-sm-12 col-12" style="background-color:blue">
+        <div class="pub col col-xl-2 col-sm-12 col-12" style="background-color:blue" style="margin:1%">
             <!--pub-->
             <p>
                 <br>

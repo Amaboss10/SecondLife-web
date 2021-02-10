@@ -4,38 +4,41 @@
 
 {% block body %}
 <div class="row">
-    <div class="col-xl-2 col-sm-3 col-12">
-        <h1>{{ titre_page }}</h1>
-        <div>
+    <div class="col-xl-2 col-sm-3 col-12" style="margin:1%">
+        <h1 style="padding-bottom:0.5%" >{{ titre_page }}</h1>
+        <div style="border-style:solid; border-width:1px; border-color:#818D92; margin:2%; padding:6%; text-align:center">
             <div class="row">
-                <button type="button" class="btn btn-sm btn-outline-secondary">Boite de reception</button>
+                <button type="button" class="btn btn-sm btn-outline-secondary" style="margin-bottom:5%">Boite de reception</button>
             </div>
             <div class="row">
-                <button type="button" class="btn btn-sm btn-outline-secondary">Messages non lus</button>
+                <button type="button" class="btn btn-sm btn-outline-secondary" style="margin-bottom:5%">Messages non lus</button>
             </div>
             <div class="row">
                 <button type="button" class="btn btn-sm btn-outline-secondary">Messages envoyés</button>
             </div>
         </div>
-        <p style="background-color:blue">
+        <p style="background-color:blue" style="margin:1%">
         <!--pub-->
             <br>
             <br>
         </p>
     </div>
-    <div class="col-xl-5 col-sm-9 col-12">
-        <label class="form-label col-form-label-sm">Tier par :</label>
-                <select id="tri" class="form-control form-select form-select-sm" name="tri">
+    <div class="col-xl-3 col-sm-9 col-12">
+        <div style="padding-bottom:1.5%">
+            <label class="form-label col-form-label-sm">Tier par :</label>
+                <select id="tri" class="form-control form-select form-select-sm bg-light" name="tri">
                     <option value="importance">Importance</option>
                     <option value="date_recente">Date Récente</option>
                     <option value="date_anciene">Date Anciene</option>
                 </select>
+        </div>
+        
         <p style="background-color:red">
             <br>
             <br>
         </p>
     </div>
-    <div class="col-xl-5 col-sm-12 col-12"  style="background-color:green">
+    <div class="col-xl-6 col-sm-12 col-12"  style="background-color:green">
          <p>
             <br>
             <br>
