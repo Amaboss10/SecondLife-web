@@ -6,14 +6,14 @@
     <div class="row">
         <div class="col-xl-10 xol-sm-12 xol-12" style="padding:2%">
             <div class="row">
-                <h1 class="col">{{ titre_page }}</h1>
-                <button type="button" class="col offset-xl-7 offset-sm-4 btn btn-sm btn-outline-secondary" style="margin-right:2%">voir mon profil</button>
+                <h1 class="col" style="padding-bottom:0.5%">{{ titre_page }}</h1>
+                <button type="button" class="col-xl-2 col-sm-2 col-4 offset-xl-6 offset-sm-4 btn btn-sm btn-outline-secondary" style="margin-right:2%">voir mon profil</button>
             </div>
             <br>
             <div class="row infos_personnelles" style="border-style:solid; border-width:1px; border-color:#818D92; margin:1%; padding:1%">
                 <h3 style="padding-bottom:0.5%"> Mes informations personnelles <h3>
                 <div class="row">
-                    <input class="col-xl-2 col-sm-6 col-12 form-label col-form-label-sm " type="file" id="image" name="image">
+                    <input class="col-xl-3 col-sm-6 col-12 form-label col-form-label-sm " type="file" id="image" name="image">
                     <div class=" offset-xl-0 col-xl-3 offset-md-6 col-sm-6 col-12">
                         <input type="text" class="form-control form-text bg-light" placeholder="Pseudo : Viiper">
                         <input type="text" class="form-control form-text bg-light" placeholder=" DUPOND">
@@ -24,9 +24,11 @@
                         <input type="text" class="form-control form-text bg-light" placeholder="Paris">
                         <input type="number" min="9999" max"99999" class="form-control form-text bg-light" placeholder="75000">
                     </div>
-                    <div class=" offset-xl-0 col-xl-4 offset-md-6  col-sm-6 col-12">
-                        <input type="date" class="form-label col-form-label-sm bg-light" id="anniversaire" name="anniversaire">
-                        <button type="button" class="btn btn-sm btn-outline-secondary">Modifier mes informations</button>
+                    <div class=" offset-xl-0 col-xl-3 offset-md-6  col-sm-6 col-12">
+                        <input type="date" class="form-label col-form-label-sm col-12 bg-lightc" id="anniversaire" name="anniversaire">
+                        <div style="text-align:center">
+                            <button type="button" class="btn btn-sm btn-outline-secondary">Modifier mes informations</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -42,16 +44,22 @@
                 <div class="col-xl-4 col-sm-4 col-12">
                     <input type="email" class="form-control form-text bg-light" placeholder="Email : name@exemple.com">
                     <br>
-                    <button type="button" class="col offset-xl-4 btn btn-sm btn-outline-secondary">modifier adresse mail</button>
+                    <div style="text-align:center">
+                        <button type="button" class="col btn btn-sm btn-outline-secondary">modifier adresse mail</button>
+                    </div>
                 </div>
                 <div class="col-xl-4 col-sm-4 col-12">
                     <input type="password" class="form-control form-text bg-light" placeholder="ancien mot de passe">
                     <input type="password" class="form-control form-text bg-light" placeholder="nouveau mot de passe">
                     <br>
-                    <button type="button" class="col offset-xl-4 btn btn-sm btn-outline-secondary">modifier le mot de passe</button>
+                    <div style="text-align:center">
+                        <button type="button" class="col btn btn-sm btn-outline-secondary">modifier le mot de passe</button>
+                    </div>
                 </div>
-                <div class="col-xl-4 col-sm-4 col-12" style="margin-top:2%">
-                    <button type="button" class="col offset-xl-4 btn btn-sm btn-outline-secondary">supprimer mon compte</button>
+                <div class="col-xl-4 col-sm-4 col-12" style="margin-top:4%;vertical-align:middle">
+                    <div style="text-align:center">
+                        <button type="button" class="col btn btn-sm btn-outline-secondary">supprimer mon compte</button>
+                    </div>
                 </div>
             </div>
         </div>
