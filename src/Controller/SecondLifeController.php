@@ -2,7 +2,8 @@
 
 namespace App\Controller;
 
-use App\Repository\FaqRepository;
+
+use App\Repository\FAQRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -62,7 +63,7 @@ class SecondLifeController extends AbstractController
     /**
      * @Route("/faq", name="secondLife_faq")
      */
-    public function faq(FaqRepository $repository): Response
+    public function faq(FAQRepository $repository): Response
     {
         $rubriques=$repository->findAll();
         return $this->render('second_life/faq.html.twig', [

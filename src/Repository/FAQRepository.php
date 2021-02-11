@@ -16,7 +16,7 @@ class FAQRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Faq::class);
+        parent::__construct($registry, FAQ::class);
     }
 
     // /**
