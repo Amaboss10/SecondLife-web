@@ -1,15 +1,19 @@
 security:
     encoders:
-        App\Entity\User:
-            algorithm: auto
+        App\Entity\Utilisateur:
+            algorithm: bcrypt
 
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
         #users_in_memory: { memory: null }
-        secondLife_user_provider:
+        # secondLife_user_provider:
+        #     entity:
+        #         class: App\Entity\User
+        #         property: email_personne
+        in_database:
             entity:
-                class: App\Entity\User
-                property: email_personne
+                class: App\Entity\Utilisateur
+                property: mail_personne
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
@@ -17,10 +21,18 @@ security:
         main:
             anonymous: true
             lazy: true
-            provider: secondLife_user_provider
+            provider: in_database
+
+            form_login:
+                login_path: secondlife_connexion
+                check_path: secondlife_connexion
+
+             
             guard:
                 authenticators:
                     - App\Security\UserAuthenticator
+                    - App\Security\LoginFromAuthenticator
+                entry_point: App\Security\UserAuthenticator
             #deconnexion
             logout:
                 path: secondLife_deconnexion

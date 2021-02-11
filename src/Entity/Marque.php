@@ -2,15 +2,15 @@
 
 namespace App\Entity;
 
-use App\Repository\MarqueAnnonceRepository;
+use App\Repository\MarqueRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=MarqueAnnonceRepository::class)
+ * @ORM\Entity(repositoryClass=MarqueRepository::class)
  */
-class MarqueAnnonce
+class Marque
 {
     /**
      * @ORM\Id
@@ -20,12 +20,12 @@ class MarqueAnnonce
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=30)
+     * @ORM\Column(type="string", length=50)
      */
     private $nom_marque;
 
     /**
-     * @ORM\OneToMany(targetEntity=Annonce::class, mappedBy="marque", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=Annonce::class, mappedBy="marque")
      */
     private $annonces;
 

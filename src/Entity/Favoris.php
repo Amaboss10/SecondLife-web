@@ -2,13 +2,11 @@
 
 namespace App\Entity;
 
-use App\Repository\FavoriRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use App\Repository\FavorisRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=FavoriRepository::class)
+ * @ORM\Entity(repositoryClass=FavorisRepository::class)
  */
 class Favoris
 {
@@ -20,29 +18,49 @@ class Favoris
     private $id;
 
     /**
+     * @ORM\ManyToOne(targetEntity=Annonce::class)
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $id_annonce;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Utilisateur::class)
+     * @ORM\JoinColumn(name="utilisateur", referencedColumnName="id_personne")
+     */
+    private $id_utilisateur;
+
+    /**
      * @ORM\Column(type="datetime")
      */
     private $date_favoris;
 
-    /**
-     * @ORM\OneToOne(targetEntity=User::class, inversedBy="favoris", cascade={"persist", "remove"})
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $user;
-
-    /**
-     * @ORM\ManyToMany(targetEntity=Annonce::class, inversedBy="favoris")
-     */
-    private $annonce;
-
-    public function __construct()
-    {
-        $this->annonce = new ArrayCollection();
-    }
-
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function getIdAnnonce(): ?Annonce
+    {
+        return $this->id_annonce;
+    }
+
+    public function setIdAnnonce(?Annonce $id_annonce): self
+    {
+        $this->id_annonce = $id_annonce;
+
+        return $this;
+    }
+
+    public function getIdUtilisateur(): ?Utilisateur
+    {
+        return $this->id_utilisateur;
+    }
+
+    public function setIdUtilisateur(?Utilisateur $id_utilisateur): self
+    {
+        $this->id_utilisateur = $id_utilisateur;
+
+        return $this;
     }
 
     public function getDateFavoris(): ?\DateTimeInterface
@@ -53,42 +71,6 @@ class Favoris
     public function setDateFavoris(\DateTimeInterface $date_favoris): self
     {
         $this->date_favoris = $date_favoris;
-
-        return $this;
-    }
-
-    public function getUser(): ?User
-    {
-        return $this->user;
-    }
-
-    public function setUser(User $user): self
-    {
-        $this->user = $user;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Annonce[]
-     */
-    public function getAnnonce(): Collection
-    {
-        return $this->annonce;
-    }
-
-    public function addAnnonce(Annonce $annonce): self
-    {
-        if (!$this->annonce->contains($annonce)) {
-            $this->annonce[] = $annonce;
-        }
-
-        return $this;
-    }
-
-    public function removeAnnonce(Annonce $annonce): self
-    {
-        $this->annonce->removeElement($annonce);
 
         return $this;
     }

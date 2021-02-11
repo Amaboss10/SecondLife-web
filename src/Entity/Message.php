@@ -18,98 +18,57 @@ class Message
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="messages_envoyes")
+     * @ORM\ManyToOne(targetEntity=Conversation::class)
      * @ORM\JoinColumn(nullable=false)
      */
-    private $expediteur;
+    private $id_conversation;
 
     /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="messages_recus")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\ManyToOne(targetEntity=Utilisateur::class)
+     * @ORM\JoinColumn(name="utilisateur", referencedColumnName="id_personne")
      */
-    private $destinataire;
-
-    /**
-     * @ORM\Column(type="datetime")
-     */
-    private $date_envoi;
-
-    /**
-     * @ORM\Column(type="boolean")
-     */
-    private $etat_message;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $objet_message;
+    private $id_utilisateur;
 
     /**
      * @ORM\Column(type="text")
      */
     private $texte_message;
 
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $date_message;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $etat_envoi;
+
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getExpediteur(): ?User
+    public function getIdConversation(): ?Conversation
     {
-        return $this->expediteur;
+        return $this->id_conversation;
     }
 
-    public function setExpediteur(?User $expediteur): self
+    public function setIdConversation(?Conversation $id_conversation): self
     {
-        $this->expediteur = $expediteur;
+        $this->id_conversation = $id_conversation;
 
         return $this;
     }
 
-    public function getDestinataire(): ?User
+    public function getIdUtilisateur(): ?Utilisateur
     {
-        return $this->destinataire;
+        return $this->id_utilisateur;
     }
 
-    public function setDestinataire(?User $destinataire): self
+    public function setIdUtilisateur(?Utilisateur $id_utilisateur): self
     {
-        $this->destinataire = $destinataire;
-
-        return $this;
-    }
-
-    public function getDateEnvoi(): ?\DateTimeInterface
-    {
-        return $this->date_envoi;
-    }
-
-    public function setDateEnvoi(\DateTimeInterface $date_envoi): self
-    {
-        $this->date_envoi = $date_envoi;
-
-        return $this;
-    }
-
-    public function getEtatMessage(): ?bool
-    {
-        return $this->etat_message;
-    }
-
-    public function setEtatMessage(bool $etat_message): self
-    {
-        $this->etat_message = $etat_message;
-
-        return $this;
-    }
-
-    public function getObjetMessage(): ?string
-    {
-        return $this->objet_message;
-    }
-
-    public function setObjetMessage(?string $objet_message): self
-    {
-        $this->objet_message = $objet_message;
+        $this->id_utilisateur = $id_utilisateur;
 
         return $this;
     }
@@ -122,6 +81,30 @@ class Message
     public function setTexteMessage(string $texte_message): self
     {
         $this->texte_message = $texte_message;
+
+        return $this;
+    }
+
+    public function getDateMessage(): ?\DateTimeInterface
+    {
+        return $this->date_message;
+    }
+
+    public function setDateMessage(\DateTimeInterface $date_message): self
+    {
+        $this->date_message = $date_message;
+
+        return $this;
+    }
+
+    public function getEtatEnvoi(): ?int
+    {
+        return $this->etat_envoi;
+    }
+
+    public function setEtatEnvoi(int $etat_envoi): self
+    {
+        $this->etat_envoi = $etat_envoi;
 
         return $this;
     }

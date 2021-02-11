@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block body %} 
+    <h1>Inscription</h1>
+
+    {{ form_start(formInscription) }}
+    {{ form_row(formInscription.nom_personne, {'label':'Nom'}) }}
+    {{ form_row(formInscription.prenom_personne, {'label':'Prenom'}) }}
+    {{ form_row(formInscription.mail_personne, {'label':'Mail'}) }}
+    {{ form_row(formInscription.mdp_personne, {'label':'Mot de passe'}) }}
+    {{ form_row(formInscription.verif_mdp_personne, {'label':'Confirmation du mot de passe'}) }}
+    {{ form_row(formInscription.pseudo_user, {'label':'Pseudo'}) }}
+    {{ form_row(formInscription.adresse_user, {'label':'Adresse'}) }}
+    {{ form_row(formInscription.date_naiss_user, {'label':'Date de naissance'}) }}
+    {{ form_row(formInscription.lien_image_personne, {'label':'Photo de profil'})}}
+    
+
+    <input type="submit" value="Inscription">
+    {{ form_end(formInscription) }}
+
+{% endblock %}

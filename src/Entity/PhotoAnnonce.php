@@ -18,12 +18,12 @@ class PhotoAnnonce
     private $id;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="string", length=255)
      */
-    private $lien_photoAnnonce;
+    private $lien_photo_annonce;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Annonce::class, inversedBy="photoAnnonces")
+     * @ORM\ManyToOne(targetEntity=Annonce::class, inversedBy="images__annonce")
      * @ORM\JoinColumn(nullable=false)
      */
     private $annonce;
@@ -35,12 +35,12 @@ class PhotoAnnonce
 
     public function getLienPhotoAnnonce(): ?string
     {
-        return $this->lien_photoAnnonce;
+        return $this->lien_photo_annonce;
     }
 
-    public function setLienPhotoAnnonce(string $lien_photoAnnonce): self
+    public function setLienPhotoAnnonce(string $lien_photo_annonce): self
     {
-        $this->lien_photoAnnonce = $lien_photoAnnonce;
+        $this->lien_photo_annonce = $lien_photo_annonce;
 
         return $this;
     }

@@ -2,13 +2,15 @@
 
 namespace App\Entity;
 
-use App\Repository\AnnoceRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\JoinTable;
+use Doctrine\ORM\Mapping\JoinColumn;
+use App\Repository\AnnonceRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
- * @ORM\Entity(repositoryClass=AnnoceRepository::class)
+ * @ORM\Entity(repositoryClass=AnnonceRepository::class)
  */
 class Annonce
 {
@@ -20,7 +22,7 @@ class Annonce
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=50)
      */
     private $titre_annonce;
 
@@ -30,69 +32,61 @@ class Annonce
     private $description_annonce;
 
     /**
-     * @ORM\Column(type="float")
+     * @ORM\Column(type="integer")
      */
     private $prix_annonce;
 
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="integer")
+     */
+    private $poids_annonce;
+
+    /**
+     * @ORM\Column(type="string", length=50)
      */
     private $etat_annonce;
 
     /**
      * @ORM\Column(type="datetime")
      */
-    private $date_publication_annonce;
+    private $date_publi_annonce;
 
     /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="annonces")
+     * @ORM\ManyToOne(targetEntity=Categorie::class, inversedBy="annonces")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $user;
+    private $categorie;
 
     /**
-     * @ORM\ManyToOne(targetEntity=SousCategorieAnnonce::class, inversedBy="annonces")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $sous_categorie;
-
-    /**
-     * @ORM\ManyToOne(targetEntity=MarqueAnnonce::class, inversedBy="annonces")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\ManyToOne(targetEntity=Marque::class, inversedBy="annonces")
      */
     private $marque;
 
     /**
-     * @ORM\OneToMany(targetEntity=PhotoAnnonce::class, mappedBy="annonce", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=PhotoAnnonce::class, mappedBy="annonce")
      */
-    private $photoAnnonces;
+    private $images__annonce;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Favoris::class, mappedBy="annonce")
+     * @ORM\ManyToOne(targetEntity=SousCategorie::class, inversedBy="annonces")
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $favoris;
+    private $sous_categorie;
 
-    /**
-     * @ORM\Column(type="float", nullable=true)
-     */
-    private $poids_annonce;
-
-    /**
-     * @ORM\Column(type="boolean")
-     */
-    private $validation;
+    // /**
+    //  * @ORM\ManyToOne(targetEntity=Utilisateur::class, inversedBy="annonces")
+    //  * @ORM\JoinTable(name="Utilisateur", joinColumns={@ORM\JoinColumn(name="id_personne", referencedColumnName="id_personne")})
+    //  */
+    // private $utilisateur;
 
     public function __construct()
     {
-        $this->validation=false;
-        $this->etat_annonce=false;
-        $this->photoAnnonces = new ArrayCollection();
-        $this->favoris = new ArrayCollection();
+        $this->images__annonce = new ArrayCollection();
     }
 
-    public function getId(): ?int
+    public function getIdAnnonce(): ?int
     {
-        return $this->id;
+        return $this->id_annonce;
     }
 
     public function getTitreAnnonce(): ?string
@@ -119,74 +113,96 @@ class Annonce
         return $this;
     }
 
-    public function getPrixAnnonce(): ?float
+    public function getPrixAnnonce(): ?int
     {
         return $this->prix_annonce;
     }
 
-    public function setPrixAnnonce(float $prix_annonce): self
+    public function setPrixAnnonce(int $prix_annonce): self
     {
         $this->prix_annonce = $prix_annonce;
 
         return $this;
     }
 
-    public function getEtatAnnonce(): ?bool
+    public function getPoidsAnnonce(): ?int
+    {
+        return $this->poids_annonce;
+    }
+
+    public function setPoidsAnnonce(int $poids_annonce): self
+    {
+        $this->poids_annonce = $poids_annonce;
+
+        return $this;
+    }
+
+    public function getEtatAnnonce(): ?string
     {
         return $this->etat_annonce;
     }
 
-    public function setEtatAnnonce(bool $etat_annonce): self
+    public function setEtatAnnonce(string $etat_annonce): self
     {
         $this->etat_annonce = $etat_annonce;
 
         return $this;
     }
 
-    public function getDatePublicationAnnonce(): ?\DateTimeInterface
+    public function getDatePubliAnnonce(): ?\DateTimeInterface
     {
-        return $this->date_publication_annonce;
+        return $this->date_publi_annonce;
     }
 
-    public function setDatePublicationAnnonce(\DateTimeInterface $date_publication_annonce): self
+    public function setDatePubliAnnonce(\DateTimeInterface $date_publi_annonce): self
     {
-        $this->date_publication_annonce = $date_publication_annonce;
+        $this->date_publi_annonce = $date_publi_annonce;
 
         return $this;
     }
 
-    public function getUser(): ?User
+    public function addIdPhotoAnnonce(PhotoAnnonce $idPhotoAnnonce): self
     {
-        return $this->user;
-    }
-
-    public function setUser(?User $user): self
-    {
-        $this->user = $user;
+        if (!$this->id_photo_annonce->contains($idPhotoAnnonce)) {
+            $this->id_photo_annonce[] = $idPhotoAnnonce;
+            $idPhotoAnnonce->setAnnonce($this);
+        }
 
         return $this;
     }
 
-    public function getSousCategorie(): ?SousCategorieAnnonce
+    public function removeIdPhotoAnnonce(PhotoAnnonce $idPhotoAnnonce): self
     {
-        return $this->sous_categorie;
-    }
-
-    public function setSousCategorie(?SousCategorieAnnonce $sous_categorie): self
-    {
-        $this->sous_categorie = $sous_categorie;
+        if ($this->id_photo_annonce->removeElement($idPhotoAnnonce)) {
+            // set the owning side to null (unless already changed)
+            if ($idPhotoAnnonce->getAnnonce() === $this) {
+                $idPhotoAnnonce->setAnnonce(null);
+            }
+        }
 
         return $this;
     }
 
-    public function getMarque(): ?MarqueAnnonce
+    public function getMarque(): ?Marque
     {
         return $this->marque;
     }
 
-    public function setMarque(?MarqueAnnonce $marque): self
+    public function setMarque(?Marque $marque): self
     {
         $this->marque = $marque;
+
+        return $this;
+    }
+
+    public function getCategorie(): ?Categorie
+    {
+        return $this->categorie;
+    }
+
+    public function setCategorie(?Categorie $categorie): self
+    {
+        $this->categorie = $categorie;
 
         return $this;
     }
@@ -194,80 +210,53 @@ class Annonce
     /**
      * @return Collection|PhotoAnnonce[]
      */
-    public function getPhotoAnnonces(): Collection
+    public function getImagesAnnonce(): Collection
     {
-        return $this->photoAnnonces;
+        return $this->images__annonce;
     }
 
-    public function addPhotoAnnonce(PhotoAnnonce $photoAnnonce): self
+    public function addImagesAnnonce(PhotoAnnonce $imagesAnnonce): self
     {
-        if (!$this->photoAnnonces->contains($photoAnnonce)) {
-            $this->photoAnnonces[] = $photoAnnonce;
-            $photoAnnonce->setAnnonce($this);
+        if (!$this->images__annonce->contains($imagesAnnonce)) {
+            $this->images__annonce[] = $imagesAnnonce;
+            $imagesAnnonce->setAnnonce($this);
         }
 
         return $this;
     }
 
-    public function removePhotoAnnonce(PhotoAnnonce $photoAnnonce): self
+    public function removeImagesAnnonce(PhotoAnnonce $imagesAnnonce): self
     {
-        if ($this->photoAnnonces->removeElement($photoAnnonce)) {
+        if ($this->images__annonce->removeElement($imagesAnnonce)) {
             // set the owning side to null (unless already changed)
-            if ($photoAnnonce->getAnnonce() === $this) {
-                $photoAnnonce->setAnnonce(null);
+            if ($imagesAnnonce->getAnnonce() === $this) {
+                $imagesAnnonce->setAnnonce(null);
             }
         }
 
         return $this;
     }
 
-    /**
-     * @return Collection|Favoris[]
-     */
-    public function getFavoris(): Collection
+    public function getUtilisateur(): ?Utilisateur
     {
-        return $this->favoris;
+        return $this->utilisateur;
     }
 
-    public function addFavoris(Favoris $favoris): self
+    public function setUtilisateur(?Utilisateur $utilisateur): self
     {
-        if (!$this->favoris->contains($favoris)) {
-            $this->favoris[] = $favoris;
-            $favoris->addAnnonce($this);
-        }
+        $this->utilisateur = $utilisateur;
 
         return $this;
     }
 
-    public function removeFavoris(Favoris $favoris): self
+    public function getSousCategorie(): ?SousCategorie
     {
-        if ($this->favoris->removeElement($favoris)) {
-            $favoris->removeAnnonce($this);
-        }
-
-        return $this;
+        return $this->sous_categorie;
     }
 
-    public function getPoidsAnnonce(): ?float
+    public function setSousCategorie(?SousCategorie $sous_categorie): self
     {
-        return $this->poids_annonce;
-    }
-
-    public function setPoidsAnnonce(?float $poids_annonce): self
-    {
-        $this->poids_annonce = $poids_annonce;
-
-        return $this;
-    }
-
-    public function getValidation(): ?bool
-    {
-        return $this->validation;
-    }
-
-    public function setValidation(bool $validation): self
-    {
-        $this->validation = $validation;
+        $this->sous_categorie = $sous_categorie;
 
         return $this;
     }

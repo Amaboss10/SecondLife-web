@@ -2,25 +2,25 @@
 
 namespace App\Repository;
 
-use App\Entity\Annonce;
+use App\Entity\Administrateur;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @method Annonce|null find($id, $lockMode = null, $lockVersion = null)
- * @method Annonce|null findOneBy(array $criteria, array $orderBy = null)
- * @method Annonce[]    findAll()
- * @method Annonce[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Administrateur|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Administrateur|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Administrateur[]    findAll()
+ * @method Administrateur[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class AnnonceRepository extends ServiceEntityRepository
+class AdministrateurRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Annonce::class);
+        parent::__construct($registry, Administrateur::class);
     }
 
     // /**
-    //  * @return Annonce[] Returns an array of Annonce objects
+    //  * @return Administrateur[] Returns an array of Administrateur objects
     //  */
     /*
     public function findByExampleField($value)
@@ -37,7 +37,7 @@ class AnnonceRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?Annonce
+    public function findOneBySomeField($value): ?Administrateur
     {
         return $this->createQueryBuilder('a')
             ->andWhere('a.exampleField = :val')

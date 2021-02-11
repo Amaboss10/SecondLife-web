@@ -2,25 +2,25 @@
 
 namespace App\Repository;
 
-use App\Entity\SousCategorieAnnonce;
+use App\Entity\SousCategorie;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @method SousCategorieAnnonce|null find($id, $lockMode = null, $lockVersion = null)
- * @method SousCategorieAnnonce|null findOneBy(array $criteria, array $orderBy = null)
- * @method SousCategorieAnnonce[]    findAll()
- * @method SousCategorieAnnonce[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method SousCategorie|null find($id, $lockMode = null, $lockVersion = null)
+ * @method SousCategorie|null findOneBy(array $criteria, array $orderBy = null)
+ * @method SousCategorie[]    findAll()
+ * @method SousCategorie[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class SousCategorieAnnonceRepository extends ServiceEntityRepository
+class SousCategorieRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, SousCategorieAnnonce::class);
+        parent::__construct($registry, SousCategorie::class);
     }
 
     // /**
-    //  * @return SousCategorieAnnonce[] Returns an array of SousCategorieAnnonce objects
+    //  * @return SousCategorie[] Returns an array of SousCategorie objects
     //  */
     /*
     public function findByExampleField($value)
@@ -37,7 +37,7 @@ class SousCategorieAnnonceRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?SousCategorieAnnonce
+    public function findOneBySomeField($value): ?SousCategorie
     {
         return $this->createQueryBuilder('s')
             ->andWhere('s.exampleField = :val')
