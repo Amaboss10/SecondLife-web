@@ -9,7 +9,7 @@
        <!--<link rel="stylesheet" href="./assets/styles/style.css">-->
     </head>
     <body class="container-fluid">
-        <header class="row">
+        <header class="row" style="text-align:center">
 
             <nav class=" navbar navbar-expand-lg navbar-dark bg-dark">
                 <!--le logo-->
@@ -19,18 +19,18 @@
                 </a>
 
                 <!--la barre de recherche-->
-                <form class="d-flex barre_recherche col-xl-5" action={{path('secondLife_barre_recherche') }} method="get">
+                <form class="col-xl-5 d-flex barre_recherche col-xl-5" action={{path('secondLife_barre_recherche') }} method="get" style="padding-right:2%">
                     <input type="search" name="barre_recherche" class="form-control zone_saisie" placeholder="mot clé">
                     <input type="submit" value="rechercher" class="btn btn-outline-light bouton_recherche">
                 </form>
 
                 <!--le menu-->
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
+                <button class="col navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="row navbar-toggler-icon"></span>
                 </button>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="row navbar-nav menu">
+                <div class="col collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="row navbar-nav menu" style="vertical-align:middle">
                         <li class="col nav-item page_accueil"><a class="nav-link"  href={{path('secondLife_admin_accueil')}} class="link-secondary">Accueil</a></li>
                         <li class="col nav-item page_gerer_annonces"><a class="nav-link"  href={{path('secondLife_admin_gerer_annonces')}} class="link-secondary">Annonces</a></li>
                         <li class="col nav-item page_gere_faq"><a class="nav-link"  href={{path('secondLife_admin_gerer_faq')}} class="link-secondary">FAQ</a></li>
@@ -44,7 +44,7 @@
             {% block body %}{% endblock %}
         </div>
 
-        <footer class="row bg-dark text-white" >
+        <footer class="row bg-dark text-white" style="text-align:center">
             <div class="col a_propos col-xl-3 col-sm-6 col-xs-6">
                 <h3 class="titre_section_footer">A propos</h3>
                 <span class="qui_sommes_nous"><a href={{path('secondLife_qui_sommes_nous')}} class="link-secondary">Qui sommes-nous?</a></span>
@@ -61,7 +61,7 @@
                         <a href="https://www.twitter.com" target="blank" class="twitter col"><img src="logo_twitter.png" alt="logo_twitter"></a><br>
                         <a href="https://www.linkedin.com" target="blank" class="linkedin col"><img src="logo_linkedin.png" alt="logo_linkedin"></a><br>
                     </div>
-                 </div>
+                </div>
             </div>
 
             <div class="col informations_legales  col-xl-3 col-sm-6 col-xs-6">
