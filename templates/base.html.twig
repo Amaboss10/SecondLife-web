@@ -19,7 +19,7 @@
                 </a>
                 
                 <!--la barre de recherche-->
-                <form class="col-xl-5 d-flex barre_recherche" action={{path('secondLife_barre_recherche') }} method="get">
+                <form class="col-xl-4 d-flex barre_recherche" action={{path('secondLife_barre_recherche') }} method="get" style="padding-right:2%">
                     <input type="search" name="barre_recherche" class="form-control zone_saisie" placeholder="mot clé">
                     <input type="submit" value="rechercher" class="btn btn-outline-light bouton_recherche">
                 </form>
@@ -30,7 +30,7 @@
                 </button>
 
                 <div class="col collapse navbar-collapse" id="navbarSupportedContent" >
-                    <ul class="row navbar-nav menu">
+                    <ul class="row navbar-nav menu" style="vertical-align:middle">
 {#                   
                         <li class="col nav-item page_creer_annonce"><a class="nav-link" href={{path('secondLife_creer_annonce')}} class="link-secondary">créer une annonce</a></li>
                         <li class=" col nav-item page_faq"><a class="nav-link" href={{path('secondLife_faq')}} class="link-secondary">FAQ/Aide</a></li>
@@ -58,7 +58,7 @@
                             <li class="col nav-item page_faq"><a class="nav-link"  href={{path('secondLife_faq')}} class="link-secondary">FAQ/Aide</a></li>
                         {% endif %}
                     </ul>
-                <div>
+                </div>
             </nav>
         </header>
 
