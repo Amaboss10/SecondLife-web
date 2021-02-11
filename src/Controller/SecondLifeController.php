@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Repository\FAQRepository;
+use App\Repository\FaqRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -62,7 +62,7 @@ class SecondLifeController extends AbstractController
     /**
      * @Route("/faq", name="secondLife_faq")
      */
-    public function faq(FAQRepository $repository): Response
+    public function faq(FaqRepository $repository): Response
     {
         $rubriques=$repository->findAll();
         return $this->render('second_life/faq.html.twig', [
@@ -121,15 +121,15 @@ class SecondLifeController extends AbstractController
         ]);
     }
     //temporaire
-    /**
-     * @Route("/inscription", name="secondLife_inscription")
-     */
-    public function inscription(): Response
-    {
-        return $this->render('second_life/connexion_inscription.html.twig', [
-            'titre_page'=>'connexion/inscription',
-            'sous_titre_connexion'=>'Dejà membre?',
-            'sous_titre_inscription'=>'Pas encore membre?'
-        ]);
-    }
+    // /**
+    //  * @Route("/inscriptionp", name="secondLife_inscription")
+    //  */
+    // public function inscription(): Response
+    // {
+    //     return $this->render('second_life/connexion_inscription.html.twig', [
+    //         'titre_page'=>'connexion/inscription',
+    //         'sous_titre_connexion'=>'Dejà membre?',
+    //         'sous_titre_inscription'=>'Pas encore membre?'
+    //     ]);
+    // }
 }
