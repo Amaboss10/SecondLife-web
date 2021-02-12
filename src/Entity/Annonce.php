@@ -73,20 +73,30 @@ class Annonce
      */
     private $sous_categorie;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $lieu;
+
+    /**
+     * @ORM\Column(type="array")
+     */
+    private $mode_livraison = [];
+
     // /**
-    //  * @ORM\ManyToOne(targetEntity=Utilisateur::class, inversedBy="annonces")
-    //  * @ORM\JoinTable(name="Utilisateur", joinColumns={@ORM\JoinColumn(name="id_personne", referencedColumnName="id_personne")})
+     // * @ORM\ManyToOne(targetEntity=Utilisateur::class, inversedBy="annonces")
+     // * @ORM\JoinTable(name="Utilisateur", joinColumns={@ORM\JoinColumn(name="id", referencedColumnName="id")})
     //  */
-    // private $utilisateur;
+    //private $utilisateur;
 
     public function __construct()
     {
         $this->images__annonce = new ArrayCollection();
     }
 
-    public function getIdAnnonce(): ?int
+    public function getId(): ?int
     {
-        return $this->id_annonce;
+        return $this->id;
     }
 
     public function getTitreAnnonce(): ?string
@@ -257,6 +267,30 @@ class Annonce
     public function setSousCategorie(?SousCategorie $sous_categorie): self
     {
         $this->sous_categorie = $sous_categorie;
+
+        return $this;
+    }
+
+    public function getLieu(): ?string
+    {
+        return $this->lieu;
+    }
+
+    public function setLieu(string $lieu): self
+    {
+        $this->lieu = $lieu;
+
+        return $this;
+    }
+
+    public function getModeLivraison(): ?array
+    {
+        return $this->mode_livraison;
+    }
+
+    public function setModeLivraison(array $mode_livraison): self
+    {
+        $this->mode_livraison = $mode_livraison;
 
         return $this;
     }

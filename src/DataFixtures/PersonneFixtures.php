@@ -10,7 +10,7 @@ class PersonneFixtures extends Fixture
 {
     public function load(ObjectManager $manager)
     {
-            $personne = new Personne();
+            /*$personne = new Personne();
             $date = new \DateTime();
             $dateTime= new \DateTime();
             $personne->setNomPersonne("Tom")
@@ -28,5 +28,6 @@ class PersonneFixtures extends Fixture
             $manager->persist($personne);
 
         $manager->flush();
+        */
     }
 }

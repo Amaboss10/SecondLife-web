@@ -2,8 +2,15 @@
 
 namespace App\Controller;
 
-
+use App\Entity\Annonce;
+use App\Data\FiltreAnnonceData;
 use App\Repository\FAQRepository;
+use App\Form\SearchAnnonceFormType;
+use App\Repository\MarqueRepository;
+use App\Repository\AnnonceRepository;
+use App\Repository\CategorieRepository;
+use App\Repository\SousCategorieRepository;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -13,10 +20,41 @@ class SecondLifeController extends AbstractController
     /**
      * @Route("/", name="secondLife_accueil")
      */
-    public function index(): Response
+    public function index(Request $request,AnnonceRepository $annonceRepository, MarqueRepository $marqueRepository,CategorieRepository $categorieRepository,SousCategorieRepository $sousCategorieRepository): Response
     {
+        //RECUPERATION DES DONNEES POUR CONSTRUIRE LE FORMULAIRE DYNAMIQUEMENT
+        $marques=$marqueRepository->findAll();
+        $categories=$categorieRepository->findAll();
+        $sous_categories=$sousCategorieRepository->findAll();
+    
+        //FILTRE ANNONCES
+        $data=new FiltreAnnonceData();
+        
+        //$data->page=$request->get('page',1);
+        
+        //creation formulaire de filtre
+        $form=$this->createForm(SearchAnnonceFormType::class,$data);
+        
+        //recuperation données formulaire de filtre
+        $form->handleRequest($request);
+        
+        //traitement formulaire de filtre
+        if($form->isSubmitted() and $form->isValid()){
+            //a corriger
+            $annonces=$annonceRepository->findAnnoncesFiltrees($data);
+        }
+        else {
+            $annonces=$annonceRepository->findAnnoncesNonVendues();
+        }
+        
         return $this->render('second_life/index.html.twig', [
-            'titre_page'=>'Accueil'
+            'titre_page'=>'Accueil', 
+            'marques'=>$marques,
+            'categories'=>$categories,
+            'sous_categories'=>$sous_categories,
+            'annonces'=>$annonces,
+            'nb_results'=>count($annonces),
+            'form'=>$form->createView()
         ]);
     }
 
@@ -121,6 +159,21 @@ class SecondLifeController extends AbstractController
             'titre_page'=>'Resultats de la recherche'
         ]);
     }
+
+    /**
+     * @Route("/annonces/{id}", name="secondLife_afficher_annonce")
+     */
+    public function afficher_annonce(Annonce $annonce,AnnonceRepository $repository): Response
+    {
+        
+        return $this->render('second_life/index.html.twig', [
+            'titre_page'=>$annonce->getTitreAnnonce(),
+            'annonce'=>$annonce
+        ]);
+    }
+
+
+
     //temporaire
     // /**
     //  * @Route("/inscriptionp", name="secondLife_inscription")
