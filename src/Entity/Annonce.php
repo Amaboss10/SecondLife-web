@@ -73,11 +73,16 @@ class Annonce
      */
     private $sous_categorie;
 
-    // /**
-    //  * @ORM\ManyToOne(targetEntity=Utilisateur::class, inversedBy="annonces")
-    //  * @ORM\JoinTable(name="Utilisateur", joinColumns={@ORM\JoinColumn(name="id_personne", referencedColumnName="id_personne")})
-    //  */
-    // private $utilisateur;
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $est_valide;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Utilisateur::class, inversedBy="annonces")
+     * @ORM\JoinTable(name="Utilisateur", joinColumns={@ORM\JoinColumn(name="id_personne", referencedColumnName="id_personne")})
+     */
+    private $utilisateur;
 
     public function __construct()
     {
@@ -257,6 +262,18 @@ class Annonce
     public function setSousCategorie(?SousCategorie $sous_categorie): self
     {
         $this->sous_categorie = $sous_categorie;
+
+        return $this;
+    }
+
+    public function getEstValide(): ?bool
+    {
+        return $this->est_valide;
+    }
+
+    public function setEstValide(bool $est_valide): self
+    {
+        $this->est_valide = $est_valide;
 
         return $this;
     }

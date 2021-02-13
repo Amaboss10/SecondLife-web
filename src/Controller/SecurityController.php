@@ -50,12 +50,15 @@ class SecurityController extends AbstractController
     /**
      * @Route("/inscription", name="security_registration")
      */
-    public function registration(Request $requete, EntityManagerInterface $manager, UserPasswordEncoderInterface $encoder): Response{
+    public function registration(AuthenticationUtils $authenticationUtils, Request $requete, EntityManagerInterface $manager, UserPasswordEncoderInterface $encoder): Response{
         $user = new Utilisateur();
 
         $formInscription = $this->createForm(RegistrationType::class, $user);
         // $formConnexion = $this->createForm(SeConnecterType::class, $user);
-
+        // get the login error if there is one
+        $error = $authenticationUtils->getLastAuthenticationError();
+        // last username entered by the user
+        $lastUsername = $authenticationUtils->getLastUsername();
         $formInscription->handleRequest($requete);
         // $formConnexion->handleRequest($requete);
 
@@ -73,7 +76,12 @@ class SecurityController extends AbstractController
 
 
         return $this->render('security/registration.html.twig', [
-            'formInscription' =>  $formInscription->createView(), 
+            'formInscription' =>  $formInscription->createView(),
+                'last_username' => $lastUsername,
+                'error' => $error,
+                'titre_page'=>'connexion/inscription',
+                'sous_titre_connexion'=>'Dejà membre?',
+                'sous_titre_inscription'=>'Pas encore membre?',
             // 'formConnexion' => $formConnexion->createView(),
         ]);
     }

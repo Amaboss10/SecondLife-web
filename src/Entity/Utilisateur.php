@@ -44,11 +44,11 @@ class Utilisateur extends Personne
      */
     private $conversations;
 
-    // /**
-    //  * @ORM\OneToMany(targetEntity=Annonce::class, mappedBy="utilisateur")
-    //  * @ORM\JoinTable(name="Annonce", joinColumns={@ORM\JoinColumn(name="utilisateur", referencedColumnName="utilisateur")})
-    //  */
-    // private $annonces;
+    /**
+     * @ORM\OneToMany(targetEntity=Annonce::class, mappedBy="utilisateur")
+     * @ORM\JoinTable(name="Annonce", joinColumns={@ORM\JoinColumn(name="utilisateur", referencedColumnName="utilisateur")})
+     */
+    private $annonces;
 
     public function __construct(){
         $this->date_inscription_user = new \DateTime('now');
