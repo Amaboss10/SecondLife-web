@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20210212015245 extends AbstractMigration
+final class Version20210213014954 extends AbstractMigration
 {
     public function getDescription() : string
     {
@@ -21,7 +21,7 @@ final class Version20210212015245 extends AbstractMigration
     {
         // this up() migration is auto-generated, please modify it to your needs
         $this->addSql('CREATE TABLE administrateur (id_personne INT NOT NULL, PRIMARY KEY(id_personne)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
-        $this->addSql('CREATE TABLE annonce (id INT AUTO_INCREMENT NOT NULL, categorie_id INT NOT NULL, marque_id INT DEFAULT NULL, sous_categorie_id INT NOT NULL, titre_annonce VARCHAR(50) NOT NULL, description_annonce LONGTEXT NOT NULL, prix_annonce INT NOT NULL, poids_annonce INT NOT NULL, etat_annonce VARCHAR(50) NOT NULL, date_publi_annonce DATETIME NOT NULL, lieu VARCHAR(255) NOT NULL, INDEX IDX_F65593E5BCF5E72D (categorie_id), INDEX IDX_F65593E54827B9B2 (marque_id), INDEX IDX_F65593E5365BF48 (sous_categorie_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
+        $this->addSql('CREATE TABLE annonce (id INT AUTO_INCREMENT NOT NULL, categorie_id INT NOT NULL, marque_id INT DEFAULT NULL, sous_categorie_id INT NOT NULL, titre_annonce VARCHAR(50) NOT NULL, description_annonce LONGTEXT NOT NULL, prix_annonce INT NOT NULL, poids_annonce INT NOT NULL, etat_annonce VARCHAR(50) NOT NULL, date_publi_annonce DATETIME NOT NULL, lieu VARCHAR(255) NOT NULL, mode_livraison LONGTEXT NOT NULL COMMENT \'(DC2Type:array)\', INDEX IDX_F65593E5BCF5E72D (categorie_id), INDEX IDX_F65593E54827B9B2 (marque_id), INDEX IDX_F65593E5365BF48 (sous_categorie_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE categorie (id INT AUTO_INCREMENT NOT NULL, nom_categorie VARCHAR(70) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE conversation (id INT AUTO_INCREMENT NOT NULL, expediteur INT DEFAULT NULL, destinataire INT DEFAULT NULL, INDEX IDX_8A8E26E9ABA4CF8E (expediteur), INDEX IDX_8A8E26E9FEA9FF92 (destinataire), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE faq (id INT AUTO_INCREMENT NOT NULL, titre_probleme VARCHAR(255) NOT NULL, description_probleme LONGTEXT DEFAULT NULL, solution_probleme LONGTEXT NOT NULL, lien_tutoriel LONGTEXT DEFAULT NULL, date_probleme DATETIME NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');

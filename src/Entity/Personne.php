@@ -61,9 +61,9 @@ class Personne implements UserInterface
 
     private $type;
 
-    public function getId(): ?int
+    public function getIdPersonne(): ?int
     {
-        return $this->id;
+        return $this->id_personne;
     }
 
     public function getNomPersonne(): ?string
@@ -156,7 +156,7 @@ class Personne implements UserInterface
         return $this->type;
     }
 
-    public function setType(string $type): self{
+    public function setType(string $type): slef{
         $this->type = $type;
 
         return $this;

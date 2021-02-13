@@ -65,7 +65,7 @@ class Annonce
     /**
      * @ORM\OneToMany(targetEntity=PhotoAnnonce::class, mappedBy="annonce")
      */
-    private $images__annonce;
+    private $images_annonce;
 
     /**
      * @ORM\ManyToOne(targetEntity=SousCategorie::class, inversedBy="annonces")
@@ -83,6 +83,12 @@ class Annonce
      */
     private $mode_livraison = [];
 
+  //  /**
+    // * @ORM\ManyToOne(targetEntity=Utilisateur::class, inversedBy="annonces")
+    // * @ORM\JoinColumn(nullable=false)
+    // */
+    //private $utilisateur;
+
     // /**
      // * @ORM\ManyToOne(targetEntity=Utilisateur::class, inversedBy="annonces")
      // * @ORM\JoinTable(name="Utilisateur", joinColumns={@ORM\JoinColumn(name="id", referencedColumnName="id")})
@@ -91,7 +97,8 @@ class Annonce
 
     public function __construct()
     {
-        $this->images__annonce = new ArrayCollection();
+        $this->etat_annonce='pas vendu';
+        $this->images_annonce = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -222,13 +229,13 @@ class Annonce
      */
     public function getImagesAnnonce(): Collection
     {
-        return $this->images__annonce;
+        return $this->images_annonce;
     }
 
     public function addImagesAnnonce(PhotoAnnonce $imagesAnnonce): self
     {
-        if (!$this->images__annonce->contains($imagesAnnonce)) {
-            $this->images__annonce[] = $imagesAnnonce;
+        if (!$this->images_annonce->contains($imagesAnnonce)) {
+            $this->images_annonce[] = $imagesAnnonce;
             $imagesAnnonce->setAnnonce($this);
         }
 
@@ -237,7 +244,7 @@ class Annonce
 
     public function removeImagesAnnonce(PhotoAnnonce $imagesAnnonce): self
     {
-        if ($this->images__annonce->removeElement($imagesAnnonce)) {
+        if ($this->images_annonce->removeElement($imagesAnnonce)) {
             // set the owning side to null (unless already changed)
             if ($imagesAnnonce->getAnnonce() === $this) {
                 $imagesAnnonce->setAnnonce(null);

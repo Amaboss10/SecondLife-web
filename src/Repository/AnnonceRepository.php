@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Annonce;
 use App\Data\FiltreAnnonceData;
+use App\Entity\Utilisateur;
 use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
@@ -57,6 +58,23 @@ public function findAnnoncesNonVendues(){
                     ->setParameter('etat','pas vendu');
     return $query->getQuery()->getResult();
 }
+
+public function findMesAnnonces(Utilisateur $utilisateur){
+    $query=$this->createQueryBuilder('a')
+                    ->where('a.utilisateur = :user')
+                    ->orderBy('a.date_publi_annonce','DESC')
+                    ->setParameter('user',$utilisateur);
+    return $query->getQuery()->getResult();
+}
+public function findAnnonceAleat()
+    {
+        return $this->createQueryBuilder('m')
+                    //->orderBy('RAND()')
+                    ->setMaxResults(1)
+                    ->getQuery()
+                    ->getResult();
+    }
+
 
 public function findAnnoncesFiltrees(FiltreAnnonceData $search)
     {   
