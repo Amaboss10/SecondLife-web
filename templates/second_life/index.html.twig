@@ -4,63 +4,147 @@
 
 {% block body %}
     <div class="row">
-        <div class="col-xl-2 col-sm-4 col-12">
-            <form>
-                <label class="form-label col-form-label-sm">Tier par :</label>
-                <select id="tri" class="form-control form-select form-select-sm" name="tri">
-                    <option value="prix_croissant">Prix Croissant</option>
-                    <option value="prix_decroissant">Prix Décroissant</option>
-                    <option value="plus_recent">Plus Récent</option>
-                    <option value="plus_ancien">Plus Ancien</option>
-                </select>
-                <br>
-                <label class="form-label col-form-label-sm">Filtrer par :</label>
-                <select id="fitre" class="form-control form-select form-select-sm" name="fitre">
-                    <option value="telephonie">Téléphonie</option>
-                    <option value="ordinateur">Ordinateur</option>
-                    <option value="console">Console</option>
-                    <option value="television">Télévision</option>
-                </select>
-                <br>
-                <div class="row">
-                    <input type="text" class="col form-control form-text" placeholder="Prix min">
-                    <input type="text" class="col form-control form-text" placeholder="Prix max">
+        <div class="col-xl-2 col-sm-4 col-12" style="margin:1%; padding:1%; border-style:groove; border-width:2px; border-color:#818D92">
+            {{form_start(form)}}
+            {{form_errors(form)}}
+
+            <h2 class="form-label col-form-label-lg" style="padding-bottom:0.5%">Trier par :</h2>
+                {{form_errors(form.tri)}}
+                {{form_widget(form.tri,{'attr':{'class':'col-12 form-control form-select form-select-sm bg-light'}})}}
+            <br>
+            <br>
+            <h2 class="form-label col-form-label-lg" style="padding-bottom:0.5%">Filtrer par :</h2>
+                {{form_label(form.q,"Mot clé :",{'label_attr':{'class':'form-label col-form-label-sm ','style':'padding-bottom:0.5%'}})}}
+                {{form_errors(form.q)}}
+                {{form_widget(form.q,{'attr':{'class':'form-control form-text bg-light','style':'margin:1%'}})}}
+                
+                {{form_label(form.categories,"Catégories:",{'label_attr':{'class':'form-label col-form-label-sm','style':'padding-bottom:0.5%; padding-top:7%'}})}}
+                {{form_errors(form.categories)}}
+                {{form_widget(form.categories,{'attr':{'class':'categorie form-control form-select form-select-sm bg-light','style':'margin:1%'}})}}
+
+                {{form_label(form.sous_categories,"Sous-Catégories:",{'label_attr':{'class':'form-label col-form-label-sm','style':'padding-bottom:0.5%; padding-top:7%'}})}}
+                {{form_errors(form.sous_categories)}}
+                {{form_widget(form.sous_categories,{'attr':{'class':'sous_categorie form-control form-select form-select-sm bg-light','style':'margin:1%'}})}}
+
+                <div class="row" style="margin:1%">
+                    <label class="form-label col-form-label-sm" style="margin-left:0%; padding-left:0%; padding-top:7%">Prix :</label>
+                    {{form_errors(form.prix_min)}}
+                    {{form_widget(form.prix_min,{'attr':{'class':'col form-control form-text bg-light'}})}}
+
+                    {{form_errors(form.prix_max)}}
+                    {{form_widget(form.prix_max,{'attr':{'class':'col form-control form-text bg-light'}})}}
                 </div>
-                <br>
-                <select id="livraison" class="form-control form-select form-select-sm" name="livraison">
-                    <option value="remise_en_main_propre">Remise en main propre</option>
-                    <option value="la_poste">La Poste</option>
-                    <option value="mondial-relay">Mondial Relay</option>
-                </select>
-                <br>
-                <select id="marque" class="form-control form-select form-select-sm" name="marques">
-                    <option value="samsung">Samsung</option>
-                    <option value="apple">Apple</option>
-                    <option value="huawei">Huawei</option>
-                    <option value="sony">Sony</option>
-                    <option value="acer">Acer</option>
-                    <option value="asus">Asus</option>
-                    <option value="msi">MSI</option>
-                    <option value="xiaomi">Xiaomi</option>
-                    <option value="toshiba">Toshiba</option>
-                    <option value="philips">Philips</option>
-                    <option value="dell">Dell</option>
-                    <option value="hp">HP</option>
-                    <option value="autres">Autres</option>
-                </select>
-                <br>
-                <input type="text" class="form-control form-text" placeholder="Limoges">
-                <br>
-            </form>
+
+                {{form_label(form.modes_livraison,"Modes de livraison :",{'label_attr':{'class':"form-label col-form-label-sm",'style':'padding-bottom:0.5%; padding-top:7%'}})}}
+                {{form_errors(form.modes_livraison)}}
+                {{form_widget(form.modes_livraison,{'attr':{'class':'form-control form-select form-select-sm bg-light','style':'margin:1%'}})}}
+
+                {{form_label(form.marques,"Marques :",{'label_attr':{'class':'form-label col-form-label-sm','style':'padding-bottom:0.5%; padding-top:7%'}})}}
+                {{form_errors(form.marques)}}
+                {{form_widget(form.marques,{'attr':{'class':'form-control form-select form-select-sm bg-light','style':'margin:1%'}})}}
+
+                {{form_label(form.lieux,"Ville :",{'label_attr':{'class':'form-label col-form-label-sm','style':'padding-top:7%'}})}}
+                {{form_errors(form.lieux)}}
+                {{form_widget(form.lieux,{'attr':{'class':'form-control form-text  bg-light'}})}}
+                <div style="text-align:center; margin-top:10%; margin-bottom:5%">
+                    {{form_widget(form.save,{'label':'Rechercher', 'attr':{'class':'btn btn-lg btn-outline-success'}})}}
+                </div>
+
+            {{form_end(form)}}
+            {#
+                <form>
+                    <label class="form-label col-form-label-sm">Tier par :</label>
+                    <select id="tri" class="form-control form-select form-select-sm" name="tri">
+                        <option value="prix_croissant">Prix Croissant</option>
+                        <option value="prix_decroissant">Prix Décroissant</option>
+                        <option value="plus_recent">Plus Récent</option>
+                        <option value="plus_ancien">Plus Ancien</option>
+                    </select>
+                    <br>
+                    <label class="form-label col-form-label-sm">Filtrer par :</label>
+                    <select id="fitre" class="form-control form-select form-select-sm" name="fitre">
+                        <option value="telephonie">Téléphonie</option>
+                        <option value="ordinateur">Ordinateur</option>
+                        <option value="console">Console</option>
+                        <option value="television">Télévision</option>
+                    </select>
+                    <br>
+                    <div class="row">
+                        <input type="text" class="col form-control form-text" placeholder="Prix min">
+                        <input type="text" class="col form-control form-text" placeholder="Prix max">
+                    </div>
+                    <br>
+                    <select id="livraison" class="form-control form-select form-select-sm" name="livraison">
+                        <option value="remise_en_main_propre">Remise en main propre</option>
+                        <option value="la_poste">La Poste</option>
+                        <option value="mondial-relay">Mondial Relay</option>
+                    </select>
+                    <br>
+                    <select id="marque" class="form-control form-select form-select-sm" name="marques">
+                        <option value="samsung">Samsung</option>
+                        <option value="apple">Apple</option>
+                        <option value="huawei">Huawei</option>
+                        <option value="sony">Sony</option>
+                        <option value="acer">Acer</option>
+                        <option value="asus">Asus</option>
+                        <option value="msi">MSI</option>
+                        <option value="xiaomi">Xiaomi</option>
+                        <option value="toshiba">Toshiba</option>
+                        <option value="philips">Philips</option>
+                        <option value="dell">Dell</option>
+                        <option value="hp">HP</option>
+                        <option value="autres">Autres</option>
+                    </select>
+                    <br>
+                    <input type="text" class="form-control form-text" placeholder="Limoges">
+                    <br>
+                </form>
+            #}
         </div>
-        <div class="col-xl-8 col-sm-8 col-12" style="background-color:red">
+        
+        <div class="col-xl-7 col-sm-7 col-12" style="margin:1%">
             <!--annonces-->
-            <p>
-                <br>
-                <br>
-            </p>
+            {% if annonces==null %}
+            <h1 class="no_annonces" style="margin-top:10%; text-align:center">Pas d'annonces correspondantes</h1>
+        {% else %}
+            <p class="nb_annonces">{{nb_results}} résultats</p>
+        {% endif %}
+            
+            <div class="resultats">
+                {% for annonce in annonces %}
+                    {# on affiche uniquement les annonces qui n'ont pas encore été vendues#}
+                    {% if annonce.etatAnnonce %}
+                    <a href={{path('secondLife_afficher_annonce',{'id':annonce.id})}}>
+                        <div class="annonce">
+                            <a href={{path('secondLife_afficher_annonce',{'id':annonce.id})}}><h4 class="titre_annonce">{{annonce.titreAnnonce}}</h4></a>
+                            
+                            <div class="image_annonce">
+                                <img src={{annonce.imagesAnnonce.first()}} alt={{annonce.titreAnnonce}}>
+                            </div>
+
+                            <div class="infos_annonce">
+                                <span class="categorie_annonce">{{annonce.Categorie}}</span><br>
+                                <span class="sous_categorie_annonce">{{annonce.SousCategorie}}</span><br>
+                                <span class="lieu_annonce">{{annonce.lieu}}</span>
+                                <span class="date_publication_annonce">{{annonce.datePubliAnnonce|date('d/m/Y')}}</span>
+                            </div>
+
+                            <div class="autres_infos_annonces">
+                                <a href="" class="lien_ajouter_favoris"><button class="btn_ajouter_favoris">Ajouter aux favoris</button></a>
+                                <span class="prix_annonce">{{annonce.prixAnnonce | number_format(0, '${.}', '${,}')}} £</span>
+                                <a href="" class="lien_contacter_vendeur"><button class="btn_contacter_vendeur">Contacter le vendeur</button></a>
+                            </div>
+                        </div>
+                    </a>  
+                    {% endif %}
+        {% endfor %}
+            </div>
+        
         </div>
-        <div class="col-xl-2 col-sm-12 col-12" style="background-color:blue">
+
+        {#<div class="pagination">{{knp_pagination_render(annonces)}}</div>
+        #}
+        <div class="col-xl-2 col-sm-12 col-12" style="background-color:blue; margin:1%">
             <!--pub-->
             <p>
                 <br>

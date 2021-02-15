@@ -47,4 +47,13 @@ class SousCategorieRepository extends ServiceEntityRepository
         ;
     }
     */
+    public function findSousCategorieAleat()
+    {
+        return $this->createQueryBuilder('m')
+                    //->orderBy('RAND()')
+                    ->setMaxResults(1)
+                    ->getQuery()
+                    ->getResult();
+    }
+
 }

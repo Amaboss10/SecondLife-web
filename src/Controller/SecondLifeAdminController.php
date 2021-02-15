@@ -87,6 +87,7 @@ class SecondLifeAdminController extends AbstractController
     }
 
     //PENSER à CRYPTER LES ID
+
     /**
      * @Route("/faq/supprimer/{id}", name="supprimer_faq")
      */
@@ -135,7 +136,7 @@ class SecondLifeAdminController extends AbstractController
      */
     public function validerAnnonce(Annonce $annonce,Request $request): Response
     {
-        $annonce->setValidation(true);
+        //$annonce->setValidation(true);
         //demander confirmation?
         $this->addFlash("success",'Annonce  '.$annonce->getTitreAnnonce() .' validée');
             
@@ -144,7 +145,7 @@ class SecondLifeAdminController extends AbstractController
     }
 
     /**
-     * @Route("/annonces/supprimer/{id}", name="supprimer_faq")
+     * @Route("/annonces/supprimer/{id}", name="supprimer_annonces")
      */
     public function supprimerAnnonce(Annonce $annonce,Request $request): Response
     {
@@ -159,14 +160,14 @@ class SecondLifeAdminController extends AbstractController
         //peut etre demander confirmation avant suppression
         
         //on supprime les photos de l'annonce
-        foreach ($annonce->getPhotoAnnonces() as $photo) {
-            $annonce->removePhotoAnnonce($photo);
+        foreach ($annonce->getImagesAnnonce() as $photo) {
+            $annonce->removeImagesAnnonce($photo);
         }
         
         //on retire l'annonce de tous les listes d'annonces favorites
-        foreach ($annonce->getFavoris() as $favoris) {
+        /*foreach ($annonce->getFavoris() as $favoris) {
             $annonce->removeFavoris($favoris);
-        }
+        }*/
         
         $entityManager->remove($annonce);
         $entityManager->flush();

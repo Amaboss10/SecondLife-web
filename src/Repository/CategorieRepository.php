@@ -47,4 +47,13 @@ class CategorieRepository extends ServiceEntityRepository
         ;
     }
     */
+    public function findCategorieAleat()
+    {
+        return $this->createQueryBuilder('m')
+                    //->orderBy('RAND()')
+                    ->setMaxResults(1)
+                    ->getQuery()
+                    ->getResult();
+    }
+
 }

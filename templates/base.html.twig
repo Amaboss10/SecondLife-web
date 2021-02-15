@@ -5,7 +5,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>{% block title %}{% endblock %}</title>
         {% block stylesheets %}{{ encore_entry_link_tags('app') }}{% endblock %}
-        
        <!--<link rel="stylesheet" href="./assets/styles/style.css">-->
     </head>
     <body class="container-fluid">
@@ -68,13 +67,13 @@
         </div>
 
         <footer class="row bg-dark text-white" style="text-align:center">
-            <div class="col a_propos col-xl-3 col-sm-6 col-xs-6">
-                <h3 class="titre_section_footer" >A propos</h3>
+            <div class="col a_propos col-xl-3 col-sm-6 col-6">
+                <h5 class="titre_section_footer" style="padding-bottom:2%">A propos</h3>
                 <span class="qui_sommes_nous"><a href={{path('secondLife_qui_sommes_nous')}} class="link-secondary">Qui sommes-nous?</a></span>    
             </div>
 
-            <div class="col reseaux_sociaux  col-xl-3 col-sm-6 col-xs-6">
-                <h3 class="titre_section_footer">Reseaux sociaux</h3>
+            <div class="col reseaux_sociaux  col-xl-3 col-sm-6 col-6">
+                <h5 class="titre_section_footer" style="padding-bottom:0.5%">Reseaux sociaux</h3>
                 <div>
                     <div class="row" style="margin:10%">
                         <a href="https://www.facebook.com/" target="blank" class="facebook col"><img src="logo_facebook.png" alt="logo_facebook"></a><br>
@@ -87,16 +86,16 @@
                  </div>
             </div>
 
-            <div class="col informations_legales  col-xl-3 col-sm-6 col-xs-6">
-                <h3 class="titre_section_footer">Informations légales</h3>
+            <div class="col informations_legales  col-xl-3 col-sm-6 col-6">
+                <h5 class="titre_section_footer" style="padding-bottom:0.5%">Informations légales</h3>
                 <div>
                     <span class="mentions_legales"><a href={{path('secondLife_mentions_legales')}} class="link-secondary">Mentions légales</a></span><br>     
                     <span class="conditions_generales_utilisation"><a href={{path('secondLife_conditions_generales_utilisation')}} class="link-secondary">Conditions générales d'utilisation</a></span>
                 </div>
             </div>
 
-            <div class="col applications_mobiles  col-xl-3 col-sm-6 col-xs-6">
-                <h3 class="titre_section_footer">Applications mobiles</h3>
+            <div class="col applications_mobiles  col-xl-3 col-sm-6 col-6">
+                <h5 class="titre_section_footer" style="padding-bottom:0.5%">Applications mobiles</h3>
                 <div>
                     <div class="row"  style="margin:10%">
                         <a href="https://www.playstore.com" target="blank" class="lien_application "><img src="image_googleplay.png" alt="image_playstore"></a><br>

@@ -47,4 +47,12 @@ class MarqueRepository extends ServiceEntityRepository
         ;
     }
     */
+    public function findMarqueAleat()
+    {
+        return $this->createQueryBuilder('m')
+                   // ->orderBy('RAND()')
+                    ->setMaxResults(1)
+                    ->getQuery()
+                    ->getResult();
+    }
 }

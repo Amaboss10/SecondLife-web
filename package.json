@@ -2,7 +2,11 @@
     "devDependencies": {
         "@symfony/stimulus-bridge": "^1.1.0",
         "@symfony/webpack-encore": "^1.0.0",
+        "bootstrap": "^5.0.0-alpha1",
         "core-js": "^3.0.0",
+        "font-awesome": "^4.7.0",
+        "node-sass": "^4.14.1",
+        "popper.js": "^1.16.1",
         "regenerator-runtime": "^0.13.2",
         "sass": "^1.32.6",
         "sass-loader": "^9.0.1",
@@ -20,7 +24,6 @@
     "dependencies": {
         "@popperjs/core": "^2.6.0",
         "autoprefixer": "^10.2.4",
-        "node-sass": "^4.14.1",
         "postcss-loader": "^5.0.0"
     }
 }

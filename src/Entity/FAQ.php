@@ -19,12 +19,6 @@ class FAQ
      */
     private $id;
 
-    // /**
-    //  * @ORM\ManyToOne(targetEntity=Utilisateur::class, inversedBy="faqs")
-    //  * @ORM\JoinColumn(name="id_utilisateur", referencedColumnName="id_personne")
-    //  */
-    // private $id_utilisateur;
-
     /**
      * @ORM\Column(type="string", length=255)
      */
@@ -39,11 +33,6 @@ class FAQ
      * @ORM\Column(type="datetime")
      */
     private $date_probleme;
-
-    // /**
-    //  * @ORM\Column(type="boolean")
-    //  */
-    // private $est_resolue;
 
     /**
      * @ORM\ManyToOne(targetEntity=CategorieFAQ::class, inversedBy="faqs")
@@ -66,18 +55,6 @@ class FAQ
     {
         return $this->id;
     }
-
-    // public function getIdUtilisateur(): ?Utilisateur
-    // {
-    //     return $this->id_utilisateur;
-    // }
-
-    // public function setIdUtilisateur(?Utilisateur $id_utilisateur): self
-    // {
-    //     $this->id_utilisateur = $id_utilisateur;
-
-    //     return $this;
-    // }
 
     public function getTitreProbleme(): ?string
     {
@@ -114,18 +91,6 @@ class FAQ
 
         return $this;
     }
-
-    // public function getEstResolue(): ?bool
-    // {
-    //     return $this->est_resolue;
-    // }
-
-    // public function setEstResolue(bool $est_resolue): self
-    // {
-    //     $this->est_resolue = $est_resolue;
-
-    //     return $this;
-    // }
 
     public function getCategorieFaq(): ?CategorieFAQ
     {
