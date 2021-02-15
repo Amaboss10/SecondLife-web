@@ -14,9 +14,9 @@
             <h3  style="padding-bottom:0.5%">Foire aux questions</h3>
             {% for rubrique in rubriques %}
                 <div class="rubrique row">
-                    <button class="titre_rubrique btn btn-sm btn-outline-secondary col-12 col-sm-4 col-xl-2" type="button" data-bs-toggle="collapse" data-bs-target="#CollapseExample1" aria-expanded="false" aria-controls="CollapseExample1" >{{rubrique.titreProbleme}}</button>
+                    <button class="titre_rubrique btn btn-sm btn-outline-secondary col-12 col-sm-4 col-xl-2" type="button" data-bs-toggle="collapse" data-bs-target="#q1" aria-expanded="false" aria-controls="q1" >{{rubrique.titreProbleme}}</button>
                     
-                    <div class="detail_rubrique col-12 col-sm-8 col-xl-6 collapse" id="CollapseExample1">
+                    <div class="detail_rubrique col-12 col-sm-8 col-xl-6 collapse" id="q1">
                         <div class="card card-body">
                             <h3 class="titre_probleme"  style="padding-bottom:0.5%">{{rubrique.titreProbleme}}</h3>
                         
@@ -48,11 +48,11 @@
         
                 </textarea>
                 <div class="row image_objet">
-                    <label class="col-3 form-label col-form-label-sm">Images :</label>
-                    <input class="col" type="file" id="image" name="image">
+                    <label class="col-3 form-label col-form-label-lg" >Images :</label>
+                    <input class="col" type="file" id="image" name="image"  style="padding-top:2%">
                 </div>
                 <div style="text-align:center">
-                    <button type="button" class="btn btn-sm btn-outline-success" style="margin-top:3%">Envoyé</button>
+                    <button type="button" class="btn btn-lg btn-outline-success" style="margin-top:3%">Envoyé</button>
                 </div>
             </form>
         </div>

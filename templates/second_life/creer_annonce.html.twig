@@ -26,7 +26,7 @@
                         {{form_widget(form.categorie,{'attr':{'class':"col form-control form-select form-select-sm bg-light"}})}}
                     </div>
 
-                    <div class="row sous_categorie_objet"  style="padding-bottom:0.5%">
+                    <div class="row sous_categorie_objet" >
                         {{form_label(form.sous_categorie,'Sous-Catégorie* ',{'label_attr':{'class':"col-3 form-label col-form-label-sm"}})}}
                         {{form_errors(form.sous_categorie)}}
                         {{form_widget(form.sous_categorie,{'attr':{'class':"col form-control form-select form-select-sm bg-light"}})}}
@@ -71,7 +71,7 @@
                         {{form_widget(form.description_annonce,{'attr':{'class':"col form-control form-text bg-light", 'rows':"10",'cols':"50"}})}}
                     </div>
 
-                    <div class="row image_objet"  style="padding-bottom:0.5%">
+                    <div class="row image_objet"  style="padding-bottom:0.5%; padding-top:2%">
                         {{form_label(form.images_annonce,'Images ',{'label_attr':{'class':"col-3 form-label col-form-label-sm"}})}}
                         {{form_errors(form.images_annonce)}}
                         {{form_widget(form.images_annonce,{'attr':{'class':"col"}})}}
