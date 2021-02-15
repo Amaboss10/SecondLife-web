@@ -23,8 +23,8 @@ class PhotoAnnonce
     private $lien_photo_annonce;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Annonce::class, inversedBy="images_annonce")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\ManyToOne(targetEntity=Annonce::class, inversedBy="images__annonce")
+     * @ORM\JoinColumn(name="annonce", referencedColumnName="id", nullable=false)
      */
     private $annonce;
 
@@ -55,9 +55,5 @@ class PhotoAnnonce
         $this->annonce = $annonce;
 
         return $this;
-    }
-    public function __toString()
-    {
-        return $this->lien_photo_annonce;
     }
 }

@@ -41,20 +41,20 @@ class Utilisateur extends Personne
 
     /**
      * @ORM\OneToMany(targetEntity=Conversation::class, mappedBy="expediteur")
+     * @ORM\JoinColumn(name="conversations", referencedColumnName="id")
      */
     private $conversations;
 
     /**
-     * @ORM\OneToMany(targetEntity=Annonce::class, mappedBy="utilisateur", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=Annonce::class, mappedBy="utilisateur")
+     * @ORM\JoinColumn(name="annonces", referencedColumnName="id") 
      */
     private $annonces;
 
-    
     public function __construct(){
         $this->date_inscription_user = new \DateTime('now');
-        $this->faqs = new ArrayCollection();
-        $this->annonces = new ArrayCollection();
         $this->conversations = new ArrayCollection();
+        $this->annonces = new ArrayCollection();
     }
 
     public function getPseudoUser(): ?string
@@ -104,37 +104,6 @@ class Utilisateur extends Personne
 
         return $this;
     }
-
-    /**
-     * @return Collection|annonce[]
-     */
-    public function getAnnonces(): Collection
-    {
-        return $this->annonces;
-    }
-
-    public function addAnnonce(annonce $annonce): self
-    {
-        if (!$this->annonces->contains($annonce)) {
-            $this->annonces[] = $annonce;
-            $annonce->setUtilisateur($this);
-        }
-
-        return $this;
-    }
-
-    public function removeAnnonce(annonce $annonce): self
-    {
-        if ($this->annonces->removeElement($annonce)) {
-            // set the owning side to null (unless already changed)
-            if ($annonce->getUtilisateur() === $this) {
-                $annonce->setUtilisateur(null);
-            }
-        }
-
-        return $this;
-    }
-
     /**
      * @return Collection|Conversation[]
      */
@@ -165,4 +134,33 @@ class Utilisateur extends Personne
         return $this;
     }
 
+    /**
+     * @return Collection|Annonce[]
+     */
+    public function getAnnonces(): Collection
+    {
+        return $this->annonces;
+    }
+
+    public function addAnnonce(Annonce $annonce): self
+    {
+        if (!$this->annonces->contains($annonce)) {
+            $this->annonces[] = $annonce;
+            $annonce->setUtilisateur($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAnnonce(Annonce $annonce): self
+    {
+        if ($this->annonces->removeElement($annonce)) {
+            // set the owning side to null (unless already changed)
+            if ($annonce->getUtilisateur() === $this) {
+                $annonce->setUtilisateur(null);
+            }
+        }
+
+        return $this;
+    }
 }

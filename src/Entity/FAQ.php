@@ -3,7 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\FAQRepository;
-
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -21,31 +22,33 @@ class FAQ
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $titre_probleme;
-
-    /**
-     * @ORM\Column(type="text", nullable=true)
-     */
-    private $description_probleme;
+    private $titre_probleme; 
 
     /**
      * @ORM\Column(type="text")
      */
-    private $solution_probleme;
-
-    /**
-     * @ORM\Column(type="text", nullable=true)
-     */
-    private $lien_tutoriel;
+    private $description_probleme;
 
     /**
      * @ORM\Column(type="datetime")
      */
     private $date_probleme;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=CategorieFAQ::class, inversedBy="faqs")
+     * @ORM\JoinColumn(name="categorie_faq", referencedColumnName="id", nullable=false)
+     */
+    private $categorie_faq;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Administrateur::class)
+     * @ORM\JoinColumn(name="administrateur", referencedColumnName="id_personne", nullable=false)
+     */
+    private $id_administrateur;
+
     public function __construct()
     {
-        $this->date_probleme=new \DateTime();
+        
     }
 
     public function getId(): ?int
@@ -70,33 +73,9 @@ class FAQ
         return $this->description_probleme;
     }
 
-    public function setDescriptionProbleme(?string $description_probleme): self
+    public function setDescriptionProbleme(string $description_probleme): self
     {
         $this->description_probleme = $description_probleme;
-
-        return $this;
-    }
-
-    public function getSolutionProbleme(): ?string
-    {
-        return $this->solution_probleme;
-    }
-
-    public function setSolutionProbleme(string $solution_probleme): self
-    {
-        $this->solution_probleme = $solution_probleme;
-
-        return $this;
-    }
-
-    public function getLienTutoriel(): ?string
-    {
-        return $this->lien_tutoriel;
-    }
-
-    public function setLienTutoriel(?string $lien_tutoriel): self
-    {
-        $this->lien_tutoriel = $lien_tutoriel;
 
         return $this;
     }
@@ -113,4 +92,28 @@ class FAQ
         return $this;
     }
 
+    public function getCategorieFaq(): ?CategorieFAQ
+    {
+        return $this->categorie_faq;
+    }
+
+    public function setCategorieFaq(?CategorieFAQ $categorie_faq): self
+    {
+        $this->categorie_faq = $categorie_faq;
+
+        return $this;
+    }
+
+    public function getIdAdministrateur(): ?Administrateur
+    {
+        return $this->id_administrateur;
+    }
+
+    public function setIdAdministrateur(?Administrateur $id_administrateur): self
+    {
+        $this->id_administrateur = $id_administrateur;
+
+        return $this;
+    }
+    
 }

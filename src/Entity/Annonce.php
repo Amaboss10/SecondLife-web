@@ -53,57 +53,47 @@ class Annonce
 
     /**
      * @ORM\ManyToOne(targetEntity=Categorie::class, inversedBy="annonces")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(name="categorie", referencedColumnName="id", nullable=false)
      */
     private $categorie;
 
     /**
      * @ORM\ManyToOne(targetEntity=Marque::class, inversedBy="annonces")
+     * @ORM\JoinColumn(name="marque", referencedColumnName="id", nullable=false)
      */
     private $marque;
 
     /**
      * @ORM\OneToMany(targetEntity=PhotoAnnonce::class, mappedBy="annonce")
+     * @ORM\JoinColumn(name="images_annonce", referencedColumnName="id")
      */
     private $images_annonce;
 
     /**
      * @ORM\ManyToOne(targetEntity=SousCategorie::class, inversedBy="annonces")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(name="sous_categorie", referencedColumnName="id", nullable=false)
      */
     private $sous_categorie;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="boolean")
      */
-    private $lieu;
+    private $est_valide;
 
     /**
-     * @ORM\Column(type="array")
+     * @ORM\ManyToOne(targetEntity=Utilisateur::class, inversedBy="annonces")
+     * @ORM\JoinColumn(name="utilisateur", referencedColumnName="id_personne", nullable=false)
      */
-    private $mode_livraison = [];
-
-  //  /**
-    // * @ORM\ManyToOne(targetEntity=Utilisateur::class, inversedBy="annonces")
-    // * @ORM\JoinColumn(nullable=false)
-    // */
-    //private $utilisateur;
-
-    // /**
-     // * @ORM\ManyToOne(targetEntity=Utilisateur::class, inversedBy="annonces")
-     // * @ORM\JoinTable(name="Utilisateur", joinColumns={@ORM\JoinColumn(name="id", referencedColumnName="id")})
-    //  */
-    //private $utilisateur;
+    private $utilisateur;
 
     public function __construct()
     {
-        $this->etat_annonce='pas vendu';
         $this->images_annonce = new ArrayCollection();
     }
 
-    public function getId(): ?int
+    public function getIdAnnonce(): ?int
     {
-        return $this->id;
+        return $this->id_annonce;
     }
 
     public function getTitreAnnonce(): ?string
@@ -178,28 +168,6 @@ class Annonce
         return $this;
     }
 
-    public function addIdPhotoAnnonce(PhotoAnnonce $idPhotoAnnonce): self
-    {
-        if (!$this->id_photo_annonce->contains($idPhotoAnnonce)) {
-            $this->id_photo_annonce[] = $idPhotoAnnonce;
-            $idPhotoAnnonce->setAnnonce($this);
-        }
-
-        return $this;
-    }
-
-    public function removeIdPhotoAnnonce(PhotoAnnonce $idPhotoAnnonce): self
-    {
-        if ($this->id_photo_annonce->removeElement($idPhotoAnnonce)) {
-            // set the owning side to null (unless already changed)
-            if ($idPhotoAnnonce->getAnnonce() === $this) {
-                $idPhotoAnnonce->setAnnonce(null);
-            }
-        }
-
-        return $this;
-    }
-
     public function getMarque(): ?Marque
     {
         return $this->marque;
@@ -254,18 +222,6 @@ class Annonce
         return $this;
     }
 
-    public function getUtilisateur(): ?Utilisateur
-    {
-        return $this->utilisateur;
-    }
-
-    public function setUtilisateur(?Utilisateur $utilisateur): self
-    {
-        $this->utilisateur = $utilisateur;
-
-        return $this;
-    }
-
     public function getSousCategorie(): ?SousCategorie
     {
         return $this->sous_categorie;
@@ -278,27 +234,28 @@ class Annonce
         return $this;
     }
 
-    public function getLieu(): ?string
+    public function getEstValide(): ?bool
     {
-        return $this->lieu;
+        return $this->est_valide;
     }
 
-    public function setLieu(string $lieu): self
+    public function setEstValide(bool $est_valide): self
     {
-        $this->lieu = $lieu;
+        $this->est_valide = $est_valide;
 
         return $this;
     }
 
-    public function getModeLivraison(): ?array
+    public function getUtilisateur(): ?Utilisateur
     {
-        return $this->mode_livraison;
+        return $this->utilisateur;
     }
 
-    public function setModeLivraison(array $mode_livraison): self
+    public function setUtilisateur(?Utilisateur $utilisateur): self
     {
-        $this->mode_livraison = $mode_livraison;
+        $this->utilisateur = $utilisateur;
 
         return $this;
     }
+
 }

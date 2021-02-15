@@ -26,6 +26,7 @@ class Marque
 
     /**
      * @ORM\OneToMany(targetEntity=Annonce::class, mappedBy="marque")
+     * @ORM\JoinColumn(name="annonces", referencedColumnName="id", nullable=false)
      */
     private $annonces;
 

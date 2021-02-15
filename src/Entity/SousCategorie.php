@@ -25,15 +25,16 @@ class SousCategorie
     private $nom_sous_categorie;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Categorie::class, inversedBy="sous_categories")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\ManyToOne(targetEntity=Categorie::class, inversedBy="sous_categorie")
+     * @ORM\JoinColumn(name="categorie", referencedColumnName="id", nullable=false)
      */
     private $categorie;
 
-    // /**
-    //  * @ORM\OneToMany(targetEntity=Annonce::class, mappedBy="sous_categorie")
-    //  */
-    // private $annonces;
+    /**
+     * @ORM\OneToMany(targetEntity=Annonce::class, mappedBy="sous_categorie")
+     * @ORM\JoinColumn(name="annonces", referencedColumnName="id")
+     */
+    private $annonces;
 
     public function __construct()
     {
@@ -69,38 +70,33 @@ class SousCategorie
         return $this;
     }
 
-    // /**
-    //  * @return Collection|Annonce[]
-    //  */
-    // public function getAnnonces(): Collection
-    // {
-    //     return $this->annonces;
-    // }
-
-    // public function addAnnonce(Annonce $annonce): self
-    // {
-    //     if (!$this->annonces->contains($annonce)) {
-    //         $this->annonces[] = $annonce;
-    //         $annonce->setSousCategorie($this);
-    //     }
-
-    //     return $this;
-    // }
-
-    // public function removeAnnonce(Annonce $annonce): self
-    // {
-    //     if ($this->annonces->removeElement($annonce)) {
-    //         // set the owning side to null (unless already changed)
-    //         if ($annonce->getSousCategorie() === $this) {
-    //             $annonce->setSousCategorie(null);
-    //         }
-    //     }
-
-    //     return $this;
-    // }
-
-    public function __toString()
+    /**
+     * @return Collection|Annonce[]
+     */
+    public function getAnnonces(): Collection
     {
-        return $this->nom_sous_categorie;
+        return $this->annonces;
+    }
+
+    public function addAnnonce(Annonce $annonce): self
+    {
+        if (!$this->annonces->contains($annonce)) {
+            $this->annonces[] = $annonce;
+            $annonce->setSousCategorie($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAnnonce(Annonce $annonce): self
+    {
+        if ($this->annonces->removeElement($annonce)) {
+            // set the owning side to null (unless already changed)
+            if ($annonce->getSousCategorie() === $this) {
+                $annonce->setSousCategorie(null);
+            }
+        }
+
+        return $this;
     }
 }

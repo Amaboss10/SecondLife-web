@@ -1,21 +1,50 @@
 {% extends 'base.html.twig' %}
 
 {% block body %} 
+    
+    <div class="row justify-content-around" style="margin:1%">
+        <div class="connexion col-xl-5 col-sm-12 col-12 " style=" margin:2%; padding:1%">
+            <h3  style="padding-bottom:0.5%">{{sous_titre_connexion}}<h3>
+            <div class= "col-8" style="margin:auto;text-align: center; margin-top:25%; margin-bottom:25%">
+                <input type="email" class="form-control form-tex0 bg-light" placeholder="Email : name@exemple.com">
+                <input type="password" class="form-control form-text bg-light" placeholder="Mot de passe">
+                <br>
+                <button type="button" class="btn btn-lg btn-outline-success">Se connecter</button> 
+            </div>
+        </div>
+        <div class="inscription col-xl-5 col-sm-12 col-12" style=" margin:2%; padding:1%">
+            <h3  style="padding-bottom:0.5%">{{sous_titre_inscription}}<h3>
+            <div class="col-8" style="margin: auto; margin-top:6%; margin-bottom:6%">
+                
+                {{ form_start(formInscription) }}
+                {{ form_row(formInscription.nom_personne, {'label':'Nom'}) }}
+                {{ form_row(formInscription.prenom_personne, {'label':'Prenom'}) }}
+                {{ form_row(formInscription.mail_personne, {'label':'Mail'}) }}
+                {{ form_row(formInscription.mdp_personne, {'label':'Mot de passe'}) }}
+                <p style="font-size:xx-small"> Minimum 8 caractères avec au moins 1 Majuscule, 1 caractère spécial, 1 chiffre</p>
+                <p style="font-size:x-small"> En cliquant sur "S'incrire", vous acceptez les conditions générales d'utilisation, les conditions générales de vente et la politique de confidentialité de SecondLife.</p>
+                {{ form_row(formInscription.verif_mdp_personne, {'label':'Confirmation du mot de passe'}) }}
+                <br>
+                {{ form_row(formInscription.pseudo_user, {'label':'Pseudo'}) }}
+                {{ form_row(formInscription.adresse_user, {'label':'Adresse'}) }}
+                {{ form_row(formInscription.date_naiss_user, {'label':'Date de naissance'}) }}
+                {{ form_row(formInscription.lien_image_personne, {'label':'Photo de profil'})}}
+                <div style="text-align: center">
+                    <input type="submit" class="btn btn-lg btn-outline-success" value="Inscription">
+                </div>
+                 {{ form_end(formInscription) }}
+
+            </div>
+        </div>
+    </div>
     <h1>Inscription</h1>
 
-    {{ form_start(formInscription) }}
-    {{ form_row(formInscription.nom_personne, {'label':'Nom'}) }}
-    {{ form_row(formInscription.prenom_personne, {'label':'Prenom'}) }}
-    {{ form_row(formInscription.mail_personne, {'label':'Mail'}) }}
-    {{ form_row(formInscription.mdp_personne, {'label':'Mot de passe'}) }}
-    {{ form_row(formInscription.verif_mdp_personne, {'label':'Confirmation du mot de passe'}) }}
-    {{ form_row(formInscription.pseudo_user, {'label':'Pseudo'}) }}
-    {{ form_row(formInscription.adresse_user, {'label':'Adresse'}) }}
-    {{ form_row(formInscription.date_naiss_user, {'label':'Date de naissance'}) }}
-    {{ form_row(formInscription.lien_image_personne, {'label':'Photo de profil'})}}
+    
+    
+    
+    
     
 
-    <input type="submit" value="Inscription">
-    {{ form_end(formInscription) }}
-
+    
+   
 {% endblock %}

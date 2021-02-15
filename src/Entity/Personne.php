@@ -59,7 +59,7 @@ class Personne implements UserInterface
      */
     protected $lien_image_personne;
 
-    private $type;
+    protected $type;
 
     public function getIdPersonne(): ?int
     {

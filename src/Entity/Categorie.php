@@ -26,17 +26,19 @@ class Categorie
 
     /**
      * @ORM\OneToMany(targetEntity=SousCategorie::class, mappedBy="categorie")
+     * @ORM\JoinColumn(name="sous_categorie", referencedColumnName="id", nullable=false)
      */
-    private $sous_categories;
+    private $sous_categorie;
 
     /**
      * @ORM\OneToMany(targetEntity=Annonce::class, mappedBy="categorie")
+     * @ORM\JoinColumn(name="annonces", referencedColumnName="id")
      */
     private $annonces;
 
     public function __construct()
     {
-        $this->sous_categories = new ArrayCollection();
+        $this->sous_categorie = new ArrayCollection();
         $this->annonces = new ArrayCollection();
     }
 
@@ -60,15 +62,15 @@ class Categorie
     /**
      * @return Collection|SousCategorie[]
      */
-    public function getSousCategories(): Collection
+    public function getSousCategorie(): Collection
     {
-        return $this->sous_categories;
+        return $this->sous_categorie;
     }
 
     public function addSousCategorie(SousCategorie $sousCategorie): self
     {
-        if (!$this->sous_categories->contains($sousCategorie)) {
-            $this->sous_categories[] = $sousCategorie;
+        if (!$this->sous_categorie->contains($sousCategorie)) {
+            $this->sous_categorie[] = $sousCategorie;
             $sousCategorie->setCategorie($this);
         }
 
@@ -77,7 +79,7 @@ class Categorie
 
     public function removeSousCategorie(SousCategorie $sousCategorie): self
     {
-        if ($this->sous_categories->removeElement($sousCategorie)) {
+        if ($this->sous_categorie->removeElement($sousCategorie)) {
             // set the owning side to null (unless already changed)
             if ($sousCategorie->getCategorie() === $this) {
                 $sousCategorie->setCategorie(null);
@@ -115,9 +117,5 @@ class Categorie
         }
 
         return $this;
-    }
-    public function __toString()
-    {
-        return $this->nom_categorie;
     }
 }
