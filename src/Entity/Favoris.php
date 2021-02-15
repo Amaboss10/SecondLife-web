@@ -19,13 +19,13 @@ class Favoris
 
     /**
      * @ORM\ManyToOne(targetEntity=Annonce::class)
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(name="annonce", referencedColumnName="id", nullable=false)
      */
     private $id_annonce;
 
     /**
      * @ORM\ManyToOne(targetEntity=Utilisateur::class)
-     * @ORM\JoinColumn(name="utilisateur", referencedColumnName="id_personne")
+     * @ORM\JoinColumn(name="utilisateur", referencedColumnName="id_personne", nullable=false)
      */
     private $id_utilisateur;
 

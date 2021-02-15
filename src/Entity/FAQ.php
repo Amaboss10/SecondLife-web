@@ -19,16 +19,16 @@ class FAQ
      */
     private $id;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=Utilisateur::class, inversedBy="faqs")
-     * @ORM\JoinColumn(name="utilisateur", referencedColumnName="id_personne")
-     */
-    private $id_utilisateur;
+    // /**
+    //  * @ORM\ManyToOne(targetEntity=Utilisateur::class, inversedBy="faqs")
+    //  * @ORM\JoinColumn(name="id_utilisateur", referencedColumnName="id_personne")
+    //  */
+    // private $id_utilisateur;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $titre_probleme;
+    private $titre_probleme; 
 
     /**
      * @ORM\Column(type="text")
@@ -40,14 +40,26 @@ class FAQ
      */
     private $date_probleme;
 
+    // /**
+    //  * @ORM\Column(type="boolean")
+    //  */
+    // private $est_resolue;
+
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\ManyToOne(targetEntity=CategorieFAQ::class, inversedBy="faqs")
+     * @ORM\JoinColumn(name="categorie_faq", referencedColumnName="id", nullable=false)
      */
-    private $est_resolue;
+    private $categorie_faq;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Administrateur::class)
+     * @ORM\JoinColumn(name="administrateur", referencedColumnName="id_personne", nullable=false)
+     */
+    private $id_administrateur;
 
     public function __construct()
     {
-        $this->reponseFaqs = new ArrayCollection();
+        
     }
 
     public function getId(): ?int
@@ -55,17 +67,17 @@ class FAQ
         return $this->id;
     }
 
-    public function getIdUtilisateur(): ?Utilisateur
-    {
-        return $this->id_utilisateur;
-    }
+    // public function getIdUtilisateur(): ?Utilisateur
+    // {
+    //     return $this->id_utilisateur;
+    // }
 
-    public function setIdUtilisateur(?Utilisateur $id_utilisateur): self
-    {
-        $this->id_utilisateur = $id_utilisateur;
+    // public function setIdUtilisateur(?Utilisateur $id_utilisateur): self
+    // {
+    //     $this->id_utilisateur = $id_utilisateur;
 
-        return $this;
-    }
+    //     return $this;
+    // }
 
     public function getTitreProbleme(): ?string
     {
@@ -103,14 +115,38 @@ class FAQ
         return $this;
     }
 
-    public function getEstResolue(): ?bool
+    // public function getEstResolue(): ?bool
+    // {
+    //     return $this->est_resolue;
+    // }
+
+    // public function setEstResolue(bool $est_resolue): self
+    // {
+    //     $this->est_resolue = $est_resolue;
+
+    //     return $this;
+    // }
+
+    public function getCategorieFaq(): ?CategorieFAQ
     {
-        return $this->est_resolue;
+        return $this->categorie_faq;
     }
 
-    public function setEstResolue(bool $est_resolue): self
+    public function setCategorieFaq(?CategorieFAQ $categorie_faq): self
     {
-        $this->est_resolue = $est_resolue;
+        $this->categorie_faq = $categorie_faq;
+
+        return $this;
+    }
+
+    public function getIdAdministrateur(): ?Administrateur
+    {
+        return $this->id_administrateur;
+    }
+
+    public function setIdAdministrateur(?Administrateur $id_administrateur): self
+    {
+        $this->id_administrateur = $id_administrateur;
 
         return $this;
     }

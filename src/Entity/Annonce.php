@@ -53,23 +53,25 @@ class Annonce
 
     /**
      * @ORM\ManyToOne(targetEntity=Categorie::class, inversedBy="annonces")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(name="categorie", referencedColumnName="id", nullable=false)
      */
     private $categorie;
 
     /**
      * @ORM\ManyToOne(targetEntity=Marque::class, inversedBy="annonces")
+     * @ORM\JoinColumn(name="marque", referencedColumnName="id", nullable=false)
      */
     private $marque;
 
     /**
      * @ORM\OneToMany(targetEntity=PhotoAnnonce::class, mappedBy="annonce")
+     * @ORM\JoinColumn(name="images_annonce", referencedColumnName="id")
      */
-    private $images__annonce;
+    private $images_annonce;
 
     /**
      * @ORM\ManyToOne(targetEntity=SousCategorie::class, inversedBy="annonces")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(name="sous_categorie", referencedColumnName="id", nullable=false)
      */
     private $sous_categorie;
 
@@ -80,13 +82,13 @@ class Annonce
 
     /**
      * @ORM\ManyToOne(targetEntity=Utilisateur::class, inversedBy="annonces")
-     * @ORM\JoinTable(name="Utilisateur", joinColumns={@ORM\JoinColumn(name="id_personne", referencedColumnName="id_personne")})
+     * @ORM\JoinColumn(name="utilisateur", referencedColumnName="id_personne", nullable=false)
      */
     private $utilisateur;
 
     public function __construct()
     {
-        $this->images__annonce = new ArrayCollection();
+        $this->images_annonce = new ArrayCollection();
     }
 
     public function getIdAnnonce(): ?int
@@ -166,28 +168,6 @@ class Annonce
         return $this;
     }
 
-    public function addIdPhotoAnnonce(PhotoAnnonce $idPhotoAnnonce): self
-    {
-        if (!$this->id_photo_annonce->contains($idPhotoAnnonce)) {
-            $this->id_photo_annonce[] = $idPhotoAnnonce;
-            $idPhotoAnnonce->setAnnonce($this);
-        }
-
-        return $this;
-    }
-
-    public function removeIdPhotoAnnonce(PhotoAnnonce $idPhotoAnnonce): self
-    {
-        if ($this->id_photo_annonce->removeElement($idPhotoAnnonce)) {
-            // set the owning side to null (unless already changed)
-            if ($idPhotoAnnonce->getAnnonce() === $this) {
-                $idPhotoAnnonce->setAnnonce(null);
-            }
-        }
-
-        return $this;
-    }
-
     public function getMarque(): ?Marque
     {
         return $this->marque;
@@ -217,13 +197,13 @@ class Annonce
      */
     public function getImagesAnnonce(): Collection
     {
-        return $this->images__annonce;
+        return $this->images_annonce;
     }
 
     public function addImagesAnnonce(PhotoAnnonce $imagesAnnonce): self
     {
-        if (!$this->images__annonce->contains($imagesAnnonce)) {
-            $this->images__annonce[] = $imagesAnnonce;
+        if (!$this->images_annonce->contains($imagesAnnonce)) {
+            $this->images_annonce[] = $imagesAnnonce;
             $imagesAnnonce->setAnnonce($this);
         }
 
@@ -232,24 +212,12 @@ class Annonce
 
     public function removeImagesAnnonce(PhotoAnnonce $imagesAnnonce): self
     {
-        if ($this->images__annonce->removeElement($imagesAnnonce)) {
+        if ($this->images_annonce->removeElement($imagesAnnonce)) {
             // set the owning side to null (unless already changed)
             if ($imagesAnnonce->getAnnonce() === $this) {
                 $imagesAnnonce->setAnnonce(null);
             }
         }
-
-        return $this;
-    }
-
-    public function getUtilisateur(): ?Utilisateur
-    {
-        return $this->utilisateur;
-    }
-
-    public function setUtilisateur(?Utilisateur $utilisateur): self
-    {
-        $this->utilisateur = $utilisateur;
 
         return $this;
     }
@@ -277,4 +245,17 @@ class Annonce
 
         return $this;
     }
+
+    public function getUtilisateur(): ?Utilisateur
+    {
+        return $this->utilisateur;
+    }
+
+    public function setUtilisateur(?Utilisateur $utilisateur): self
+    {
+        $this->utilisateur = $utilisateur;
+
+        return $this;
+    }
+
 }

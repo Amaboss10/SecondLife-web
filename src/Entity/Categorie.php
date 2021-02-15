@@ -26,17 +26,18 @@ class Categorie
 
     /**
      * @ORM\OneToMany(targetEntity=SousCategorie::class, mappedBy="categorie")
+     * @ORM\JoinColumn(name="sous_categorie", referencedColumnName="id", nullable=false)
      */
     private $sous_categorie;
 
     /**
      * @ORM\OneToMany(targetEntity=Annonce::class, mappedBy="categorie")
+     * @ORM\JoinColumn(name="annonces", referencedColumnName="id")
      */
     private $annonces;
 
     public function __construct()
     {
-        $this->sous_categories = new ArrayCollection();
         $this->sous_categorie = new ArrayCollection();
         $this->annonces = new ArrayCollection();
     }

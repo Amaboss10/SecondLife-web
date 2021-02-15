@@ -17,11 +17,11 @@ class Message
      */
     private $id;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=Conversation::class)
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $id_conversation;
+    // /**
+    //  * @ORM\ManyToOne(targetEntity=Conversation::class)
+    //  * @ORM\JoinColumn(name="conversation", referencedColumnName="id", nullable=false)
+    //  */
+    // private $id_conversation;
 
     /**
      * @ORM\ManyToOne(targetEntity=Utilisateur::class)
@@ -43,6 +43,12 @@ class Message
      * @ORM\Column(type="integer")
      */
     private $etat_envoi;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Conversation::class, inversedBy="messages")
+     * @ORM\JoinColumn(name="conversation", referencedColumnName="id")
+     */
+    private $id_conversation;
 
     public function getId(): ?int
     {

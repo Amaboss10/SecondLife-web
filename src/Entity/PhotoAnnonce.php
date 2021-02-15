@@ -24,7 +24,7 @@ class PhotoAnnonce
 
     /**
      * @ORM\ManyToOne(targetEntity=Annonce::class, inversedBy="images__annonce")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(name="annonce", referencedColumnName="id", nullable=false)
      */
     private $annonce;
 
