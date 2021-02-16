@@ -32,12 +32,6 @@
                         {{form_widget(form.sous_categorie,{'attr':{'class':"col form-control form-select form-select-sm bg-light"}})}}
                     </div>
 
-                    <div class="row ville">
-                        {{form_label(form.lieu,'Ville* ',{'label_attr':{'class':"col-3 form-label col-form-label-sm"}})}}
-                        {{form_errors(form.lieu)}}
-                        {{form_widget(form.lieu,{'attr':{'class':"col form-control form-text bg-light"}})}}
-                    </div>
-
                     <div class="row prix"  style="padding-bottom:0.5%">
                         {{form_label(form.prix_annonce,'Prix* ',{'label_attr':{'class':"col-3 form-label col-form-label-sm"}})}}
                         {{form_errors(form.prix_annonce)}}
@@ -57,12 +51,6 @@
                         {{form_errors(form.poids_annonce)}}
                         {{form_widget(form.poids_annonce,{'attr':{'class':"col form-control form-text bg-light"}})}}
                         <p class="col-1" style="padding-top:1.2%"> grammes</p>
-                    </div>
-
-                    <div class="row mode_livraison">
-                        {{form_label(form.mode_livraison,'Mode de livraison*',{'label_attr':{'class':"col-3 form-label col-form-label-sm"}})}}
-                        {{form_errors(form.mode_livraison)}}
-                        {{form_widget(form.mode_livraison,{'attr':{'class':"col form-control form-select form-select-sm bg-light"}})}}
                     </div>
 
                     <div class="row description"  style="padding-bottom:0.5%">

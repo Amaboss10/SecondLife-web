@@ -55,16 +55,6 @@ class CreerModifierAnnonceFormType extends AbstractType
                 ]
             ])
 
-            ->add('mode_livraison',ChoiceType::class,[
-                'label'=>'Modes de livraison',
-                'required'=>true,
-                'multiple'=>true,
-                'choices'=>[
-                    'Remise en main propre'=>'remise_en_main_propre',
-                    'Remise via transporteur(poste, collissimo,..)'=>'remise_via_transporteur'
-                ]
-            ])
-
             ->add('marque',EntityType::class,[
                 'label'=>'Marques',
                 'required'=>true,
@@ -80,13 +70,6 @@ class CreerModifierAnnonceFormType extends AbstractType
                 ]
             ])
 
-            ->add('lieu',TextType::class,[
-                'label'=>'Ville :',
-                'required'=>true,
-                'attr'=>[
-                    'placeholder'=>'Ville ou Departement ou Region'
-                ]
-            ])
             ->add('description_annonce',TextareaType::class,[
                 'label'=>'Description :',
                 'required'=>true

@@ -93,7 +93,7 @@ class Annonce
 
     public function getIdAnnonce(): ?int
     {
-        return $this->id_annonce;
+        return $this->id;
     }
 
     public function getTitreAnnonce(): ?string

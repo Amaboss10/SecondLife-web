@@ -127,7 +127,7 @@ class SecondLifeController extends AbstractController
             'sous_categories'=>$sous_categories,
             'annonce'=>$annonce,
             'form'=>$form->createView(),
-            'etat'=>$annonce->getId() !==null,
+            'etat'=>$annonce->getIdAnnonce() !==null,
             'titre'=>$titre,
             'annonces'=>$annonces
         ]);
