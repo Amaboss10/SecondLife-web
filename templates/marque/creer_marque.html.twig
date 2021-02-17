@@ -1,0 +1,11 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block title %}{{titre_page}}{% endblock %}
+
+{% block body %}
+    <h1>{{titre_page}}</h1>
+
+    {{ include('marque/_form.html.twig') }}
+
+    <a href="{{ path('secondLife_admin_gerer_marques') }}">Afficher toutes les marques</a>
+{% endblock %}

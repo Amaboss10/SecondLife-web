@@ -24,6 +24,10 @@ class SecondLifeAdminController extends AbstractController
      */
     public function index(): Response
     {
+        //ajouter options:
+        //*afficherAnnoncescategorie
+        //*afficherAnnoncesSouscategorie
+        //*afficherAnnoncesMarque
         return $this->render('second_life_admin/index.html.twig', [
             'titre_page'=>'Accueil',
         ]);
