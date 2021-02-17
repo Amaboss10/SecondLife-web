@@ -4,17 +4,23 @@
 
 {% block body %}
     <div class="row">
-        <div class="col-xl-10">
-            <div>
-                <h1>{{ titre_page }}</h1>
+        <div class="col-xl-8 col-sm-12 col-12"  style="margin:1%">
+            <div style="margin-bottom:1%">
+                <div class="row">
+                    <h1 class="col" style="padding-bottom:0.5%">{{ titre_page }}</h1>
+                    <a class="btn col offset-xl-6 col-xl-2"  href={{path('secondLife_creer_annonce')}} class="link-secondary"><button type="button" class="btn btn-sm btn-outline-secondary">cree une annonce</button></a>
+                </div>
                 <div class="row">
                     <select id="Trier par" class="col form-control form-select form-select-sm bg-light" name="trier">
                         <option value=""></option>
                     </select>
-                    <select id="Filtrer par" class="col form-control form-select form-select-sm bg-light" name="Filtre">
+                    <div class="col offset-xl-0 offset-sm-1 offset-3">
+                    </div>
+                    <select id="Filtrer par" class="col  form-control form-select form-select-sm bg-light" name="Filtre" >
                         <option value=""></option>
                     </select>
-                    <button type="button" class=" col btn btn-sm btn-outline-secondary">cree une annonce</button>
+                    <div class="col offset-xl-7">
+                    </div>
                 </div>
             </div>
             <div style="background-color:red">
@@ -27,7 +33,7 @@
             </div>
         </div>
 
-        <div class="col-xl-2" style="background-color:blue">
+        <div class="col-xl-3 col-sm-12 col-12" style="background-color:blue; margin:1%">
             <!--pub-->
             <p>
                 <br>
