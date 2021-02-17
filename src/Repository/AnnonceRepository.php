@@ -2,9 +2,10 @@
 
 namespace App\Repository;
 
+use App\Entity\Marque;
 use App\Entity\Annonce;
-use App\Data\FiltreAnnonceData;
 use App\Entity\Utilisateur;
+use App\Data\FiltreAnnonceData;
 use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
@@ -65,6 +66,14 @@ public function findMesAnnonces(Utilisateur $utilisateur){
                     ->orderBy('a.date_publi_annonce','DESC')
                     ->setParameter('user',$utilisateur);
     return $query->getQuery()->getResult();
+}
+public function findAnnoncesByMarque(Marque $marque)
+{
+    $query=$this->createQueryBuilder('a')
+                ->where('a.marque = :marque')
+                ->orderBy('a.date_publi_annonce','DESC')
+            ->setParameter('marque',$marque);
+return $query->getQuery()->getResult();
 }
 public function findAnnonceAleat()
     {

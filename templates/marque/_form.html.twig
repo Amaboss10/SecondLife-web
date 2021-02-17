@@ -1,0 +1,10 @@
+{{ form_start(form) }}
+    {{form_label(form.nom_marque,"Nom de la Marque : ")}}
+    {{form_errors(form.nom_marque)}}
+    {{ form_widget(form.nom_marque,{'attr':{'class':'form-control form-text  bg-light'}}) }}
+    <br>
+    <div style="text-align:center; margin-top:0%; margin-bottom:5%">
+        <button class="btn btn-lg btn-outline-success ">{{ button_label|default('Créer/Ajouter marque') }}</button>
+    </div>
+    
+{{ form_end(form) }}

@@ -1,0 +1,37 @@
+{% extends 'base_admin.html.twig' %}
+
+
+{% block title %}{{titre_page}}{% endblock %}
+
+{% block body %}
+    <h1>{{titre_page}}</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom_marque</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for marque in marques %}
+            <tr>
+                <td>{{ marque.id }}</td>
+                <td>{{ marque.nomMarque }}</td>
+                <td>
+                    <a href="{{ path('secondLife_admin_afficher_annonces_de_la_marque', {'id': marque.id}) }}">Afficher les annonces  {{marque.nomMarque}}</a>
+                    <a href="{{ path('secondLife_admin_modifier_marque', {'id': marque.id}) }}">Modifier {{marque.nomMarque}}  </a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3" style="margin-top:10%; text-align:center">Il n'y a aucune marque</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('secondLife_admin_creer_marque') }}">Créer/Ajouter une marque</a>
+    
+{% endblock %}

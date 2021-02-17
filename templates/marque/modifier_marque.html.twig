@@ -1,0 +1,13 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block title %}{{titre_page}}{% endblock %}
+
+{% block body %}
+    <h1>Modifier la Marque</h1>
+
+    {{ include('marque/_form.html.twig', {'button_label': 'Modifier'}) }}
+
+    <a href="{{ path('secondLife_admin_afficher_annonces_de_la_marque', {'id': marque.id}) }}">Afficher les annonces de la marques</a>
+
+    {{ include('marque/_delete_form.html.twig') }}
+{% endblock %}
