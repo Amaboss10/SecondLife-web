@@ -149,7 +149,7 @@ class SecondLifeController extends AbstractController
      */
     public function gererMesAnnonces(): Response
     {
-        return $this->render('second_life/favoris.html.twig', [
+        return $this->render('second_life/gerer_annonces.html.twig', [
             'titre_page'=>'Mes annonces'
         ]);
     }

@@ -7,7 +7,7 @@
         <div class="col-xl-10 xol-sm-12 xol-12" style="padding:2%">
             <div class="row">
                 <h1 class="col" style="padding-bottom:0.5%">{{ titre_page }}</h1>
-                <button type="button" class="col-xl-2 col-sm-2 col-4 offset-xl-6 offset-sm-4 btn btn-sm btn-outline-secondary" style="margin-right:2%">voir mon profil</button>
+                <!--<a class="btn"  href={{path('secondLife_creer_annonce')}} class="link-secondary">--><button type="button" class="col-xl-2 col-sm-2 col-4 offset-xl-6 offset-sm-4 btn btn-sm btn-outline-secondary" style="margin-right:2%">voir mon profil</button>
             </div>
             <br>
             <div class="row infos_personnelles" style="border-style:solid; border-width:1px; border-color:#818D92; margin:1%; padding:1%">
@@ -35,8 +35,8 @@
             <div class="row gerer_annonces" style="border-style:solid; border-width:1px; border-color:#818D92; margin:1%; margin-top:2%; margin-bottom:2%; padding:1%">
                 <h3  style="padding-bottom:0.5%"> Gérer mes annonces </h3>
                 <div class="row justify-content-around" style="margin-left:1%">
-                    <button type="button" class="col-xl-2 col-sm-4 col-5 btn btn-sm btn-outline-secondary">Ajouter une annonce</button>
-                    <button type="button" class="col-xl-2 col-sm-4 col-5 btn btn-sm btn-outline-secondary">Gérer mes annonces </button>
+                    <a class="btn"  href={{path('secondLife_creer_annonce')}} class="link-secondary"><button type="button" class="col-xl-2 col-sm-4 col-5 btn btn-sm btn-outline-secondary">Ajouter une annonce</button></a>
+                    <a class="btn"  href={{path('secondLife_gerer_mes_annonces')}} class="link-secondary"><button type="button" class="col-xl-2 col-sm-4 col-5 btn btn-sm btn-outline-secondary">Gérer mes annonces </button></a>
                 </div>
             </div>
             <div class="row parametres" style="border-style:solid; border-width:1px; border-color:#818D92; margin:1%; padding:1%">
