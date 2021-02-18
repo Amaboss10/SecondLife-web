@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{titre_page}}{% endblock %}
+
+{% block body %}
+    <h1>{{titre_page}}</h1>
+
+    {{ include('sous_categorie/_form.html.twig', {'button_label': 'Modifier'}) }}
+
+    <a href={{ path('secondLife_admin_afficher_sous_categories_par_categorie',{'id':sousCategorie.categorie.id)) }}>Afficher les sous categories de la categorie {{sous_categorie.categorie.nomCategorie}}</a>
+
+    {{ include('sous_categorie/_delete_form.html.twig') }}
+{% endblock %}
