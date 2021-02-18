@@ -156,9 +156,14 @@ class Personne implements UserInterface
         return $this->type;
     }
 
-    public function setType(string $type): slef{
+    public function setType(string $type): self{
         $this->type = $type;
 
         return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->mail_personne;
     }
 }

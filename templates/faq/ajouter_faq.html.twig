@@ -3,11 +3,21 @@
 {% block title %}{{titre_page}}{% endblock %}
 
 {% block body %}
-    <h1>{% if etat %} Modidier une  rubrique de la FAQ
+    <h1>{% if etat %} Modifier une  rubrique de la FAQ
         {% else %} Ajouter une rubrique à la FAQ
         {% endif %}
     </h1>
+
+    {{ include('faq/_form.html.twig') }}
+
+    <a href="{{ path('secondLife_admin_gerer_faq') }}">Afficher toutes les rubriques</a>
     
+    {% if etat %}
+    {{ include('faq/_delete_form.html.twig') }}
+    {% endif %}
+
+
+{#    
     {{form_start(formulaire)}}
         {{form_row(formulaire)}}
         <button class="btn-sm btn-outline-sucess" type="submit">
@@ -16,6 +26,6 @@
         {% endif %}
         </button>
     {{form_end(formulaire)}}
-    
+  #}  
 
 {% endblock %}

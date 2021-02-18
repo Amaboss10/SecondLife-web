@@ -116,4 +116,8 @@ class FAQ
         return $this;
     }
     
+    public function __toString()
+    {
+        return $this->titre_probleme;
+    }
 }
