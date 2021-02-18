@@ -1,0 +1,38 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block title %}{{titre_page}}{% endblock %}
+
+{% block body %}
+    <h1>{{titre_page}}</h1>
+
+    <a href="{{ path('secondLife_admin_creer_categorieFaq') }}">Creer une categorie FAQ</a>
+
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom_categorie</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for categorie_faq in categories_faq %}
+            <tr>
+                <td>{{ categorie_faq.id }}</td>
+                <td>{{ categorie_faq.nomCategorie }}</td>
+                <td>
+                    <a href="{{ path('secondLife_admin_afficher_faq_par_categorieFaq', {'id': categorie_faq.id}) }}">Afficher faq de la categorie {{categorie_faq.nomCategorie}}</a>
+                    <a href="{{ path('secondLife_admin_modifier_categorieFaq', {'id': categorie_faq.id}) }}">Modifier la catégorie {{categorie_faq.nomCategorie}}</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">Pas de categorie de FAQ</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('secondLife_admin_creer_categorieFaq') }}">Creer une categorie FAQ</a>
+{% endblock %}
