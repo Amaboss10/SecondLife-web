@@ -1,0 +1,40 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block title %}{{titre_page}}{% endblock %}
+
+{% block body %}
+    <h1>{{titre_page}}</h1>
+    
+    {#<a href="{{ path('secondLife_admin_creer_sous_categorie') }}">Creer/Ajouter une sous-catégorie dans/à la categorie {{categorie.nomCategorie}}</a>
+#}
+    <p class="nb_sous_categorie">{{nb_sous_categorie}} sous-categories</p>
+    
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nom sous-categorie</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for souscategorie in categorie %}
+            <tr>
+                <td>{{ souscategorie.nomSousCategorie }}</td>
+                <td>
+                    <a href="{{ path('secondLife_admin_afficher_annonces_par_sous_categorie', {'id': souscategorie.id}) }}">Afficher les annonces de la sous-categorie {{souscategorie.nomSousCategorie}}</a>
+                    {#{<a href="{{ path('secondLife_admin_supprimer_sous_categorie', {'id': souscategorie.id}) }}">Supprimer la sous categorie {{souscategorie.nomSousCategorie}} de {{categorie.nomCategorie}}</a>
+                    #}
+                    {{ include('categorie/_delete_form.html.twig') }}
+                    <a href="{{ path('secondLife_admin_modifier_sous_categorie', {'id': souscategorie.id}) }}">Modifier la sous-categorie {{souscategorie.nomSousCategorie}}</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3" style="margin-top:10%; text-align:center">Il n y a aucune sous-catégorie</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    {#<a href="{{ path('secondLife_admin_creer_sous_categorie') }}">Créer une sous-catégorie</a>#}
+{% endblock %}

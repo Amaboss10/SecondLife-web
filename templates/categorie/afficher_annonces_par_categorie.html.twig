@@ -1,0 +1,49 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block title %}{{titre_page}}{% endblock %}
+
+{% block body %}
+    <h1>{{titre_page}}</h1>
+
+    <a href="{{ path('secondLife_admin_gerer_categories') }}">Afficher toutes les  catégories</a>
+
+    <div class="col-xl-7 col-sm-7 col-12" style="margin:1%">
+            <!--annonces-->
+            {% if categorie.annonces==null %}
+            <h1 class="no_annonces" style="margin-top:10%; text-align:center">Pas d'annonces correspondantes</h1>
+            {% else %}
+                <p class="nb_annonces">{{nb_annonces}} annonces</p>
+            {% endif %}
+                
+            <div class="annonces">
+                {% for annonce in categorie.annonces %}
+                    <a href={{path('secondLife_afficher_annonce',{'id':annonce.id})}}>
+                        <div class="annonce">
+                            <a href={{path('secondLife_afficher_annonce',{'id':annonce.id})}}><h4 class="titre_annonce">{{annonce.titreAnnonce}}</h4></a>
+                            
+                            <div class="image_annonce">
+                                <img src={{annonce.imagesAnnonce.first()}} alt={{annonce.titreAnnonce}}>
+                            </div>
+
+                            <div class="infos_annonce">
+                                <span class="categorie_annonce">{{annonce.Categorie}}</span><br>
+                                <span class="sous_categorie_annonce">{{annonce.SousCategorie}}</span><br>
+                                <span class="lieu_annonce">{{annonce.lieu}}</span>
+                                <span class="date_publication_annonce">{{annonce.datePubliAnnonce|date('d/m/Y')}}</span>
+                            </div>
+
+                            <div class="autres_infos_annonces">
+                                <a href="" class="lien_ajouter_favoris"><button class="btn_ajouter_favoris">Ajouter aux favoris</button></a>
+                                <span class="prix_annonce">{{annonce.prixAnnonce | number_format(0, '${.}', '${,}')}} £</span>
+                                <a href="" class="lien_contacter_vendeur"><button class="btn_contacter_vendeur">Contacter le vendeur</button></a>
+                            </div>
+                        </div>
+                    </a>  
+                {% endfor %}
+            </div>
+        </div>
+
+
+    <a href="{{ path('secondLife_admin_gerer_categories') }}">Afficher toutes les catégories</a>
+
+{% endblock %}

@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\CategorieFAQ;
 use App\Form\CategorieFAQType;
+use App\Repository\AdministrateurRepository;
 use App\Repository\CategorieFAQRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -85,17 +86,32 @@ class CategorieFAQController extends AbstractController
     /**
      * @Route("/{id}/supprimer", name="supprimer_categorieFaq", methods={"DELETE"})
      */
-    public function supprimerCategorieFaq(Request $request, CategorieFAQ $categorieFAQ): Response
+    public function supprimerCategorieFaq(Request $request, CategorieFAQ $categorieFAQ,CategorieFAQRepository $categorieFAQRepos,AdministrateurRepository $adminRepos): Response
     {
+        $entityManager = $this->getDoctrine()->getManager();
+
+        /*$categorieAutre=$categorieFAQRepos->findCategorieFaqByNom("Autres");
+        if($categorieAutre==null){
+            // si la categorie autre n'existe pas encore,on la crée
+            $categorieAutre=new CategorieFAQ();
+            $categorieAutre->setNomCategorie('Autres');
+                           //->setIdAdministrateur($adminRepos->findOneBy(['id_personne'=>'1']));
+            $entityManager->persist($categorieAutre);
+            $entityManager->flush();
+        }*/
         
         if ($this->isCsrfTokenValid('delete'.$categorieFAQ->getId(), $request->request->get('_token'))) {
             foreach ($categorieFAQ->getFAQs() as $faq) {
+                //on deplace les faqs dans la catégorie Autres
+                //$categorieAutre->addFAQ($faq);
                 
+                //on retire faq de la liste de faq de la categorie
+                $categorieFAQ->removeFAQ($faq);
+                //on supprime la faq
+                $entityManager->remove($faq);
             }
             
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->flush();
-            
+            //on supprime la categorie
             $entityManager->remove($categorieFAQ);
             $entityManager->flush();
         }

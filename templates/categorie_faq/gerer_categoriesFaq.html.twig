@@ -24,6 +24,7 @@
                 <td>
                     <a href="{{ path('secondLife_admin_afficher_faq_par_categorieFaq', {'id': categorie_faq.id}) }}">Afficher faq de la categorie {{categorie_faq.nomCategorie}}</a>
                     <a href="{{ path('secondLife_admin_modifier_categorieFaq', {'id': categorie_faq.id}) }}">Modifier la catégorie {{categorie_faq.nomCategorie}}</a>
+                    {{ include('categorie_faq/_delete_form.html.twig') }}
                 </td>
             </tr>
         {% else %}

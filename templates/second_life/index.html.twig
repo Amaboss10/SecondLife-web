@@ -106,10 +106,10 @@
             <!--annonces-->
             {% if annonces==null %}
             <h1 class="no_annonces" style="margin-top:10%; text-align:center">Pas d'annonces correspondantes</h1>
-        {% else %}
-            <p class="nb_annonces">{{nb_results}} résultats</p>
-        {% endif %}
-            
+            {% else %}
+                <p class="nb_annonces">{{nb_results}} résultats</p>
+            {% endif %}
+                
             <div class="resultats">
                 {% for annonce in annonces %}
                     {# on affiche uniquement les annonces qui n'ont pas encore été vendues#}
@@ -137,9 +137,8 @@
                         </div>
                     </a>  
                     {% endif %}
-        {% endfor %}
+                {% endfor %}
             </div>
-        
         </div>
 
         {#<div class="pagination">{{knp_pagination_render(annonces)}}</div>

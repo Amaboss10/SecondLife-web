@@ -6,6 +6,8 @@
     <h1>{{titre_page}}</h1>
 
     {{ include('categorie_faq/_form.html.twig', {'button_label': 'Modifier'}) }}
+    
+    {{ include('categorie_faq/_delete_form.html.twig') }}
 
     <a href="{{ path('secondLife_admin_gerer_categoriesFaq') }}">Afficher toutes les catégories de la FAQ</a>
 

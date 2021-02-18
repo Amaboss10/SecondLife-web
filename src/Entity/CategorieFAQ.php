@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Repository\AdministrateurRepository;
 use App\Repository\CategorieFAQRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -38,6 +39,7 @@ class CategorieFAQ
 
     public function __construct()
     {
+        // $this->id_administrateur=$adminRepos->findOneBy(['id_personne'=>'1']);
         $this->faqs = new ArrayCollection();
     }
 

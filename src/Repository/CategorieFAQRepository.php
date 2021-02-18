@@ -47,4 +47,11 @@ class CategorieFAQRepository extends ServiceEntityRepository
         ;
     }
     */
+    public function findCategorieFaqByNom(string $nom_categorie)
+    {
+        $query=$this->createQueryBuilder('c')
+                    ->where('c.nom_categorie = :nom')
+                    ->setParameter('nom',$nom_categorie);
+        return $query->getQuery()->getOneOrNullResult();
+    }
 }

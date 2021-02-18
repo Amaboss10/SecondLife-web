@@ -1,0 +1,13 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block title %}{{titre_page}}{% endblock %}
+
+{% block body %}
+    <h1>{{titre_page}}</h1>
+
+    {{ include('categorie/_form.html.twig', {'button_label': 'Modifier'}) }}
+
+    <a href="{{ path('secondLife_admin_gerer_categories') }}">Afficher toutes les catégories</a>
+
+    {{ include('categorie/_delete_form.html.twig') }}
+{% endblock %}
