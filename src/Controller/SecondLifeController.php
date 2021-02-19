@@ -187,14 +187,14 @@ class SecondLifeController extends AbstractController
     /**
      * @Route("/faq", name="secondLife_faq")
      */
-    public function faq(FAQRepository $repository): Response
+    /*public function faq(FAQRepository $repository): Response
     {
         $rubriques=$repository->findAll();
         return $this->render('second_life/faq.html.twig', [
             'titre_page'=>'FAQ/Aide',
             'rubriques' => $rubriques
         ]);
-    }
+    }*/
 
     /**
      * @Route("/deconnexion", name="secondLife_deconnexion")
