@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\JoinTable;
 use Doctrine\ORM\Mapping\JoinColumn;
 use App\Repository\AnnonceRepository;
+use DateTime;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
 
@@ -89,6 +90,15 @@ class Annonce
     public function __construct()
     {
         $this->images_annonce = new ArrayCollection();
+        //image_annonce par defaut
+        $imageAnnonce=new PhotoAnnonce();
+        $imageAnnonce->setLienPhotoAnnonce("https://placehold.it/130x130?text=IMG")
+                     ->setAnnonce($this);
+        $this->images_annonce[] = $imageAnnonce;
+        
+        $this->est_valide=false;
+        $this->etat_annonce='Pas vendu';
+        $this->date_publi_annonce=new DateTime();
     }
 
     public function getIdAnnonce(): ?int

@@ -8,12 +8,12 @@
         {% endif %}
     </h1>
 
-    {{ include('faq/_form.html.twig') }}
+    {{ include('faq/admin/_form.html.twig') }}
 
     <a href="{{ path('secondLife_admin_gerer_faq') }}">Afficher toutes les rubriques</a>
     
     {% if etat %}
-    {{ include('faq/_delete_form.html.twig') }}
+    {{ include('faq/admin/_delete_form.html.twig') }}
     {% endif %}
 
 

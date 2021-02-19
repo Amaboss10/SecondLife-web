@@ -1,0 +1,102 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{titre_page}}{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="annonce_vendeur col-xl-6 col-sm-6 col-12"  >
+            <div class="annonce col-xl-6 col-sm-6 col-12 ">
+                <div class="titre_favoris">
+                    <h3 class="titre_annonce">{{annonce.titreAnnonce}}</h3>
+                    <form action={{ path('secondLife_afficher_annonce',{'id':annonce.idAnnonce}) }} method='GET'>
+                        <button class="btn btn-outline-dark btn-sm" type="submit" style="width: 100%">Ajouter aux favoris </button>
+                    </form>
+                </div>
+                
+                <div class="images_annonce">
+                    {% for image in annonce.imagesAnnonce %}
+                    <img src={{image.lienPhotoAnnonce}} alt="Image de l'annonce">
+                    {% endfor %}
+                </div>
+                
+                <div class="info_boutons row">
+                    <div class="info_annonce column">
+                        <h6>Categorie : {{annonce.categorie}}</h6>
+                        <h6>Sous-categorie : {{annonce.sousCategorie}}</h6>
+                        <h6>Marque : {{annonce.marque}}</h6>
+                        <h6 class="prix_annonce">Prix : {{annonce.prixAnnonce}} Euros</h6>
+                        <h6>Poids : {{annonce.poidsAnnonce}} Grammes</h6>
+                        <h6>Etat : {{annonce.etatAnnonce}}</h6>
+                        <h6>Description : {{annonce.descriptionAnnonce}}</h6>
+                        <h6>Date publication : {{annonce.datePubliAnnonce|date("m/d/Y - H:i:s")}}</h6>
+                    </div>
+                    
+                    <div class="btns_annonce">
+                        <form action={{ path('secondLife_afficher_annonce',{'id':annonce.idAnnonce}) }} method='GET'>
+                            <button class="btn btn-outline-dark btn-sm" type="submit" style="width: 100%">Contacter le vendeur </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="vendeur panel"style="border: 1px solid grey" >
+                <h2>Informations du vendeur</h2>
+                <h6 class="pseudo">Pseudo : {{annonce.utilisateur.pseudoUser}}</h6>
+                <h6 class="adresse">Localisation : {{annonce.utilisateur.adresseUser}}</h6>
+                <h6 class="nb_Annonces_publiees">Nombre d'annonces publiées : {{annonce.utilisateur.annonces|length}}</h6>
+                <h6 class="ancieneté">Inscrit depuis  {{annonce.utilisateur.dateInscriptionUser| date('M Y')}}</h6>
+            </div>
+        </div>
+
+        <div class="annonces_similaires col-xl-4 col-sm-6 col-12"  style="background-color:red">
+            <h2>Annonces similaires</h2>
+            {% for annonce_ in annonces %}
+                {% if not annonce_ is same as(annonce) and annonce_.etatAnnonce=='Disponible' %}
+                <div class="annonce col-md-4">
+                    <div class="panel" style="border: 1px solid grey">
+                        <div class="row" style="margin-right: 2px">
+                            <div class="images_annonce column">
+                                <div class="panel" style="margin: 1px">
+                                    <div class="panel-body"><img src="https://placehold.it/130x130?text=IMG" class="img-responsive"
+                                                alt="Image">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="info_annonce column" style="margin-top: 3px">
+                                <h6>{{annonce_.titreAnnonce}}</h6>
+                                <h6>{{annonce_.categorie}}</h6>
+                                <h6>{{annonce_.sousCategorie}}</h6>
+                                <h6>{{annonce_.marque}}</h6>
+                                <h6>{{annonce_.prixAnnonce}}</h6>
+                                <h6>{{annonce_.datePubliAnnonce|date("m/d/Y")}}</h6>
+                            </div>
+
+                            <div class="btns_annonce column" style="margin-top: 20px">
+                                <form action={{ path('secondLife_afficher_annonce',{'id':annonce_.idAnnonce}) }} method='GET'>
+                                    <button class="btn btn-outline-dark btn-sm" type="submit" style="width: 100%">Afficher </button>
+                                </form>
+                            
+                                <form action={{ path('secondLife_afficher_annonce',{'id':annonce_.idAnnonce}) }} method='GET'>
+                                    <button class="btn btn-outline-dark btn-sm" type="submit"  style="width: 100%">Contacter le vendeur </button>
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>    
+                {% endif %}
+            {% endfor %}
+        </div>
+
+        <div class="col-xl-2 col-sm-12 col-12"  style="background-color:blue">
+        <!--pub-->
+            <p>
+                <br>
+                <br>
+            </p>
+        </div>
+    </div>
+
+
+{% endblock %}

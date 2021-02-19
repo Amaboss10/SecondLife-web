@@ -11,24 +11,22 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-/**
- * @Route("/secondLife/admin/marques",name="secondLife_admin_")
- */
+
 class MarqueController extends AbstractController
 {
     /**
-     * @Route("/", name="gerer_marques", methods={"GET"})
+     * @Route("/secondLife/admin/marques", name="secondLife_admin_gerer_marques", methods={"GET"})
      */
     public function index(MarqueRepository $marqueRepository): Response
     {
-        return $this->render('marque/gerer_marques.html.twig', [
+        return $this->render('marque/admin/gerer_marques.html.twig', [
             'titre_page'=>'Marques',
             'marques' => $marqueRepository->findAll(),
         ]);
     }
 
     /**
-     * @Route("/creer", name="creer_marque", methods={"GET","POST"})
+     * @Route("/secondLife/admin/marques/creer", name="secondLife_admin_creer_marque", methods={"GET","POST"})
      */
     public function creerMarque(Request $request): Response
     {     
@@ -44,7 +42,7 @@ class MarqueController extends AbstractController
             return $this->redirectToRoute('secondLife_admin_gerer_marques');
         }
 
-        return $this->render('marque/creer_marque.html.twig', [
+        return $this->render('marque/admin/creer_marque.html.twig', [
             'titre_page'=>'Créer/Ajouter une marque',
             'marque' => $marque,
             'form' => $form->createView(),
@@ -53,12 +51,12 @@ class MarqueController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/annonces", name="afficher_annonces_de_la_marque", methods={"GET"})
+     * @Route("/secondLife/admin/marques/{id}/annonces", name="secondLife_admin_afficher_annonces_de_la_marque", methods={"GET"})
      */
     public function afficherAnnoncesMarque(Marque $marque,AnnonceRepository $annonceRepos): Response
     {
         $annonces=$annonceRepos->findAnnoncesByMarque($marque);
-        return $this->render('marque/afficher_annonces_marque.html.twig', [
+        return $this->render('marque/admin/afficher_annonces_marque.html.twig', [
             'titre_page'=>'Annonces de la marque '. $marque->getNomMarque(),
             'marque' => $marque,
             'annonces'=>$annonces,
@@ -67,7 +65,7 @@ class MarqueController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/modifier", name="modifier_marque", methods={"GET","POST"})
+     * @Route("/secondLife/admin/marques/{id}/modifier", name="secondLife_admin_modifier_marque", methods={"GET","POST"})
      */
     public function modifierMarque(Request $request, Marque $marque): Response
     {
@@ -80,7 +78,7 @@ class MarqueController extends AbstractController
             return $this->redirectToRoute('secondLife_admin_gerer_marques');
         }
 
-        return $this->render('marque/modifier_marque.html.twig', [
+        return $this->render('marque/admin/modifier_marque.html.twig', [
             'titre_page'=>'Modifier la marque',
             'marque' => $marque,
             'form' => $form->createView(),
@@ -88,7 +86,7 @@ class MarqueController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/supprimer", name="supprimer_marque", methods={"DELETE"})
+     * @Route("/secondLife/admin/marques/{id}/supprimer", name="secondLife_admin_supprimer_marque", methods={"DELETE"})
      */
     public function delete(Request $request, Marque $marque,AnnonceRepository $annonceRepos): Response
     {

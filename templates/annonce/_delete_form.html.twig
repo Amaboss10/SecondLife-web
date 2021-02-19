@@ -1,0 +1,5 @@
+<form method="post" action="{{ path('secondLife_admin_supprimer_annonce', {'id': annonce.idAnnonce}) }}" onsubmit="return confirm('voulez vous supprimer l'annonce '{{annonce.titreAnnonce}}'?');">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ annonce.idAnnonce) }}">
+    <button class="btn btn-outline-dark btn-sm" type="submit"  style="width: 100%">Supprimer</button>
+</form>

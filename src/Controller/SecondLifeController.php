@@ -49,7 +49,7 @@ class SecondLifeController extends AbstractController
             $annonces=$annonceRepository->findAnnoncesFiltrees($data);
         }
         else {
-            $annonces=$annonceRepository->findAnnoncesNonVendues();
+            $annonces=$annonceRepository->findAnnoncesDisponibles();
         }
         
         return $this->render('second_life/index.html.twig', [
@@ -63,11 +63,11 @@ class SecondLifeController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/creerAnnonce", name="secondLife_creer_annonce")
-     * @Route("/annonces/modifier/{id}",name="secondLife_modifier_annonce")
-     */
-    public function creerModifierAnnonce(Annonce $annonce=null,Request $request,AnnonceRepository $annonceRepository, MarqueRepository $marqueRepository,CategorieRepository $categorieRepository,SousCategorieRepository $sousCategorieRepository): Response
+    ///**
+    // * @Route("/creerAnnonce", name="secondLife_creer_annonce")
+    // * @Route("/annonces/modifier/{id}",name="secondLife_modifier_annonce")
+    // */
+    /*public function creerModifierAnnonce(Annonce $annonce=null,Request $request,AnnonceRepository $annonceRepository, MarqueRepository $marqueRepository,CategorieRepository $categorieRepository,SousCategorieRepository $sousCategorieRepository): Response
     {
         //RECUPERATION DES DONNEES POUR CONSTRUIRE LE FORMULAIRE DYNAMIQUEMENT
         $marques=$marqueRepository->findAll();
@@ -96,7 +96,7 @@ class SecondLifeController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             
             //si c'est une creation d'annonce
-            if(!$annonce->getId()){
+            if(!$annonce->getIdAnnonce()){
                 $annonce->setDatePubliAnnonce(new \DateTime());
             }
 
@@ -131,7 +131,7 @@ class SecondLifeController extends AbstractController
             'titre'=>$titre,
             'annonces'=>$annonces
         ]);
-    }
+    }*/
     
 
     /**
@@ -144,15 +144,15 @@ class SecondLifeController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/compte/mesAnnonces/", name="secondLife_gerer_mes_annonces")
-     */
-    public function gererMesAnnonces(): Response
+    ///**
+    // * @Route("/compte/mesAnnonces/", name="secondLife_gerer_mes_annonces")
+    // */
+    /*public function gererMesAnnonces(): Response
     {
         return $this->render('second_life/gerer_annonces.html.twig', [
             'titre_page'=>'Mes annonces'
         ]);
-    }
+    }*/
 
     /**
      * @Route("/favoris", name="secondLife_favoris")
@@ -183,18 +183,6 @@ class SecondLifeController extends AbstractController
             'titre_page'=>'Mon compte'
         ]);
     }
-
-    /**
-     * @Route("/faq", name="secondLife_faq")
-     */
-    /*public function faq(FAQRepository $repository): Response
-    {
-        $rubriques=$repository->findAll();
-        return $this->render('second_life/faq.html.twig', [
-            'titre_page'=>'FAQ/Aide',
-            'rubriques' => $rubriques
-        ]);
-    }*/
 
     /**
      * @Route("/deconnexion", name="secondLife_deconnexion")
@@ -246,17 +234,17 @@ class SecondLifeController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/annonces/{id}", name="secondLife_afficher_annonce")
-     */
-    public function afficher_annonce(Annonce $annonce,AnnonceRepository $repository): Response
+   // /**
+    // * @Route("/annonces/{id}", name="secondLife_afficher_annonce")
+   //  */
+    /*public function afficher_annonce(Annonce $annonce,AnnonceRepository $repository): Response
     {
         
         return $this->render('second_life/index.html.twig', [
             'titre_page'=>$annonce->getTitreAnnonce(),
             'annonce'=>$annonce
         ]);
-    }
+    }*/
 
 
 

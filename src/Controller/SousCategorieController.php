@@ -89,12 +89,16 @@ class SousCategorieController extends AbstractController
      */
     public function supprimerSousCategorie(Request $request, SousCategorie $sousCategorie): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$sousCategorie->getId(), $request->request->get('_token'))) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->remove($sousCategorie);
-            $entityManager->flush();
+        //on supprime une sous categorie uniquement si elle n'a pas d'annonce
+        if(!$sousCategorie->getAnnonces()){
+            if ($this->isCsrfTokenValid('delete'.$sousCategorie->getId(), $request->request->get('_token'))) {
+                $entityManager = $this->getDoctrine()->getManager();
+                $entityManager->remove($sousCategorie);
+                $entityManager->flush();
+                return $this->redirectToRoute('secondLife_admin_gerer_sous_categories');
+            }
         }
-
+        //afficher un message d'information
         return $this->redirectToRoute('secondLife_admin_afficher_sous_categories_par_categorie',array('id'=>$sousCategorie->getCategorie()->getId()));
     }
 }

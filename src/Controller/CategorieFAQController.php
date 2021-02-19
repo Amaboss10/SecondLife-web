@@ -11,24 +11,22 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-/**
- * @Route("/secondLife/admin/categoriesFaq",name="secondLife_admin_")
- */
+
 class CategorieFAQController extends AbstractController
 {
     /**
-     * @Route("/", name="gerer_categoriesFaq", methods={"GET"})
+     * @Route("/secondLife/admin/categoriesFaq/", name="secondLife_admin_gerer_categoriesFaq", methods={"GET"})
      */
     public function index(CategorieFAQRepository $categorieFAQRepository): Response
     {
-        return $this->render('categorie_faq/gerer_categoriesFaq.html.twig', [
+        return $this->render('categorie_faq/admin/gerer_categoriesFaq.html.twig', [
             'titre_page'=>'Les catégories de la FAQ',
             'categories_faq' => $categorieFAQRepository->findAll(),
         ]);
     }
 
     /**
-     * @Route("/creer", name="creer_categorieFaq", methods={"GET","POST"})
+     * @Route("/secondLife/admin/categoriesFaq/creer", name="secondLife_admin_creer_categorieFaq", methods={"GET","POST"})
      */
     public function creerCategorieFaq(Request $request): Response
     {
@@ -44,7 +42,7 @@ class CategorieFAQController extends AbstractController
             return $this->redirectToRoute('secondLife_admin_gerer_categoriesFaq');
         }
 
-        return $this->render('categorie_faq/creer_categorieFaq.html.twig', [
+        return $this->render('categorie_faq/admin/creer_categorieFaq.html.twig', [
             'titre_page'=>'Créer une catégorie de FAQ',
             'categorie_faq' => $categorieFAQ,
             'form' => $form->createView(),
@@ -52,18 +50,18 @@ class CategorieFAQController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/faq", name="afficher_faq_par_categorieFaq", methods={"GET"})
+     * @Route("/secondLife/admin/categoriesFaq/{id}/faq", name="secondLife_admin_afficher_faq_par_categorieFaq", methods={"GET"})
      */
     public function afficherFaqParCategorie(CategorieFAQ $categorieFAQ): Response
     {
-        return $this->render('categorie_faq/afficher_faq_par_categorieFaq.html.twig', [
+        return $this->render('categorie_faq/admin/afficher_faq_par_categorieFaq.html.twig', [
             'titre_page'=>'Les FAQ de la catégorie '. $categorieFAQ->getNomCategorie(),
             'categorie_faq' => $categorieFAQ,
         ]);
     }
 
     /**
-     * @Route("/{id}/modifier", name="modifier_categorieFaq", methods={"GET","POST"})
+     * @Route("/secondLife/admin/categoriesFaq/{id}/modifier", name="secondLife_admin_modifier_categorieFaq", methods={"GET","POST"})
      */
     public function modifierCategorieFaq(Request $request, CategorieFAQ $categorieFAQ): Response
     {
@@ -76,7 +74,7 @@ class CategorieFAQController extends AbstractController
             return $this->redirectToRoute('secondLife_admin_gerer_categoriesFaq');
         }
 
-        return $this->render('categorie_faq/modifier_categorieFaq.html.twig', [
+        return $this->render('categorie_faq/admin/modifier_categorieFaq.html.twig', [
             'titre_page'=>'Modifier la catégorie',
             'categorie_faq' => $categorieFAQ,
             'form' => $form->createView(),
@@ -84,7 +82,7 @@ class CategorieFAQController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/supprimer", name="supprimer_categorieFaq", methods={"DELETE"})
+     * @Route("/secondLife/admin/categoriesFaq/{id}/supprimer", name="secondLife_admin_supprimer_categorieFaq", methods={"DELETE"})
      */
     public function supprimerCategorieFaq(Request $request, CategorieFAQ $categorieFAQ,CategorieFAQRepository $categorieFAQRepos,AdministrateurRepository $adminRepos): Response
     {

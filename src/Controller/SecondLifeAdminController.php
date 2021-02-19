@@ -32,32 +32,32 @@ class SecondLifeAdminController extends AbstractController
             'titre_page'=>'Accueil',
         ]);
         }
-    /**
-     * @Route("/annonces", name="gerer_annonces")
-     */
-    public function gererAnnonces(): Response
+    ///**
+    // * @Route("/annonces", name="gerer_annonces")
+    // */
+    /*public function gererAnnonces(): Response
     {
         return $this->render('second_life_admin/gerer_annonces.html.twig', [
             'titre_page'=>'Gerer les annonces',
         ]);
-    }
+    }*/
 
-    /**
-     * @Route("annonces/afficher/{id}", name="afficher_annonce")
-     */
-    public function afficherAnnonce(Annonce $annonce,Request $request): Response
+    ///**
+    // * @Route("/annonces/afficher/{id}", name="afficher_annonce")
+    // */
+    /*public function afficherAnnonce(Annonce $annonce,Request $request): Response
     {
 
-        return $this->render('second_life_admin/ajouter_faq.html.twig', [
+        return $this->render('second_life_admin/index.html.twig', [
             'titre_page'=>$annonce->getTitreAnnonce(),
             'annonce'=>$annonce
         ]);
-    }
+    }*/
 
-    /**
-     * @Route("annonces/valider/{id}", name="valider_annonce")
-     */
-    public function validerAnnonce(Annonce $annonce,Request $request): Response
+    ///**
+    // * @Route("annonces/valider/{id}", name="valider_annonce")
+    // */
+    /*public function validerAnnonce(Annonce $annonce,Request $request): Response
     {
         //$annonce->setValidation(true);
         //demander confirmation?
@@ -65,7 +65,7 @@ class SecondLifeAdminController extends AbstractController
             
         return $this->redirectToRoute('secondLife_admin_afficher_annonce',array('id'=>$annonce->getIdAnnonce()));    
 
-    }
+    }*/
 
     /**
      * @Route("/annonces/supprimer/{id}", name="supprimer_annonces")

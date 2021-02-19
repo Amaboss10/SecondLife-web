@@ -56,4 +56,9 @@ class PhotoAnnonce
 
         return $this;
     }
+
+    public function __toString()
+    {
+        return $this->lien_photo_annonce;
+    }
 }

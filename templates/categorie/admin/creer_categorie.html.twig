@@ -5,7 +5,7 @@
 {% block body %}
     <h1>{{titre_page}}</h1>
 
-    {{ include('categorie/_form.html.twig') }}
+    {{ include('categorie/admin/_form.html.twig') }}
 
     <a href="{{ path('secondLife_admin_gerer_categories') }}">Afficher toutes les categories</a>
 {% endblock %}

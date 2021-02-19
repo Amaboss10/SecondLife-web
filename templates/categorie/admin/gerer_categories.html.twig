@@ -22,7 +22,7 @@
                     <a href="{{ path('secondLife_admin_afficher_annonces_par_categorie', {'id': categorie.id}) }}">Afficher les annonces de {{categorie.nomCategorie}}</a>
                     <a href="{{ path('secondLife_admin_afficher_sous_categories_par_categorie', {'id': categorie.id}) }}">Afficher les sous-categories de {{categorie.nomCategorie}}</a>
                     <a href="{{ path('secondLife_admin_modifier_categorie', {'id': categorie.id}) }}">Modifier la categorie {{categorie.nomCategorie}}</a>
-                    {{ include('categorie/_delete_form.html.twig') }}
+                    {{ include('categorie/admin/_delete_form.html.twig') }}
                 </td>
             </tr>
         {% else %}

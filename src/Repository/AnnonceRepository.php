@@ -52,11 +52,11 @@ class AnnonceRepository extends ServiceEntityRepository
     */
 
 
-public function findAnnoncesNonVendues(){
+public function findAnnoncesDisponibles(){
     $query=$this->createQueryBuilder('a')
                     ->where('a.etat_annonce = :etat')
                     ->orderBy('a.date_publi_annonce','DESC')
-                    ->setParameter('etat','pas vendu');
+                    ->setParameter('etat','Disponible');
     return $query->getQuery()->getResult();
 }
 

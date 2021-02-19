@@ -25,7 +25,7 @@
                 <td>
                     <a href="{{ path('secondLife_admin_afficher_annonces_par_sous_categorie', {'id': souscategorie.id}) }}">Afficher les annonces de la sous-categorie {{souscategorie.nomSousCategorie}}</a>
                     <a href="{{ path('secondLife_admin_modifier_sous_categorie', {'id': souscategorie.id}) }}">Modifier la sous-categorie {{souscategorie.nomSousCategorie}}</a>
-                    {{ include('sous_categorie/_delete_form.html.twig') }}
+                    {{ include('sous_categorie/admin/_delete_form.html.twig') }}
                 </td>
             </tr>
         {% else %}
