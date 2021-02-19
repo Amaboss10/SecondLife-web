@@ -18,7 +18,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * @DiscriminatorColumn(name="type", type="string")
  * @DiscriminatorMap({"personne" = "Personne","administrateur" ="Administrateur", "utilisateur" = "Utilisateur", "administrateur" ="Administrateur"})
  */
-class Personne implements UserInterface
+abstract class Personne implements UserInterface
 {
     /**
      * @ORM\Id
@@ -148,9 +148,7 @@ class Personne implements UserInterface
 
     public function getSalt() {}
 
-    public function getRoles(){
-        return ['ROLE_USER'];
-    }
+    abstract public function getRoles();
 
     public function getType(): ?string{
         return $this->type;

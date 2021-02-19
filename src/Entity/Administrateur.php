@@ -10,5 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Administrateur extends Personne
 {
-
+    public function getRoles(){
+        return ['ROLE_ADMIN'];
+    }
 }

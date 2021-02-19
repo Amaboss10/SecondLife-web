@@ -163,4 +163,8 @@ class Utilisateur extends Personne
 
         return $this;
     }
+
+    public function getRoles(){
+        return ['ROLE_USER'];
+    }
 }

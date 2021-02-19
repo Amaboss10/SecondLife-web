@@ -1,6 +1,6 @@
 security:
     encoders:
-        App\Entity\Utilisateur:
+        App\Entity\Personne:
             algorithm: bcrypt
 
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
@@ -12,7 +12,7 @@ security:
         #         property: email_personne
         in_database:
             entity:
-                class: App\Entity\Utilisateur
+                class: App\Entity\Personne
                 property: mail_personne
     firewalls:
         dev:
@@ -58,5 +58,5 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-        # - { path: ^/admin, roles: ROLE_ADMIN }
-        # - { path: ^/profile, roles: ROLE_USER }
+         - { path: ^/secondLife/admin, roles: ROLE_ADMIN }
+         - { path: ^/secondLife/user, roles: ROLE_USER }
