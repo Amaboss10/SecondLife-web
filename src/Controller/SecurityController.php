@@ -66,7 +66,7 @@ class SecurityController extends AbstractController
             $hash = $encoder->encodePassword($user, $user->getPassword());
             $user->setMdpPersonne($hash);
             if($user->getLienImagePersonne()== null){
-                $user->setLienImagePersonne("logo_site.jpg");
+                $user->setLienImagePersonne("logo_site.png");
             }
             
             $manager->persist($user);

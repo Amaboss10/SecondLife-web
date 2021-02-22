@@ -11,11 +11,13 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-
+/**
+ * @Route("/secondLife", name="secondLife_")
+ */
 class CategorieFAQController extends AbstractController
 {
     /**
-     * @Route("/secondLife/admin/categoriesFaq/", name="secondLife_admin_gerer_categoriesFaq", methods={"GET"})
+     * @Route("/admin/categoriesFaq/", name="admin_gerer_categoriesFaq", methods={"GET"})
      */
     public function index(CategorieFAQRepository $categorieFAQRepository): Response
     {
@@ -26,7 +28,7 @@ class CategorieFAQController extends AbstractController
     }
 
     /**
-     * @Route("/secondLife/admin/categoriesFaq/creer", name="secondLife_admin_creer_categorieFaq", methods={"GET","POST"})
+     * @Route("/admin/categoriesFaq/creer", name="admin_creer_categorieFaq", methods={"GET","POST"})
      */
     public function creerCategorieFaq(Request $request): Response
     {
@@ -50,7 +52,7 @@ class CategorieFAQController extends AbstractController
     }
 
     /**
-     * @Route("/secondLife/admin/categoriesFaq/{id}/faq", name="secondLife_admin_afficher_faq_par_categorieFaq", methods={"GET"})
+     * @Route("/admin/categoriesFaq/{id}/faq", name="admin_afficher_faq_par_categorieFaq", methods={"GET"})
      */
     public function afficherFaqParCategorie(CategorieFAQ $categorieFAQ): Response
     {
@@ -61,7 +63,7 @@ class CategorieFAQController extends AbstractController
     }
 
     /**
-     * @Route("/secondLife/admin/categoriesFaq/{id}/modifier", name="secondLife_admin_modifier_categorieFaq", methods={"GET","POST"})
+     * @Route("/admin/categoriesFaq/{id}/modifier", name="admin_modifier_categorieFaq", methods={"GET","POST"})
      */
     public function modifierCategorieFaq(Request $request, CategorieFAQ $categorieFAQ): Response
     {
@@ -82,7 +84,7 @@ class CategorieFAQController extends AbstractController
     }
 
     /**
-     * @Route("/secondLife/admin/categoriesFaq/{id}/supprimer", name="secondLife_admin_supprimer_categorieFaq", methods={"DELETE"})
+     * @Route("/admin/categoriesFaq/{id}/supprimer", name="admin_supprimer_categorieFaq", methods={"DELETE"})
      */
     public function supprimerCategorieFaq(Request $request, CategorieFAQ $categorieFAQ,CategorieFAQRepository $categorieFAQRepos,AdministrateurRepository $adminRepos): Response
     {

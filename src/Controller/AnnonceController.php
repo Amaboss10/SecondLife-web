@@ -9,19 +9,23 @@ use App\Repository\MarqueRepository;
 use App\Repository\AnnonceRepository;
 use App\Repository\CategorieRepository;
 use App\Form\CreerModifierAnnonceFormType;
+use App\Repository\FavorisRepository;
 use App\Repository\PhotoAnnonceRepository;
 use App\Repository\SousCategorieRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Security\Core\User\UserInterface;
 
-
+/**
+ * @Route("/secondLife", name="secondLife_")
+ */
 class AnnonceController extends AbstractController
 {
     //ADMIN
     /**
-     * @Route("/secondLife/admin/annonces", name="secondLife_admin_gerer_annonces", methods={"GET"})
+     * @Route("/admin/annonces", name="admin_gerer_annonces", methods={"GET"})
      */
     public function gererAnnonces(AnnonceRepository $annonceRepository,PhotoAnnonceRepository $photoRepo): Response
     {
@@ -34,7 +38,7 @@ class AnnonceController extends AbstractController
     }
 
     /**
-     * @Route("/secondLife/admin/annonces/{id}/valider", name="secondLife_admin_valider_annonce", methods={"GET"})
+     * @Route("/admin/annonces/{id}/valider", name="admin_valider_annonce", methods={"GET"})
      */
     public function validerAnnonce(Annonce $annonce,AnnonceRepository $annonceRepository): Response
     {
@@ -58,7 +62,7 @@ class AnnonceController extends AbstractController
     }
 
     /**
-     * @Route("/secondLife/admin/annonces/{id}/afficher", name="secondLife_admin_afficher_annonce", methods={"GET"})
+     * @Route("/admin/annonces/{id}/afficher", name="admin_afficher_annonce", methods={"GET"})
      */
     public function afficherAnnonceAdmin(Annonce $annonce,AnnonceRepository $annonceRepository): Response
     {   
@@ -87,14 +91,21 @@ class AnnonceController extends AbstractController
     }
 
     
-
     /**
-     * @Route("/secondLife/admin/annonces/{id}/supprimer", name="secondLife_admin_supprimer_annonce", methods={"DELETE"})
+     * @Route("/admin/annonces/{id}/supprimer", name="admin_supprimer_annonce", methods={"DELETE"})
      */
-    public function supprimerAnnonce(Request $request, Annonce $annonce): Response
+    public function supprimerAnnonceAdmin(Request $request, Annonce $annonce,FavorisRepository $favorisRepos): Response
     {
+        //on fait appel à supprimerAnnonce et on envoie une notification à l'utilisateur
         if ($this->isCsrfTokenValid('delete'.$annonce->getIdAnnonce(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
+
+            
+            //on retire l'annonce de tous les listes d'annonces favorites
+            $lesfavoris=$favorisRepos->findBy(['id_annonce'=>$annonce]);
+            foreach ($lesfavoris as $favoris) {
+                $entityManager->remove($favoris);
+            }
 
             //on supprime les photos de l'annonce
             foreach ($annonce->getImagesAnnonce() as $photo) {
@@ -103,10 +114,36 @@ class AnnonceController extends AbstractController
                 //on supprime la photo de nos dossiers
                 $entityManager->remove($photo);
             }
+            
+            $entityManager->remove($annonce);
+            $entityManager->flush();
+        }
+
+        return $this->redirectToRoute('secondLife_admin_gerer_annonces');
+    }
+
+    ///**
+     //* @Route("/admin/annonces/{id}/supprimer", name="admin_supprimer_annonce", methods={"DELETE"})
+     //*/
+    public function supprimerAnnonce(Request $request, Annonce $annonce,FavorisRepository $favorisRepos): Response
+    {
+        if ($this->isCsrfTokenValid('delete'.$annonce->getIdAnnonce(), $request->request->get('_token'))) {
+            $entityManager = $this->getDoctrine()->getManager();
+
+            
             //on retire l'annonce de tous les listes d'annonces favorites
-            /*foreach ($annonce->getFavoris() as $favoris) {
-                $annonce->removeFavoris($favoris);
-            }*/
+            $lesfavoris=$favorisRepos->findBy(['id_annonce'=>$annonce]);
+            foreach ($lesfavoris as $favoris) {
+                $entityManager->remove($favoris);
+            }
+
+            //on supprime les photos de l'annonce
+            foreach ($annonce->getImagesAnnonce() as $photo) {
+                //on detache la photo de l'annonce
+                $annonce->removeImagesAnnonce($photo);
+                //on supprime la photo de nos dossiers
+                $entityManager->remove($photo);
+            }
             
             $entityManager->remove($annonce);
             $entityManager->flush();
@@ -119,8 +156,8 @@ class AnnonceController extends AbstractController
     //annonces/marque
 
     /**
-     * @Route("/annonces/creer", name="secondLife_creer_annonce")
-     * @Route("/annonces/modifier/{id}",name="secondLife_modifier_annonce")
+     * @Route("/user/annonces/creer", name="creer_annonce")
+     * @Route("/user/annonces/modifier/{id}",name="modifier_annonce")
      */
     public function creerModifierAnnonce(Annonce $annonce=null,Request $request,AnnonceRepository $annonceRepository, MarqueRepository $marqueRepository,CategorieRepository $categorieRepository,SousCategorieRepository $sousCategorieRepository): Response
     {
@@ -190,9 +227,70 @@ class AnnonceController extends AbstractController
     }
 
     /**
-     * @Route("/annonces/{id}/afficher", name="secondLife_afficher_annonce")
+     * @Route("/user/annonces/{id}/afficher", name="afficher_annonce")
      */
     public function afficherAnnonceUser(Annonce $annonce,AnnonceRepository $annonceRepository): Response
+    {
+        if( $annonceRepository->findBy(['sous_categorie'=>$annonce->getSousCategorie()]) && count($annonceRepository->findBy(['sous_categorie'=>$annonce->getSousCategorie()]))>1 )
+        {
+            $annonces=$annonceRepository->findBy(['sous_categorie'=>$annonce->getSousCategorie()],null,4,null);
+        }
+        else if( $annonceRepository->findBy(['categorie'=>$annonce->getCategorie()]) && count($annonceRepository->findBy(['categorie'=>$annonce->getCategorie()]))>1  ){
+            $annonces=$annonceRepository->findBy(['categorie'=>$annonce->getCategorie()],null,4,null) ;
+        }
+        else if($annonceRepository->findBy(['marque'=>$annonce->getMarque()]) && count($annonceRepository->findBy(['marque'=>$annonce->getMarque()]))>1){
+            $annonces=$annonceRepository->findBy(['marque'=>$annonce->getMarque()],null,4,null);
+        }
+        else if($annonceRepository->findBy(['utilisateur'=>$annonce->getUtilisateur()]) && count($annonceRepository->findBy(['utilisateur'=>$annonce->getUtilisateur()]))>1){
+            $annonces=$annonceRepository->findBy(['utilisateur'=>$annonce->getUtilisateur()],null,4,null);
+        }
+        else{
+            $annonces=$annonceRepository->findAll();
+        }
+        return $this->render('annonce/user/afficher_annonce.html.twig', [
+            'titre_page'=>$annonce->getTitreAnnonce(),
+            'annonce'=>$annonce,
+            'annonces'=>$annonces
+
+        ]);
+    }
+
+    /**
+     * @Route("/user/monCompte/mesAnnonces/{id}/supprimer", name="supprimer_mon_annonce")
+     */
+    public function supprimerMonAnnonceUser(Annonce $annonce,UserInterface $user,AnnonceRepository $annonceRepository): Response
+    {
+        if($annonce->getUtilisateur()==$user){
+            //on supprime
+        }
+        if( $annonceRepository->findBy(['sous_categorie'=>$annonce->getSousCategorie()]) && count($annonceRepository->findBy(['sous_categorie'=>$annonce->getSousCategorie()]))>1 )
+        {
+            $annonces=$annonceRepository->findBy(['sous_categorie'=>$annonce->getSousCategorie()],null,4,null);
+        }
+        else if( $annonceRepository->findBy(['categorie'=>$annonce->getCategorie()]) && count($annonceRepository->findBy(['categorie'=>$annonce->getCategorie()]))>1  ){
+            $annonces=$annonceRepository->findBy(['categorie'=>$annonce->getCategorie()],null,4,null) ;
+        }
+        else if($annonceRepository->findBy(['marque'=>$annonce->getMarque()]) && count($annonceRepository->findBy(['marque'=>$annonce->getMarque()]))>1){
+            $annonces=$annonceRepository->findBy(['marque'=>$annonce->getMarque()],null,4,null);
+        }
+        else if($annonceRepository->findBy(['utilisateur'=>$annonce->getUtilisateur()]) && count($annonceRepository->findBy(['utilisateur'=>$annonce->getUtilisateur()]))>1){
+            $annonces=$annonceRepository->findBy(['utilisateur'=>$annonce->getUtilisateur()],null,4,null);
+        }
+        else{
+            $annonces=$annonceRepository->findAll();
+        }
+        return $this->render('annonce/user/afficher_annonce.html.twig', [
+            'titre_page'=>$annonce->getTitreAnnonce(),
+            'annonce'=>$annonce,
+            'annonces'=>$annonces
+
+        ]);
+    }
+
+    /**
+     * @Route("/user/monCompte/mesAnnonces", name="gerer_mes_annonces")
+     */
+    public function gererMesAnnonces(Annonce $annonce,AnnonceRepository $annonceRepository): Response
     {
         if( $annonceRepository->findBy(['sous_categorie'=>$annonce->getSousCategorie()]) && count($annonceRepository->findBy(['sous_categorie'=>$annonce->getSousCategorie()]))>1 )
         {

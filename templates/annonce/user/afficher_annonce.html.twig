@@ -8,7 +8,7 @@
             <div class="annonce col-xl-6 col-sm-6 col-12 ">
                 <div class="titre_favoris">
                     <h3 class="titre_annonce">{{annonce.titreAnnonce}}</h3>
-                    <form action={{ path('secondLife_afficher_annonce',{'id':annonce.idAnnonce}) }} method='GET'>
+                    <form action={{ path('secondLife_ajouter_aux_favoris_utilisateur',{'id':annonce.idAnnonce}) }} method='GET'>
                         <button class="btn btn-outline-dark btn-sm" type="submit" style="width: 100%">Ajouter aux favoris </button>
                     </form>
                 </div>
@@ -39,13 +39,16 @@
                 </div>
             </div>
 
-            <div class="vendeur panel"style="border: 1px solid grey" >
-                <h2>Informations du vendeur</h2>
-                <h6 class="pseudo">Pseudo : {{annonce.utilisateur.pseudoUser}}</h6>
-                <h6 class="adresse">Localisation : {{annonce.utilisateur.adresseUser}}</h6>
-                <h6 class="nb_Annonces_publiees">Nombre d'annonces publiées : {{annonce.utilisateur.annonces|length}}</h6>
-                <h6 class="ancieneté">Inscrit depuis  {{annonce.utilisateur.dateInscriptionUser| date('M Y')}}</h6>
-            </div>
+            <a href={{ path('secondLife_afficher_utilisateur',{'id_personne':annonce.utilisateur.idPersonne}) }}>
+                <div class="vendeur panel"style="border: 1px solid grey" >
+                    <h2>Informations du vendeur</h2>
+                    <h6 class="pseudo">Pseudo : {{annonce.utilisateur.pseudoUser}}</h6>
+                    <h6 class="adresse">Localisation : {{annonce.utilisateur.adresseUser}}</h6>
+                    <h6 class="nb_Annonces_publiees">Nombre d'annonces publiées : {{annonce.utilisateur.annonces|length}}</h6>
+                    <h6 class="ancieneté">Inscrit depuis  {{annonce.utilisateur.dateInscriptionUser| date('M Y')}}</h6>
+                </div>
+            </a>
+            
         </div>
 
         <div class="annonces_similaires col-xl-4 col-sm-6 col-12"  style="background-color:red">

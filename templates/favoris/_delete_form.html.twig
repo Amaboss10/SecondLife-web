@@ -1,0 +1,5 @@
+<form method="post" action="{{ path('secondLife_retirer_des_favoris_utilisateur', {'id': favoris.id}) }}" onsubmit="return confirm('voulez vous retirer cette annonce de vos annonces favorites?');">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ favoris.id) }}">
+    <button class="btn btn-sm btn-outline-secondary">Retirer des favoris</button>
+</form>

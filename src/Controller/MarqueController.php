@@ -11,11 +11,14 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+/**
+ * @Route("/secondLife", name="secondLife_")
+ */
 
 class MarqueController extends AbstractController
 {
     /**
-     * @Route("/secondLife/admin/marques", name="secondLife_admin_gerer_marques", methods={"GET"})
+     * @Route("/admin/marques", name="admin_gerer_marques", methods={"GET"})
      */
     public function index(MarqueRepository $marqueRepository): Response
     {
@@ -26,7 +29,7 @@ class MarqueController extends AbstractController
     }
 
     /**
-     * @Route("/secondLife/admin/marques/creer", name="secondLife_admin_creer_marque", methods={"GET","POST"})
+     * @Route("/admin/marques/creer", name="admin_creer_marque", methods={"GET","POST"})
      */
     public function creerMarque(Request $request): Response
     {     
@@ -51,7 +54,7 @@ class MarqueController extends AbstractController
     }
 
     /**
-     * @Route("/secondLife/admin/marques/{id}/annonces", name="secondLife_admin_afficher_annonces_de_la_marque", methods={"GET"})
+     * @Route("/admin/marques/{id}/annonces", name="admin_afficher_annonces_de_la_marque", methods={"GET"})
      */
     public function afficherAnnoncesMarque(Marque $marque,AnnonceRepository $annonceRepos): Response
     {
@@ -65,7 +68,7 @@ class MarqueController extends AbstractController
     }
 
     /**
-     * @Route("/secondLife/admin/marques/{id}/modifier", name="secondLife_admin_modifier_marque", methods={"GET","POST"})
+     * @Route("/admin/marques/{id}/modifier", name="admin_modifier_marque", methods={"GET","POST"})
      */
     public function modifierMarque(Request $request, Marque $marque): Response
     {
@@ -86,7 +89,7 @@ class MarqueController extends AbstractController
     }
 
     /**
-     * @Route("/secondLife/admin/marques/{id}/supprimer", name="secondLife_admin_supprimer_marque", methods={"DELETE"})
+     * @Route("/admin/marques/{id}/supprimer", name="admin_supprimer_marque", methods={"DELETE"})
      */
     public function delete(Request $request, Marque $marque,AnnonceRepository $annonceRepos): Response
     {

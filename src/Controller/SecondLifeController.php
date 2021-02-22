@@ -23,7 +23,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType as TypeTextType;
 class SecondLifeController extends AbstractController
 {
     /**
-     * @Route("/", name="secondLife_accueil")
+     * @Route("/secondLife", name="secondLife_accueil")
      */
     public function index(Request $request,AnnonceRepository $annonceRepository, MarqueRepository $marqueRepository,CategorieRepository $categorieRepository,SousCategorieRepository $sousCategorieRepository): Response
     {
@@ -154,15 +154,15 @@ class SecondLifeController extends AbstractController
         ]);
     }*/
 
-    /**
-     * @Route("/favoris", name="secondLife_favoris")
-     */
-    public function favoris(): Response
+   // /**
+     //* @Route("/favoris", name="secondLife_favoris")
+    // */
+    /*public function favoris(): Response
     {
-        return $this->render('second_life/favoris.html.twig', [
+        return $this->render('favoris/user/afficher_favoris.html.twig', [
             'titre_page'=>'Mes favoris'
         ]);
-    }
+    }*/
 
     /**
      * @Route("/messagerie", name="secondLife_messagerie")

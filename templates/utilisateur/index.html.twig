@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Utilisateur index{% endblock %}
+
+{% block body %}
+    <h1>Utilisateur index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id_personne</th>
+                <th>Nom_personne</th>
+                <th>Prenom_personne</th>
+                <th>Mail_personne</th>
+                <th>Mdp_personne</th>
+                <th>Lien_image_personne</th>
+                <th>Pseudo_user</th>
+                <th>Adresse_user</th>
+                <th>Date_naiss_user</th>
+                <th>Date_inscription_user</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for utilisateur in utilisateurs %}
+            <tr>
+                <td>{{ utilisateur.idPersonne }}</td>
+                <td>{{ utilisateur.nomPersonne }}</td>
+                <td>{{ utilisateur.prenomPersonne }}</td>
+                <td>{{ utilisateur.mailPersonne }}</td>
+                <td>{{ utilisateur.mdpPersonne }}</td>
+                <td>{{ utilisateur.lienImagePersonne }}</td>
+                <td>{{ utilisateur.pseudoUser }}</td>
+                <td>{{ utilisateur.adresseUser }}</td>
+                <td>{{ utilisateur.dateNaissUser ? utilisateur.dateNaissUser|date('Y-m-d') : '' }}</td>
+                <td>{{ utilisateur.dateInscriptionUser ? utilisateur.dateInscriptionUser|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('utilisateur_show', {'id_personne': utilisateur.id_personne}) }}">show</a>
+                    <a href="{{ path('utilisateur_edit', {'id_personne': utilisateur.id_personne}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="11">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('utilisateur_new') }}">Create new</a>
+{% endblock %}

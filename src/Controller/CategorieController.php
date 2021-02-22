@@ -10,11 +10,13 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-
+/**
+ * @Route("/secondLife", name="secondLife_")
+ */
 class CategorieController extends AbstractController
 {
     /**
-     * @Route("/secondLife/admin/categories/", name="secondLife_admin_gerer_categories", methods={"GET"})
+     * @Route("/admin/categories/", name="admin_gerer_categories", methods={"GET"})
      */
     public function index(CategorieRepository $categorieRepository): Response
     {
@@ -25,7 +27,7 @@ class CategorieController extends AbstractController
     }
 
     /**
-     * @Route("/secondLife/admin/categories/creer", name="secondLife_admin_creer_categorie", methods={"GET","POST"})
+     * @Route("/admin/categories/creer", name="admin_creer_categorie", methods={"GET","POST"})
      */
     public function creerCategorie(Request $request): Response
     {
@@ -49,7 +51,7 @@ class CategorieController extends AbstractController
     }
 
     /**
-     * @Route("/secondLife/admin/categories/{id}/annonces", name="secondLife_admin_afficher_annonces_par_categorie", methods={"GET"})
+     * @Route("/admin/categories/{id}/annonces", name="admin_afficher_annonces_par_categorie", methods={"GET"})
      */
     public function afficherAnnoncesParCategorie(Categorie $categorie): Response
     {
@@ -61,7 +63,7 @@ class CategorieController extends AbstractController
     }
 
     /**
-     * @Route("/secondLife/admin/categories/{id}/souscategorie", name="secondLife_admin_afficher_sous_categories_par_categorie", methods={"GET"})
+     * @Route("/admin/categories/{id}/souscategorie", name="admin_afficher_sous_categories_par_categorie", methods={"GET"})
      */
     public function afficherSousCategorieParCategorie(Categorie $categorie): Response
     {
@@ -73,7 +75,7 @@ class CategorieController extends AbstractController
     }
 
     /**
-     * @Route("/secondLife/admin/categories/{id}/modifier", name="secondLife_admin_modifier_categorie", methods={"GET","POST"})
+     * @Route("/admin/categories/{id}/modifier", name="admin_modifier_categorie", methods={"GET","POST"})
      */
     public function modifierCategorie(Request $request, Categorie $categorie): Response
     {
@@ -94,7 +96,7 @@ class CategorieController extends AbstractController
     }
 
     /**
-     * @Route("/secondLife/admin/categories/{id}/supprimer", name="secondLife_admin_supprimer_categorie", methods={"DELETE"})
+     * @Route("/admin/categories/{id}/supprimer", name="admin_supprimer_categorie", methods={"DELETE"})
      */
     public function delete(Request $request, Categorie $categorie): Response
     {

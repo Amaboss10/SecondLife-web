@@ -14,7 +14,7 @@
                 <!--le logo-->
                 
                 <a href={{path('secondLife_accueil')}} class="navbar-brand logo_site">
-                    <img src="logo_site.jpg" class="img-thumbnail" alt="logo du site">
+                    <img src="logo_site.png" class="img-thumbnail" alt="logo du site">
                 </a>
                 
                 <!--la barre de recherche-->
@@ -42,7 +42,7 @@
                         {% if app.user %}
                             <li class="col nav-item page_accueil "><a class="nav-link" href={{path('secondLife_accueil')}} class="link-secondary">Accueil</a></li>
                             <li class="col nav-item page_creer_annonce"><a class="nav-link"  href={{path('secondLife_creer_annonce')}} class="link-secondary">créer une annonce</a></li>
-                            <li class="col nav-item page_favoris"><a class="nav-link"  href={{path('secondLife_favoris')}} class="link-secondary">Favoris</a></li>
+                            <li class="col nav-item page_favoris"><a class="nav-link"  href={{path('secondLife_afficher_favoris_utilisateur')}} class="link-secondary">Favoris</a></li>
                             <li class="col nav-item page_messagerie"><a class="nav-link"  href={{path('secondLife_messagerie')}} class="link-secondary">Messagerie</a></li>
                             <li class="col nav-item page_compte_se_connecter"><a class="nav-link"  href={{path('secondLife_mon_compte')}} class="link-secondary">Compte</a></li>
                             <li class="col nav-item page_faq"><a class="nav-link"  href={{path('secondLife_faq')}} class="link-secondary">FAQ/Aide</a></li>

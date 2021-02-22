@@ -24,12 +24,14 @@ class Favoris
     private $id_annonce;
 
     /**
+     * 
      * @ORM\ManyToOne(targetEntity=Utilisateur::class)
      * @ORM\JoinColumn(name="utilisateur", referencedColumnName="id_personne", nullable=false)
      */
     private $id_utilisateur;
 
     /**
+     * date ajout à la liste des favoris
      * @ORM\Column(type="datetime")
      */
     private $date_favoris;

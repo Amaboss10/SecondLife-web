@@ -15,27 +15,33 @@
             <h1 style="padding-bottom:0.5%">{{ titre_page }}</h1>
             <div class="row" style="margin:1%">
                 <div class="col-sm-6 col-12">
-                    <div class="row">
+                {% for favoris in mes_favoris %}
+                    <div class="favoris row">
                         <div class="col">
-                            <img src="logo_site.jpg" class="img-thumbnail" alt="logo du site">
+                            <img src="logo_site.png" class="img-thumbnail" alt="logo du site">
                         </div>
                         <div class="col">
-                            <p>Titre annonce</p>
-                            <p>Catégorie </p>
-                            <p>Ref </p>
-                            <p>Lieu/date </p>
+                            <p>{{favoris.idAnnonce.titreAnnonce}}</p>
+                            <p>{{favoris.idAnnonce.categorie}} </p>
+                            <p>{{favoris.idAnnonce.sousCategorie}} </p>        
+                            <p>{{favoris.idAnnonce.datePubliAnnonce|date('d/m/Y')}} </p>
                         </div>
                         <div class="col" style="text-align:center">
                             <p>Prix</p>
                             <a class="btn"  href={{path('secondLife_messagerie')}} class="link-secondary"><button type="button" class="btn btn-sm btn-outline-secondary">Contacter le vendeur</button></a>
-                            <button type="button" class="btn btn-sm btn-outline-secondary">Retirer des favoris</button>
+                            {{ include('favoris/_delete_form.html.twig') }}
+                            
                         </div>
                     </div>
+                {% endfor %}
                 </div>
+
+
+            {#
                 <div class="col-sm-6 col-12">
                     <div class="row">
                         <div class="col">
-                            <img src="logo_site.jpg" class="img-thumbnail" alt="logo du site">
+                            <img src="logo_site.png" class="img-thumbnail" alt="logo du site">
                         </div>
                         <div class="col">
                             <p>Titre annonce</p>
@@ -50,12 +56,14 @@
                         </div>
                     </div>
                 </div>
+            #}
             </div>
+        {#
             <div class="row" style="margin:1%">
                 <div class="col-sm-6 col-12">
                     <div class="row">
                         <div class="col">
-                            <img src="logo_site.jpg" class="img-thumbnail" alt="logo du site">
+                            <img src="logo_site.png" class="img-thumbnail" alt="logo du site">
                         </div>
                         <div class="col">
                             <p>Titre annonce</p>
@@ -73,7 +81,7 @@
                 <div class="col-sm-6 col-12">
                     <div class="row">
                         <div class="col">
-                            <img src="logo_site.jpg" class="img-thumbnail" alt="logo du site">
+                            <img src="logo_site.png" class="img-thumbnail" alt="logo du site">
                         </div>
                         <div class="col">
                             <p>Titre annonce</p>
@@ -89,6 +97,7 @@
                     </div>
                 </div>
             </div>
+        #}
         </div>
         <div class="col-xl-2 col-sm-12 col-12" style="background-color:blue; margin:1%">
             <!--pub-->

@@ -10,13 +10,15 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-
+/**
+ * @Route("/secondLife", name="secondLife_")
+ */
 class FAQController extends AbstractController
 {
     //UTILISATEUR
 
     /**
-     * @Route("/faq", name="secondLife_faq")
+     * @Route("/faq", name="faq")
      */
     public function faq(FAQRepository $repository,CategorieFAQRepository $categorieFAQRepos): Response
     {
@@ -32,7 +34,7 @@ class FAQController extends AbstractController
     //ADMINISTRATEUR
 
     /**
-     * @Route("/secondLife/admin/faq", name="secondLife_admin_gerer_faq", methods={"GET"})
+     * @Route("/admin/faq", name="admin_gerer_faq", methods={"GET"})
      */
     public function gererFaq(FAQRepository $repository,CategorieFAQRepository $categorieFAQRepos): Response
     {
@@ -47,8 +49,8 @@ class FAQController extends AbstractController
 
     /**
      * Permet d'ajouter et modifier une rubrique
-     * @Route("/secondLife/admin/faq/ajouter", name="secondLife_admin_ajouter_faq")
-     * @Route("/secondLife/admin/faq/{id}/modifier", name="secondLife_admin_modifier_faq")
+     * @Route("/admin/faq/ajouter", name="admin_ajouter_faq")
+     * @Route("/admin/faq/{id}/modifier", name="admin_modifier_faq")
      */
     public function ajouterModifierFaq(FAQ $faq=null,Request $request): Response
     {
@@ -87,7 +89,7 @@ class FAQController extends AbstractController
 
     
     /**
-     * @Route("/secondLife/admin/faq/{id}/supprimer", name="secondLife_admin_supprimer_faq", methods={"DELETE"})
+     * @Route("/admin/faq/{id}/supprimer", name="admin_supprimer_faq", methods={"DELETE"})
      */
     public function delete(Request $request, FAQ $fAQ): Response
     {
