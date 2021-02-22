@@ -3,20 +3,25 @@
 {% block title %}Log in!{% endblock %}
 
 {% block body %}
+    <div class="row justify-content-center">
+        <div class="col-xl-4 col-sm-12 col-12" style="margin:2%">
+            <h1 style="padding-bottom:1%; text-align:center">Se connecter</h1>
 
-
-    <h1>Se connecter</h1>
-
-    <form action="{{ path('secondlife_connexion') }}" method="post">
-        <label name="mail">Mail</label>
-        <input type="email" name="_username" required>
-        <br>
-
-        <label name="mdp">Mot de passe </label>
-        <input type="password" name="_password" required>
-        <br>
-
-        <input type="submit" value="Se connecter">
-    </form>
-    
+            <form action="{{ path('secondlife_connexion') }}" method="post">
+                <div class="row">
+                    <label name="mail" class="col-4 form-label">Mail</label>
+                    <input type="email" name="_username" class="col form-control form-text bg-light" required>
+                </div>
+                <br>
+                <div class="row">
+                    <label name="mdp" class="col-4 form-label">Mot de passe </label>
+                    <input type="password" name="_password" class="col form-control form-text bg-light"  required>
+                </div>
+                <br>
+                <div style="text-align:center; margin-top:1%">
+                    <input type="submit" class="btn btn-lg btn-outline-success" value="Se connecter">
+                </div>
+            </form>
+        </div>
+    </div>
 {% endblock %}
