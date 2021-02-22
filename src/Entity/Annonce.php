@@ -65,7 +65,7 @@ class Annonce
     private $marque;
 
     /**
-     * @ORM\OneToMany(targetEntity=PhotoAnnonce::class, mappedBy="annonce")
+     * @ORM\OneToMany(targetEntity=PhotoAnnonce::class, mappedBy="annonce",cascade={"persist"})
      * @ORM\JoinColumn(name="images_annonce", referencedColumnName="id")
      */
     private $images_annonce;

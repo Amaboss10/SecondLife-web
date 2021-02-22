@@ -48,7 +48,10 @@
                     <input type="email" class="form-control form-text bg-light" placeholder="Email : name@exemple.com">
                     <br>
                     <div style="text-align:center">
-                        <button type="button" class="col btn btn-sm btn-outline-secondary">modifier adresse mail</button>
+                        <form action={{ path('secondLife_modifier_adresse_mail') }}>
+                            <button type="submit" class="col btn btn-sm btn-outline-secondary">modifier adresse mail</button>
+                        </form>
+                        
                     </div>
                 </div>
                 <div class="col-xl-4 col-sm-4 col-12">

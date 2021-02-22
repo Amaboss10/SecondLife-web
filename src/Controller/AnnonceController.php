@@ -159,7 +159,7 @@ class AnnonceController extends AbstractController
      * @Route("/user/annonces/creer", name="creer_annonce")
      * @Route("/user/annonces/modifier/{id}",name="modifier_annonce")
      */
-    public function creerModifierAnnonce(Annonce $annonce=null,Request $request,AnnonceRepository $annonceRepository, MarqueRepository $marqueRepository,CategorieRepository $categorieRepository,SousCategorieRepository $sousCategorieRepository): Response
+    public function creerModifierAnnonce(UserInterface $user,Annonce $annonce=null,Request $request,AnnonceRepository $annonceRepository, MarqueRepository $marqueRepository,CategorieRepository $categorieRepository,SousCategorieRepository $sousCategorieRepository): Response
     {
         //RECUPERATION DES DONNEES POUR CONSTRUIRE LE FORMULAIRE DYNAMIQUEMENT
         $marques=$marqueRepository->findAll();
@@ -190,21 +190,21 @@ class AnnonceController extends AbstractController
             
             //si c'est une creation d'annonce
             if(!$annonce->getIdAnnonce()){
-                $annonce->setDatePubliAnnonce(new \DateTime());
+                $annonce->setDatePubliAnnonce(new \DateTime())
+                        ->setUtilisateur($user);
             }
 
             //images
             $images=$form->get('images_annonce')->getData();
             foreach ($images as $image) {
                 //generation nom de fichier
-                $fichier=md5(uniqid()).'.'.$image->guessExtension();
+                $fichier='images_annonces/'.md5(uniqid()).'.'.$image->guessExtension();
                 //copie de l'image dans images_annonces
-                $image->move($this->getParameter('images_annonces'),$fichier);
+                $image->move($this->getParameter('images_annonces_directory'),$fichier);
                 //creation de l'image dans la bd
                 $photo=new PhotoAnnonce();
                 $photo->setLienPhotoAnnonce($fichier);
                 $annonce->addImagesAnnonce($photo);
-                //$entityManager->persist($photo);
             }
             
             $entityManager->persist($annonce);
@@ -225,6 +225,8 @@ class AnnonceController extends AbstractController
             'annonces'=>$annonces
         ]);
     }
+
+   
 
     /**
      * @Route("/user/annonces/{id}/afficher", name="afficher_annonce")

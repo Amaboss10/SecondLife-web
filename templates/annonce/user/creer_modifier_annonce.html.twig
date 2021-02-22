@@ -68,9 +68,9 @@
                             <h2>Images</h2>
                             {% for image in annonce.imagesAnnonce %}
                                 <div>
-                                    <img src="{{'/images_annonce/'~image.lienPhotoAnnonce }}" alt="image annonce" width="150">
+                                    <img src="{{ ~image.lienPhotoAnnonce }}" alt="image annonce" >
                                     <!--pas encore fonctionnel-->
-                                    <a href="{{ path('secondLife_supprimer_image_annonce', {id: image.id})}}" data-delete data-token="{{ csrf_token('delete' ~ image.id )}}">Supprimer</a>
+                                    {#<a href="{{ path('secondLife_supprimer_image_annonce', {id: image.id})}}" data-delete data-token="{{ csrf_token('delete' ~ image.id )}}">Supprimer</a>#}
                                 </div>
                             {% endfor %}
                         {% endif %}

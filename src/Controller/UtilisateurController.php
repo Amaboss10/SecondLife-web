@@ -78,6 +78,13 @@ class UtilisateurController extends AbstractController
     }
 
     /**
+     * @Route("/user/monCompte/modifierMail/")
+     */
+    public function modifierMail(){
+        
+    }
+
+    /**
      * @Route("/{id_personne}/edit", name="utilisateur_edit", methods={"GET","POST"})
      */
     public function edit(Request $request, Utilisateur $utilisateur): Response
