@@ -3,27 +3,33 @@
 namespace App\Controller;
 
 use App\Entity\Annonce;
-use App\Data\FiltreAnnonceData;
 use App\Entity\PhotoAnnonce;
-use App\Form\CreerModifierAnnonceFormType;
+use App\Data\FiltreAnnonceData;
 use App\Repository\FAQRepository;
+use Doctrine\DBAL\Types\TextType;
 use App\Form\SearchAnnonceFormType;
 use App\Repository\MarqueRepository;
 use App\Repository\AnnonceRepository;
+use App\Repository\FavorisRepository;
 use App\Repository\CategorieRepository;
+use App\Form\CreerModifierAnnonceFormType;
 use App\Repository\SousCategorieRepository;
-use Doctrine\DBAL\Types\TextType;
+use App\Repository\UtilisateurRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\TextType as TypeTextType;
 
+/**
+ * @Route("/secondLife", name="secondLife_")
+ */
 class SecondLifeController extends AbstractController
 {
     /**
-     * @Route("/secondLife", name="secondLife_accueil")
+     * @Route("/", name="accueil")
      */
     public function index(Request $request,AnnonceRepository $annonceRepository, MarqueRepository $marqueRepository,CategorieRepository $categorieRepository,SousCategorieRepository $sousCategorieRepository): Response
     {
@@ -64,8 +70,8 @@ class SecondLifeController extends AbstractController
     }
 
     ///**
-    // * @Route("/creerAnnonce", name="secondLife_creer_annonce")
-    // * @Route("/annonces/modifier/{id}",name="secondLife_modifier_annonce")
+    // * @Route("/creerAnnonce", name="creer_annonce")
+    // * @Route("/annonces/modifier/{id}",name="modifier_annonce")
     // */
     /*public function creerModifierAnnonce(Annonce $annonce=null,Request $request,AnnonceRepository $annonceRepository, MarqueRepository $marqueRepository,CategorieRepository $categorieRepository,SousCategorieRepository $sousCategorieRepository): Response
     {
@@ -135,7 +141,7 @@ class SecondLifeController extends AbstractController
     
 
     /**
-     * @Route("/annonces/images/supprimer/{id}", name="secondLife_supprimer_image_annonce")
+     * @Route("/annonces/images/supprimer/{id}", name="supprimer_image_annonce")
      */
     public function supprimerImageAnnonce(): Response
     {
@@ -145,7 +151,7 @@ class SecondLifeController extends AbstractController
     }
 
     ///**
-    // * @Route("/compte/mesAnnonces/", name="secondLife_gerer_mes_annonces")
+    // * @Route("/user/monCompte/mesAnnonces/", name="gerer_mes_annonces")
     // */
     /*public function gererMesAnnonces(): Response
     {
@@ -165,7 +171,7 @@ class SecondLifeController extends AbstractController
     }*/
 
     /**
-     * @Route("/messagerie", name="secondLife_messagerie")
+     * @Route("/messagerie", name="messagerie")
      */
     public function messagerie(): Response
     {
@@ -175,17 +181,48 @@ class SecondLifeController extends AbstractController
     }
     
     /**
-     * @Route("/monCompte", name="secondLife_mon_compte")
+     * @Route("/user/monCompte", name="mon_compte")
      */
-    public function mon_compte(): Response
+    public function monCompte(UserInterface $user): Response
     {
+        
         return $this->render('second_life/mon_compte.html.twig', [
             'titre_page'=>'Mon compte'
         ]);
     }
 
     /**
-     * @Route("/deconnexion", name="secondLife_deconnexion")
+     * @Route("/user/monCompte/monProfil", name="afficher_mon_profil")
+     */
+    public function afficherMonProfil(UserInterface $user,UtilisateurRepository $userRepos,AnnonceRepository $annonceRepos,FavorisRepository $favorisRepos): Response
+    {
+        $utilisateur=$userRepos->find($user);
+        
+        $fav=$favorisRepos->findOneBy(['id_utilisateur'=>$utilisateur]);
+        
+        if($fav!=null){
+            if($annoncetype=$fav->getIdAnnonce()){
+                //on recupere la categorie d'un des fav et on affiche 4 annonces de cette categorie   
+                if($annonceRepos->findBy(['categorie'=>$annoncetype->getCategorie()]) && $annonceRepos->findBy(['categorie'=>$annoncetype->getCategorie()])>1  ){
+                    $annoncesSuggerees=$annonceRepos->findBy(['categorie'=>$annoncetype->getCategorie()],null,4,null);
+                }
+                else $annoncesSuggerees=$annonceRepos->findBy(['marque'=>$annoncetype->getMarque()],null,4,null);
+            }
+        }
+        else{
+            //on prend les 4 dernieres annonces publiées
+            $annoncesSuggerees=$annonceRepos->findXAnnoncesNotUtilisateur(4,$utilisateur);
+        }
+
+        return $this->render('utilisateur/user/afficher_utilisateur.html.twig', [
+            'titre_page'=>'Profil de '.$utilisateur->getPseudoUser() ,
+            'utilisateur' => $utilisateur,
+            'annoncesSuggerees'=>$annoncesSuggerees
+        ]);   
+    }
+
+    /**
+     * @Route("/deconnexion", name="deconnexion")
      */
     public function deconnexion(): Response
     {
@@ -195,7 +232,7 @@ class SecondLifeController extends AbstractController
     }
 
     /**
-     * @Route("/quiSommesNous", name="secondLife_qui_sommes_nous")
+     * @Route("/quiSommesNous", name="qui_sommes_nous")
      */
     public function qui_sommes_nous(): Response
     {
@@ -205,7 +242,7 @@ class SecondLifeController extends AbstractController
     }
 
     /**
-     * @Route("/mentionsLegales", name="secondLife_mentions_legales")
+     * @Route("/mentionsLegales", name="mentions_legales")
      */
     public function mentions_legales(): Response
     {
@@ -215,7 +252,7 @@ class SecondLifeController extends AbstractController
     }
 
     /**
-     * @Route("/conditionsGeneralesUtilisation", name="secondLife_conditions_generales_utilisation")
+     * @Route("/conditionsGeneralesUtilisation", name="conditions_generales_utilisation")
      */
     public function conditions_generales_utilisation(): Response
     {
@@ -225,7 +262,7 @@ class SecondLifeController extends AbstractController
     }
 
     /**
-     * @Route("/barre_recherche", name="secondLife_barre_recherche")
+     * @Route("/barre_recherche", name="barre_recherche")
      */
     public function barre_recherche(): Response
     {
@@ -235,7 +272,7 @@ class SecondLifeController extends AbstractController
     }
 
    // /**
-    // * @Route("/annonces/{id}", name="secondLife_afficher_annonce")
+    // * @Route("/annonces/{id}", name="afficher_annonce")
    //  */
     /*public function afficher_annonce(Annonce $annonce,AnnonceRepository $repository): Response
     {
@@ -250,7 +287,7 @@ class SecondLifeController extends AbstractController
 
     //temporaire
     // /**
-    //  * @Route("/inscriptionp", name="secondLife_inscription")
+    //  * @Route("/inscriptionp", name="inscription")
     //  */
     // public function inscription(): Response
     // {

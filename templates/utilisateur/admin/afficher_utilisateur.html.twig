@@ -1,0 +1,63 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block title %}{{titre_page}}{% endblock %}
+
+{% block body %}
+    <div>
+        <h3>{{utilisateur.pseudoUser}}</h3>
+        <img src={{utilisateur.lienImagePersonne}} alt="image_de_profil"></a><br>
+        <h6 class="pseudo">Pseudo : {{utilisateur.pseudoUser}}</h6>
+        <h6 class="adresse">Localisation : {{utilisateur.adresseUser}}</h6>
+        <h6 class="nb_Annonces_publiees">Nombre d'annonces publiées : {{utilisateur.annonces|length}}</h6>
+        <h6 class="ancieneté">Inscrit depuis  {{utilisateur.dateInscriptionUser| date('M Y')}}</h6>
+        <button type="submit">Supprimer le compte</button>
+        <button type="submit" class="btn btn-sm btn-outline-secondary">contacter l'utilisateur</button>
+    </div>
+
+    <div style="background-color:red">
+        <!--Annonces de l'utilisateur-->
+        <h3>Annonces de l'utilisateur</h3>
+        {% if utilisateur.annonces %}
+            {% for annonce in utilisateur.annonces %}
+            <a href={{path('secondLife_afficher_annonce',{'id':annonce.idAnnonce})}}>
+                <div class="annonce">
+                    <a href={{path('secondLife_afficher_annonce',{'id':annonce.idAnnonce})}}><h4 class="titre_annonce">{{annonce.titreAnnonce}}</h4></a>
+                    
+                    <div class="image_annonce">
+                        <img src={{annonce.imagesAnnonce.first()}} alt={{annonce.titreAnnonce}}>
+                    </div>
+
+                    <div class="infos_annonce">
+                        <span class="categorie_annonce">{{annonce.Categorie}}</span><br>
+                        <span class="sous_categorie_annonce">{{annonce.SousCategorie}}</span><br>
+                        <span class="etat_annonce">{{annonce.etatAnnonce}}</span><br>
+                        <span class="date_publication_annonce">{{annonce.datePubliAnnonce|date('d/m/Y')}}</span>
+                    </div>
+
+                    <div class="autres_infos_annonces">
+                        <form class="lien_ajouter_favoris"  action={{ path('secondLife_ajouter_aux_favoris_utilisateur',{'id':annonce.idAnnonce}) }} method='POST'>
+                            <button class="btn btn-sm btn-outline-secondary">Ajouter aux favoris</button>
+                        </form>
+                        
+                        <span class="prix_annonce">{{annonce.prixAnnonce | number_format(0, '${.}', '${,}')}} £</span>
+                        <a href="" class="lien_contacter_vendeur"><button class="btn_contacter_vendeur">Contacter le vendeur</button></a>
+                    </div>
+                </div>
+            </a>
+            {% endfor %}
+        {% else %}
+            <p>Aucune annonces publiées par {{utilisateur.pseudoUser}}</p>
+        {% endif %}      
+    </div>
+
+
+    <div style="background-color:blue">
+        <!--pub-->
+        <p>
+            <br>
+            <br>
+            <br>
+        </p>
+    </div>
+
+{% endblock %}

@@ -290,30 +290,33 @@ class AnnonceController extends AbstractController
     /**
      * @Route("/user/monCompte/mesAnnonces", name="gerer_mes_annonces")
      */
-    public function gererMesAnnonces(Annonce $annonce,AnnonceRepository $annonceRepository): Response
+    public function gererMesAnnonces(AnnonceRepository $annonceRepository,UserInterface $user): Response
     {
-        if( $annonceRepository->findBy(['sous_categorie'=>$annonce->getSousCategorie()]) && count($annonceRepository->findBy(['sous_categorie'=>$annonce->getSousCategorie()]))>1 )
-        {
-            $annonces=$annonceRepository->findBy(['sous_categorie'=>$annonce->getSousCategorie()],null,4,null);
-        }
-        else if( $annonceRepository->findBy(['categorie'=>$annonce->getCategorie()]) && count($annonceRepository->findBy(['categorie'=>$annonce->getCategorie()]))>1  ){
-            $annonces=$annonceRepository->findBy(['categorie'=>$annonce->getCategorie()],null,4,null) ;
-        }
-        else if($annonceRepository->findBy(['marque'=>$annonce->getMarque()]) && count($annonceRepository->findBy(['marque'=>$annonce->getMarque()]))>1){
-            $annonces=$annonceRepository->findBy(['marque'=>$annonce->getMarque()],null,4,null);
-        }
-        else if($annonceRepository->findBy(['utilisateur'=>$annonce->getUtilisateur()]) && count($annonceRepository->findBy(['utilisateur'=>$annonce->getUtilisateur()]))>1){
-            $annonces=$annonceRepository->findBy(['utilisateur'=>$annonce->getUtilisateur()],null,4,null);
-        }
-        else{
-            $annonces=$annonceRepository->findAll();
-        }
-        return $this->render('annonce/user/afficher_annonce.html.twig', [
-            'titre_page'=>$annonce->getTitreAnnonce(),
-            'annonce'=>$annonce,
-            'annonces'=>$annonces
+        $mesAnnonces=$annonceRepository->findBy(['utilisateur'=>$user]);
 
+        return $this->render('annonce/user/gerer_mes_annonces.html.twig', [
+            'titre_page'=>'Mes annonces',
+            'nb_annonces'=>count($mesAnnonces),
+            'mesAnnonces'=>$mesAnnonces
         ]);
+    }
+
+    /**
+     * @Route("/user/monCompte/mesAnnonces/{id}/confirmerVente", name="confirmer_vente", methods={"GET"})
+     */
+    public function confirmerVenteAnnonce(Annonce $annonce,AnnonceRepository $annonceRepository): Response
+    {
+
+        $annonce->setEtatAnnonce('Vendu');
+
+        $entityManager=$this->getDoctrine()->getManager();
+        $entityManager->persist($annonce);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('secondLife_afficher_annonce',array(
+            'id'=>$annonce->getIdAnnonce()
+        ));    
+
     }
 
     ///**
