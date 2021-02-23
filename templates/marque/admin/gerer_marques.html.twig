@@ -20,8 +20,8 @@
                 <td>{{ marque.id }}</td>
                 <td>{{ marque.nomMarque }}</td>
                 <td>
-                    <a href="{{ path('secondLife_admin_afficher_annonces_de_la_marque', {'id': marque.id}) }}">Afficher les annonces  {{marque.nomMarque}}</a>
-                    <a href="{{ path('secondLife_admin_modifier_marque', {'id': marque.id}) }}">Modifier {{marque.nomMarque}}  </a>
+                    <a class="btn btn-sm btn-outline-secondary " href="{{ path('secondLife_admin_afficher_annonces_de_la_marque', {'id': marque.id}) }}">Afficher les annonces  {{marque.nomMarque}}</a>
+                    <a class="btn btn-sm btn-outline-secondary" href="{{ path('secondLife_admin_modifier_marque', {'id': marque.id}) }}">Modifier {{marque.nomMarque}}  </a>
                 </td>
             </tr>
         {% else %}
@@ -32,6 +32,6 @@
         </tbody>
     </table>
 
-    <a href="{{ path('secondLife_admin_creer_marque') }}">Créer/Ajouter une marque</a>
+    <a class="btn btn-sm btn-outline-secondary" href="{{ path('secondLife_admin_creer_marque') }}">Créer/Ajouter une marque</a>
     
 {% endblock %}

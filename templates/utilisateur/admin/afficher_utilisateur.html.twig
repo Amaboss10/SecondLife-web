@@ -10,7 +10,7 @@
         <h6 class="adresse">Localisation : {{utilisateur.adresseUser}}</h6>
         <h6 class="nb_Annonces_publiees">Nombre d'annonces publiées : {{utilisateur.annonces|length}}</h6>
         <h6 class="ancieneté">Inscrit depuis  {{utilisateur.dateInscriptionUser| date('M Y')}}</h6>
-        <button type="submit">Supprimer le compte</button>
+        {{ include('utilisateur/admin/_delete_form.html.twig') }}
         <button type="submit" class="btn btn-sm btn-outline-secondary">contacter l'utilisateur</button>
     </div>
 
@@ -35,9 +35,7 @@
                     </div>
 
                     <div class="autres_infos_annonces">
-                        <form class="lien_ajouter_favoris"  action={{ path('secondLife_ajouter_aux_favoris_utilisateur',{'id':annonce.idAnnonce}) }} method='POST'>
-                            <button class="btn btn-sm btn-outline-secondary">Ajouter aux favoris</button>
-                        </form>
+                        
                         
                         <span class="prix_annonce">{{annonce.prixAnnonce | number_format(0, '${.}', '${,}')}} £</span>
                         <a href="" class="lien_contacter_vendeur"><button class="btn_contacter_vendeur">Contacter le vendeur</button></a>

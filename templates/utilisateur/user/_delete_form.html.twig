@@ -1,0 +1,5 @@
+<form method="post" action="{{ path('secondLife_supprimer_mon_compte') }}" onsubmit="return confirm('voulez vous supprimer votre compte? cette opération est irreversible');">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ utilisateur.idPersonne) }}">
+    <button class="btn btn-sm btn-outline-secondary">Supprimer le compte utilisateur</button>
+</form>

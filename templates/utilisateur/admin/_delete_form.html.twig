@@ -1,0 +1,5 @@
+<form method="post" action="{{ path('secondLife_admin_supprimer_utilisateur', {'id_personne': utilisateur.idPersonne}) }}" onsubmit="return confirm('voulez vous supprimer le compte de '.{{utilisateur.pseudoUser}}.'?');">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ utilisateur.idPersonne) }}">
+    <button class="btn btn-sm btn-outline-secondary">Supprimer le compte utilisateur</button>
+</form>

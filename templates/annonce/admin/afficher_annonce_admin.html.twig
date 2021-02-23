@@ -43,15 +43,17 @@
                 </div>
             </div>
 
-            <div class="vendeur panel"style="border: 1px solid grey" >
-                <h2>Informations du vendeur</h2>
-                <h6 class="pseudo">Pseudo : {{annonce.utilisateur.pseudoUser}}</h6>
-                <h6 class="nom">Nom : {{annonce.utilisateur.nomPersonne}}</h6>
-                <h6 class="prenom">Prenom : {{annonce.utilisateur.prenomPersonne}}</h6>
-                <h6 class="adresse">Localisation : {{annonce.utilisateur.adresseUser}}</h6>
-                <h6 class="nb_Annonces_publiees">Nombre d'annonces publiées : {{annonce.utilisateur.annonces|length}}</h6>
-                <h6 class="ancieneté">Inscrit depuis  {{annonce.utilisateur.dateInscriptionUser| date('M Y')}}</h6>
-            </div>
+            <a href={{path('secondLife_admin_afficher_utilisateur',{'id_personne':annonce.utilisateur.idPersonne})}}>
+                <div class="vendeur panel"style="border: 1px solid grey" >
+                    <h2>Informations du vendeur</h2>
+                    <h6 class="pseudo">Pseudo : {{annonce.utilisateur.pseudoUser}}</h6>
+                    <h6 class="nom">Nom : {{annonce.utilisateur.nomPersonne}}</h6>
+                    <h6 class="prenom">Prenom : {{annonce.utilisateur.prenomPersonne}}</h6>
+                    <h6 class="adresse">Localisation : {{annonce.utilisateur.adresseUser}}</h6>
+                    <h6 class="nb_Annonces_publiees">Nombre d'annonces publiées : {{annonce.utilisateur.annonces|length}}</h6>
+                    <h6 class="ancieneté">Inscrit depuis  {{annonce.utilisateur.dateInscriptionUser| date('M Y')}}</h6>
+                </div>
+            </a>
         </div>
 
         <div class="annonces_similaires col-xl-6 col-sm-6 col-12 ">
@@ -110,7 +112,7 @@
         <tbody>
             <tr>
                 <th>Id</th>
-                <td>{{ annonce.id }}</td>
+                <td>{{ annonce.idAnnonce }}</td>
             </tr>
             <tr>
                 <th>Titre_annonce</th>

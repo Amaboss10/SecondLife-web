@@ -5,7 +5,7 @@
 {% block body %}
     <h1>{{titre_page}}</h1>
     
-    <a href="{{ path('secondLife_admin_creer_categorie') }}">Créer une catégorie</a>
+    <a class="btn btn-sm btn-outline-secondary" href="{{ path('secondLife_admin_creer_categorie') }}">Créer une catégorie</a>
 
     <table class="table">
         <thead>
@@ -19,9 +19,9 @@
             <tr>
                 <td>{{ categorie.nomCategorie }}</td>
                 <td>
-                    <a href="{{ path('secondLife_admin_afficher_annonces_par_categorie', {'id': categorie.id}) }}">Afficher les annonces de {{categorie.nomCategorie}}</a>
-                    <a href="{{ path('secondLife_admin_afficher_sous_categories_par_categorie', {'id': categorie.id}) }}">Afficher les sous-categories de {{categorie.nomCategorie}}</a>
-                    <a href="{{ path('secondLife_admin_modifier_categorie', {'id': categorie.id}) }}">Modifier la categorie {{categorie.nomCategorie}}</a>
+                    <a class="btn btn-sm btn-outline-secondary" href="{{ path('secondLife_admin_afficher_annonces_par_categorie', {'id': categorie.id}) }}">Afficher les annonces de {{categorie.nomCategorie}}</a>
+                    <a class="btn btn-sm btn-outline-secondary" href="{{ path('secondLife_admin_afficher_sous_categories_par_categorie', {'id': categorie.id}) }}">Afficher les sous-categories de {{categorie.nomCategorie}}</a>
+                    <a class="btn btn-sm btn-outline-secondary" href="{{ path('secondLife_admin_modifier_categorie', {'id': categorie.id}) }}">Modifier la categorie {{categorie.nomCategorie}}</a>
                     {{ include('categorie/admin/_delete_form.html.twig') }}
                 </td>
             </tr>
@@ -33,5 +33,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('secondLife_admin_creer_categorie') }}">Créer une catégorie</a>
+    <a class="btn btn-sm btn-outline-secondary" href="{{ path('secondLife_admin_creer_categorie') }}">Créer une catégorie</a>
 {% endblock %}

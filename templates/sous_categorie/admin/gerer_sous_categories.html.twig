@@ -21,8 +21,8 @@
                 <td>{{ sous_categorie.nomSousCategorie }}</td>
                 <td>{{ sous_categorie.categorie.nomCategorie }}</td>
                 <td>
-                    <a href="{{ path('secondLife_admin_afficher_annonces_par_sous_categorie', {'id': sous_categorie.id}) }}">Afficher les annonces de la sous-catégorie {{sous_categorie.nomSousCategorie}}({{sous_categorie.categorie.nomCategorie}})</a>
-                    <a href="{{ path('secondLife_admin_modifier_sous_categorie', {'id': sous_categorie.id}) }}">Modifier la sous-categorie {{sous_categorie.nomSousCategorie}}({{sous_categorie.categorie.nomCategorie}})</a>
+                    <a class="btn btn-sm btn-outline-secondary"  href="{{ path('secondLife_admin_afficher_annonces_par_sous_categorie', {'id': sous_categorie.id}) }}">Afficher les annonces de la sous-catégorie {{sous_categorie.nomSousCategorie}}({{sous_categorie.categorie.nomCategorie}})</a>
+                    <a class="btn btn-sm btn-outline-secondary" href="{{ path('secondLife_admin_modifier_sous_categorie', {'id': sous_categorie.id}) }}">Modifier la sous-categorie {{sous_categorie.nomSousCategorie}}({{sous_categorie.categorie.nomCategorie}})</a>
                     
                 </td>
             </tr>
