@@ -27,7 +27,10 @@
                         <h6 class="prix_annonce">Prix : {{annonce.prixAnnonce}} Euros</h6>
                         <h6>Poids : {{annonce.poidsAnnonce}} Grammes</h6>
                         <h6>Etat : {{annonce.etatAnnonce}}</h6>
-                        <h6>Description : {{annonce.descriptionAnnonce}}</h6>
+                        <div class="row">
+                            <h6 class="col">Description :</h6>
+                            <p class="col" style="word-wrap : break-word"> {{annonce.descriptionAnnonce}}</p>
+                        </div>
                         <h6>Date publication : {{annonce.datePubliAnnonce|date("m/d/Y - H:i:s")}}</h6>
                     </div>
                     
