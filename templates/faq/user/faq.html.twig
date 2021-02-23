@@ -5,16 +5,17 @@
 {% block body %}
     <h1>{{ titre_page }}</h1>
     <div class="row" style="margin:1%">
-        <div class="col">
-            <h2  style="padding-bottom:0.5%">Foire aux questions</h3>
+        <div class="col-12 col-sm-12 col-xl-7">
+            <h2  style="padding-bottom:0.5%">Foire aux questions</h2>
                             
             <div class="categories">
                 {% for categorie_faq in categoriesFaq %}
-                    <h3>{{categorie_faq.nomCategorie}}</h2>
+                    <h3>{{categorie_faq.nomCategorie}}</h3>
                     <div class="rubriques" style="margin:1%">
                     {% if categorie_faq.faqs==null %}
                         <p class="no_faq">Pas de rubrique dans cette catégorie</p>
                     {% else %}
+                    </div>
                     <div class="row" style="margin:1%">
                         <div class="col">
                             {% for rubrique in categorie_faq.faqs %}

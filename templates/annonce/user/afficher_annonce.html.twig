@@ -3,24 +3,24 @@
 {% block title %}{{titre_page}}{% endblock %}
 
 {% block body %}
-    <div class="row">
+    <div class="row" style="margin:1%">
         <div class="annonce_vendeur col-xl-6 col-sm-6 col-12"  >
-            <div class="annonce col-xl-6 col-sm-6 col-12 ">
+            <div class="annonce">
                 <div class="titre_favoris">
-                    <h3 class="titre_annonce">{{annonce.titreAnnonce}}</h3>
-                    <form action={{ path('secondLife_ajouter_aux_favoris_utilisateur',{'id':annonce.idAnnonce}) }} method='GET'>
-                        <button class="btn btn-outline-dark btn-sm" type="submit" style="width: 100%">Ajouter aux favoris </button>
+                    <h3 class="titre_annonce" >{{annonce.titreAnnonce}}</h3>
+                    <form action={{ path('secondLife_ajouter_aux_favoris_utilisateur',{'id':annonce.idAnnonce}) }} method='GET' style=" text-align:right">
+                        <button class="btn btn-outline-secondary btn-sm" type="submit" >Ajouter aux favoris </button>
                     </form>
                 </div>
                 
-                <div class="images_annonce">
+                <div class="images_annonce" style="margin:2%; text-align:center">
                     {% for image in annonce.imagesAnnonce %}
                     <img src={{image.lienPhotoAnnonce}} alt="Image de l'annonce">
                     {% endfor %}
                 </div>
                 
-                <div class="info_boutons row">
-                    <div class="info_annonce column">
+                <div class="info_boutons row" style="margin:2%; padding-bottom:1%">
+                    <div class="info_annonce column" style="padding-bottom:3%; padding-top:3%">
                         <h6>Categorie : {{annonce.categorie}}</h6>
                         <h6>Sous-categorie : {{annonce.sousCategorie}}</h6>
                         <h6>Marque : {{annonce.marque}}</h6>
@@ -32,16 +32,16 @@
                     </div>
                     
                     <div class="btns_annonce">
-                        <form action={{ path('secondLife_afficher_annonce',{'id':annonce.idAnnonce}) }} method='GET'>
-                            <button class="btn btn-outline-dark btn-sm" type="submit" style="width: 100%">Contacter le vendeur </button>
+                        <form action={{ path('secondLife_afficher_annonce',{'id':annonce.idAnnonce}) }} method='GET' style="text-align:center">
+                            <button class="btn btn-outline-secondary btn-sm" type="submit" >Contacter le vendeur </button>
                         </form>
                     </div>
                 </div>
             </div>
 
-            <a href={{ path('secondLife_afficher_utilisateur',{'id_personne':annonce.utilisateur.idPersonne}) }}>
-                <div class="vendeur panel"style="border: 1px solid grey" >
-                    <h2>Informations du vendeur</h2>
+            <a href={{ path('secondLife_afficher_utilisateur',{'id_personne':annonce.utilisateur.idPersonne}) }} class="link-dark" style="text-align:center">
+                <div class="vendeur panel "style="border: 1px solid grey; padding:1%" >
+                    <h2 style="padding-bottom:1%">Informations du vendeur</h2>
                     <h6 class="pseudo">Pseudo : {{annonce.utilisateur.pseudoUser}}</h6>
                     <h6 class="adresse">Localisation : {{annonce.utilisateur.adresseUser}}</h6>
                     <h6 class="nb_Annonces_publiees">Nombre d'annonces publiées : {{annonce.utilisateur.annonces|length}}</h6>
@@ -51,8 +51,8 @@
             
         </div>
 
-        <div class="annonces_similaires col-xl-4 col-sm-6 col-12"  style="background-color:red">
-            <h2>Annonces similaires</h2>
+        <div class="annonces_similaires col-xl-4 col-sm-6 col-12" >
+            <h2 style="padding-bottom:0.5%">Annonces similaires</h2>
             {% for annonce_ in annonces %}
                 {% if not annonce_ is same as(annonce) and annonce_.etatAnnonce=='Disponible' %}
                 <div class="annonce col-md-4">
