@@ -17,9 +17,9 @@
                 
         <div class="annonces">
             {% for annonce in sous_categorie.annonces %}
-            <a href={{path('secondLife_afficher_annonce',{'id':annonce.id})}}>
+            <a href={{path('secondLife_afficher_annonce',{'id':annonce.idAnnonce})}}>
                 <div class="annonce">
-                    <a href={{path('secondLife_afficher_annonce',{'id':annonce.id})}}><h4 class="titre_annonce">{{annonce.titreAnnonce}}</h4></a>
+                    <a href={{path('secondLife_afficher_annonce',{'id':annonce.idAnnonce})}}><h4 class="titre_annonce">{{annonce.titreAnnonce}}</h4></a>
                             
                     <div class="image_annonce">
                         <img src={{annonce.imagesAnnonce.first()}} alt={{annonce.titreAnnonce}}>
@@ -28,7 +28,7 @@
                     <div class="infos_annonce">
                         <span class="categorie_annonce">{{annonce.Categorie}}</span><br>
                         <span class="sous_categorie_annonce">{{annonce.SousCategorie}}</span><br>
-                        <span class="lieu_annonce">{{annonce.lieu}}</span>
+                        
                         <span class="date_publication_annonce">{{annonce.datePubliAnnonce|date('d/m/Y')}}</span>
                     </div>
 

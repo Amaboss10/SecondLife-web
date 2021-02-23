@@ -4,12 +4,13 @@ namespace App\Controller;
 
 use App\Entity\CategorieFAQ;
 use App\Form\CategorieFAQType;
-use App\Repository\AdministrateurRepository;
 use App\Repository\CategorieFAQRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Repository\AdministrateurRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
  * @Route("/secondLife", name="secondLife_")
@@ -30,13 +31,14 @@ class CategorieFAQController extends AbstractController
     /**
      * @Route("/admin/categoriesFaq/creer", name="admin_creer_categorieFaq", methods={"GET","POST"})
      */
-    public function creerCategorieFaq(Request $request): Response
+    public function creerCategorieFaq(Request $request,UserInterface $user): Response
     {
         $categorieFAQ = new CategorieFAQ();
         $form = $this->createForm(CategorieFAQType::class, $categorieFAQ);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $categorieFAQ->setIdAdministrateur($user);
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($categorieFAQ);
             $entityManager->flush();

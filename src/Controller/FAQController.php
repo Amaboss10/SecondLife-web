@@ -10,6 +10,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\User\UserInterface;
+
 /**
  * @Route("/secondLife", name="secondLife_")
  */
@@ -52,7 +54,7 @@ class FAQController extends AbstractController
      * @Route("/admin/faq/ajouter", name="admin_ajouter_faq")
      * @Route("/admin/faq/{id}/modifier", name="admin_modifier_faq")
      */
-    public function ajouterModifierFaq(FAQ $faq=null,Request $request): Response
+    public function ajouterModifierFaq(FAQ $faq=null,Request $request,UserInterface $user): Response
     {
         //si $faq est nulle
         if(!$faq){
@@ -69,7 +71,8 @@ class FAQController extends AbstractController
         if($form->isSubmitted() && $form->isValid()){
             //si c'est une creation/ajout de rubrique
             if(!$faq->getId()){
-                $faq->setDateProbleme(new \DateTime());
+                $faq->setDateProbleme(new \DateTime())
+                    ->setIdAdministrateur($user);
             }
             
             $entityManager = $this->getDoctrine()->getManager();

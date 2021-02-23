@@ -17,9 +17,9 @@
                 
             <div class="annonces">
                 {% for annonce in categorie.annonces %}
-                    <a href={{path('secondLife_afficher_annonce',{'id':annonce.id})}}>
+                    <a href={{path('secondLife_afficher_annonce',{'id':annonce.idAnnonce})}}>
                         <div class="annonce">
-                            <a href={{path('secondLife_afficher_annonce',{'id':annonce.id})}}><h4 class="titre_annonce">{{annonce.titreAnnonce}}</h4></a>
+                            <a href={{path('secondLife_afficher_annonce',{'id':annonce.idAnnonce})}}><h4 class="titre_annonce">{{annonce.titreAnnonce}}</h4></a>
                             
                             <div class="image_annonce">
                                 <img src={{annonce.imagesAnnonce.first()}} alt={{annonce.titreAnnonce}}>

@@ -35,8 +35,8 @@
                 <td>{{ utilisateur.dateNaissUser ? utilisateur.dateNaissUser|date('Y-m-d') : '' }}</td>
                 <td>{{ utilisateur.dateInscriptionUser ? utilisateur.dateInscriptionUser|date('Y-m-d H:i:s') : '' }}</td>
                 <td>
-                    <a href="{{ path('utilisateur_show', {'id_personne': utilisateur.id_personne}) }}">show</a>
-                    <a href="{{ path('utilisateur_edit', {'id_personne': utilisateur.id_personne}) }}">edit</a>
+                    <a href="{{ path('utilisateur_show', {'id_personne': utilisateur.idPersonne}) }}">show</a>
+                    <a href="{{ path('utilisateur_edit', {'id_personne': utilisateur.idPersonne}) }}">edit</a>
                 </td>
             </tr>
         {% else %}

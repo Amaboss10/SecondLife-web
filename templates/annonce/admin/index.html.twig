@@ -22,7 +22,7 @@
         <tbody>
         {% for annonce in annonces %}
             <tr>
-                <td>{{ annonce.id }}</td>
+                <td>{{ annonce.idAnnonce }}</td>
                 <td>{{ annonce.titreAnnonce }}</td>
                 <td>{{ annonce.descriptionAnnonce }}</td>
                 <td>{{ annonce.prixAnnonce }}</td>
@@ -31,8 +31,8 @@
                 <td>{{ annonce.datePubliAnnonce ? annonce.datePubliAnnonce|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ annonce.estValide ? 'Yes' : 'No' }}</td>
                 <td>
-                    <a href="{{ path('annonce_show', {'id': annonce.id}) }}">show</a>
-                    <a href="{{ path('annonce_edit', {'id': annonce.id}) }}">edit</a>
+                    <a href="{{ path('annonce_show', {'id': annonce.idAnnonce}) }}">show</a>
+                    <a href="{{ path('annonce_edit', {'id': annonce.idAnnonce}) }}">edit</a>
                 </td>
             </tr>
         {% else %}
