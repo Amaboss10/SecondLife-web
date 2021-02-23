@@ -21,7 +21,7 @@ class SousCategorieController extends AbstractController
      */
     public function index(SousCategorieRepository $sousCategorieRepository): Response
     {
-        return $this->render('sous_categorie/gerer_sous_categories.html.twig', [
+        return $this->render('sous_categorie/admin/gerer_sous_categories.html.twig', [
             'titre_page'=>'Sous-categories',
             'sous_categories' => $sousCategorieRepository->findAll(),
         ]);
@@ -44,7 +44,7 @@ class SousCategorieController extends AbstractController
             return $this->redirectToRoute('secondLife_admin_afficher_sous_categories_par_categorie',array('id'=>$sousCategorie->getCategorie()->getId()));
         }
 
-        return $this->render('sous_categorie/creer_sous_categorie.html.twig', [
+        return $this->render('sous_categorie/admin/creer_sous_categorie.html.twig', [
             'titre_page'=>'Créer une sous-catégorie',
             'sous_categorie' => $sousCategorie,
             'form' => $form->createView(),
@@ -56,7 +56,7 @@ class SousCategorieController extends AbstractController
      */
     public function afficherAnnoncesParSousCategorie(SousCategorie $sousCategorie): Response
     {
-        return $this->render('sous_categorie/afficher_annonces_par_sous_categorie.html.twig', [
+        return $this->render('sous_categorie/admin/afficher_annonces_par_sous_categorie.html.twig', [
             'titre_page'=>'Annonces de la sous-categorie "'.$sousCategorie->getNomSousCategorie(). '" ( catégorie "'.$sousCategorie->getCategorie()->getNomCategorie() .'")',
             'sous_categorie' => $sousCategorie,
             'nb_annonces'=> count($sousCategorie->getAnnonces())
@@ -77,7 +77,7 @@ class SousCategorieController extends AbstractController
             return $this->redirectToRoute('secondLife_admin_afficher_sous_categories_par_categorie',array('id'=>$sousCategorie->getCategorie()->getId()));
         }
 
-        return $this->render('sous_categorie/modifier_sous_categorie.html.twig', [
+        return $this->render('sous_categorie/admin/modifier_sous_categorie.html.twig', [
             'titre_page'=>'Modifier la sous-categorie',
             'sous_categorie' => $sousCategorie,
             'form' => $form->createView(),

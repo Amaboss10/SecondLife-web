@@ -68,7 +68,7 @@
                             <h2>Images</h2>
                             {% for image in annonce.imagesAnnonce %}
                                 <div>
-                                    <img src="{{'/images_annonce/'~image.lienPhotoAnnonce }}" alt="image annonce" width="150">
+                                    <img src="{{image.lienPhotoAnnonce }}" alt="image annonce" width="150">
                                     <!--pas encore fonctionnel-->
                                     <a href="{{ path('secondLife_supprimer_image_annonce', {id: image.id})}}" data-delete data-token="{{ csrf_token('delete' ~ image.id )}}">Supprimer</a>
                                 </div>
@@ -168,9 +168,9 @@
             <h2>{{titre}}</h2>
             <div class="resultats">
                 {% for annonce in annonces %}
-                    <a href={{path('secondLife_afficher_annonce',{'id':annonce.id})}}>
+                    <a href={{path('secondLife_afficher_annonce',{'id':annonce.idAnnonce})}}>
                         <div class="annonce">
-                            <a href={{path('secondLife_afficher_annonce',{'id':annonce.id})}}><h4 class="titre_annonce">{{annonce.titreAnnonce}}</h4></a>
+                            <a href={{path('secondLife_afficher_annonce',{'id':annonce.idAnnonce})}}><h4 class="titre_annonce">{{annonce.titreAnnonce}}</h4></a>
                             
                             <div class="image_annonce">
                                 <img src={{annonce.imagesAnnonce.first()}} alt={{annonce.titreAnnonce}}>

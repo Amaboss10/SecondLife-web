@@ -52,7 +52,7 @@
 
     <a href="{{ path('utilisateur_index') }}">back to list</a>
 
-    <a href="{{ path('utilisateur_edit', {'id_personne': utilisateur.id_personne}) }}">edit</a>
+    <a href="{{ path('utilisateur_edit', {'id_personne': utilisateur.idPersonne}) }}">edit</a>
 
     {{ include('utilisateur/_delete_form.html.twig') }}
 {% endblock %}

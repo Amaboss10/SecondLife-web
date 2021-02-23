@@ -5,7 +5,7 @@
 {% block body %}
     <h1>Modifier la Marque</h1>
 
-    {{ include('marque/_form.html.twig', {'button_label': 'Modifier'}) }}
+    {{ include('marque/admin/_form.html.twig', {'button_label': 'Modifier'}) }}
 
     <a href="{{ path('secondLife_admin_afficher_annonces_de_la_marque', {'id': marque.id}) }}">Afficher les annonces de la marques</a>
 
