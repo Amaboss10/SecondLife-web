@@ -3,9 +3,30 @@
 {% block title %}{{titre_page}}{% endblock %}
 
 {% block body %}
-    <h1>{{titre_page}}</h1>
+<style>
+    .row 
+    {
+        margin-top : 20px;
+    }
+</style>
 
-    {{ include('categorie/admin/_form.html.twig') }}
+<div class="container">
 
-    <a href="{{ path('secondLife_admin_gerer_categories') }}">Afficher toutes les categories</a>
+
+    <div class="row">
+        <h1>{{titre_page}}</h1>
+        <div class="col-xs-12">
+            {{ include('categorie/admin/_form.html.twig') }}
+
+            <a href="{{ path('secondLife_admin_gerer_categories') }}" class="btn btn-outline-secondary btn-sm"
+                role="button">Afficher toutes les categories</a>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
 {% endblock %}
