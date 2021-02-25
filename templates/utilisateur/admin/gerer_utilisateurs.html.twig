@@ -3,50 +3,56 @@
 {% block title %}Utilisateur index{% endblock %}
 
 {% block body %}
-    <h1>Utilisateur index</h1>
+<h1>Utilisateur index</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                
-                <th>Pseudo</th>
-                <th>Nom</th>
-                <th>Prenom</th>
-                <th>Mail</th>
-                <th>photo de profil</th>
-                <th>Adresse</th>
-                <th>Date naissance</th>
-                <th>Date inscription</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+
+            <th scope="col">Pseudo</th>
+            <th scope="col">Nom</th>
+            <th scope="col">Prenom</th>
+            <th scope="col">Mail</th>
+            <th scope="col">photo de profil</th>
+            <th scope="col">Adresse</th>
+            <th scope="col">Date naissance</th>
+            <th scope="col">Date inscription</th>
+            <th scope="col">actions</th>
+        </tr>
+    </thead>
+    <tbody>
         {% for utilisateur in utilisateurs %}
-            <tr>
-                
-                <td>{{ utilisateur.pseudoUser }}</td>
-                <td>{{ utilisateur.nomPersonne }}</td>
-                <td>{{ utilisateur.prenomPersonne }}</td>
-                <td>{{ utilisateur.mailPersonne }}</td>
-                <td><img src={{ utilisateur.lienImagePersonne }} alt="photo profil" width=100 height=75></td>
-                <td>{{ utilisateur.adresseUser }}</td>
-                <td>{{ utilisateur.dateNaissUser ? utilisateur.dateNaissUser|date('Y-m-d') : '' }}</td>
-                <td>{{ utilisateur.dateInscriptionUser ? utilisateur.dateInscriptionUser|date('Y-m-d H:i:s') : '' }}</td>
-                <td>
-                    <a class="btn btn-sm btn-outline-secondary" href="{{ path('secondLife_admin_afficher_utilisateur', {'id_personne': utilisateur.idPersonne}) }}">Afficher</a>
-                    <a class="btn btn-sm btn-outline-secondary" href="{{ path('secondLife_admin_afficher_utilisateur', {'id_personne': utilisateur.idPersonne}) }}">Contacter</a>
-                    
-                    {{ include('utilisateur/admin/_delete_form.html.twig') }}
-        
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="11">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+        <tr>
 
-    {#<a href="{{ path('utilisateur_new') }}">Create new</a>#}
+            <td>{{ utilisateur.pseudoUser }}</td>
+            <td>{{ utilisateur.nomPersonne }}</td>
+            <td>{{ utilisateur.prenomPersonne }}</td>
+            <td>{{ utilisateur.mailPersonne }}</td>
+            <td><img src={{ utilisateur.lienImagePersonne }} alt="photo profil" width=100 height=75></td>
+            <td>{{ utilisateur.adresseUser }}</td>
+            <td>{{ utilisateur.dateNaissUser ? utilisateur.dateNaissUser|date('Y-m-d') : '' }}</td>
+            <td>{{ utilisateur.dateInscriptionUser ? utilisateur.dateInscriptionUser|date('Y-m-d H:i:s') : '' }}
+            </td>
+            <td>
+                <div style="margin-bottom : 5px">
+                    <a class="btn btn-sm btn-outline-secondary"
+                        href="{{ path('secondLife_admin_afficher_utilisateur', {'id_personne': utilisateur.idPersonne}) }}">Afficher</a>
+                    <a class="btn btn-sm btn-outline-secondary"
+                        href="{{ path('secondLife_admin_afficher_utilisateur', {'id_personne': utilisateur.idPersonne}) }}">Contacter</a>
+                </div>
+                {{ include('utilisateur/admin/_delete_form.html.twig') }}
+                </div>
+
+            </td>
+        </tr>
+        {% else %}
+        <tr>
+            <td colspan="11">no records found</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+
+{#<a href="{{ path('utilisateur_new') }}">Create new</a>#}
 {% endblock %}
