@@ -4,24 +4,24 @@
 
 {% block body %}
     <div class="row">
-        <div class="col-xl-2 col-sm-12 col-12" style=" margin:1%">
+        <div class="col-xl-2 col-sm-12 col-12 bloc">
             <!--pub-->
-            <div class="row" style="padding:1%">
-                <p class="col-xl-12 col-sm-3 col-3" style="border-style:solid; border-width:1px; border-color:#818D92">
+            <div class="row sous_bloc ">
+                <p class="pub col-xl-12 col-sm-3 col-3" >
                     <br>
                     <br>
                     <br>
                     <br>
                     <br>
                 </p>
-                <p class="col-xl-12  offset-xl-0  offset-sm-1 offset-1 col-sm-3 col-3" style="border-style:solid; border-width:1px; border-color:#818D92">
+                <p class="pub col-xl-12  offset-xl-0  offset-sm-1 offset-1 col-sm-3 col-3">
                     <br>
                     <br>
                     <br>
                     <br>
                     <br>
                 </p>
-                <p class="col-xl-12 offset-xl-0  offset-sm-1 offset-1 col-sm-3 col-3" style="border-style:solid; border-width:1px; border-color:#818D92">
+                <p class="pub col-xl-12 offset-xl-0  offset-sm-1 offset-1 col-sm-3 col-3">
                     <br>
                     <br>
                     <br>
@@ -30,14 +30,14 @@
                 </p>
             </div>
         </div>
-        <div class="col-xl-7 col-sm-12 col-12" style="margin:1%">
-            <h1 style="padding-bottom:0.5%">{{ titre_page }}</h1>
-            <div class="row" style="margin:1%">
+        <div class="col-xl-7 col-sm-12 col-12 bloc">
+            <h1>{{ titre_page }}</h1>
+            <div class="row bloc">
                 <div class="col-sm-12 col-12" >
                 {% for favoris in mes_favoris %}
-                    <div class="favoris row" style="border-style:solid; border-width:1px; border-color:#818D92; padding:3%; margin-bottom:5%">
+                    <div class="favoris row">
                         <div class="col">
-                            <img src="logo_site.png" class="img-thumbnail" alt="Image de l'annonce" style="width:100px; height:100px">
+                            <img src="logo_site.png" class="img-thumbnail" alt="Image de l'annonce">
                         </div>
                         <div class="col">
                             <p>{{favoris.idAnnonce.titreAnnonce}}</p>
@@ -45,7 +45,7 @@
                             <p>{{favoris.idAnnonce.sousCategorie}} </p>        
                             <p>{{favoris.idAnnonce.datePubliAnnonce|date('d/m/Y')}} </p>
                         </div>
-                        <div class="col" style="text-align:center">
+                        <div class="col bouton">
                             <p class="prix_annonce">{{favoris.idAnnonce.prixAnnonce}} Euros</p>
                             <a class="btn"  href={{path('secondLife_messagerie')}} class="link-secondary"><button type="button" class="btn btn-sm btn-outline-secondary">Contacter le vendeur</button></a>
                             {{ include('favoris/_delete_form.html.twig') }}
@@ -118,24 +118,24 @@
             </div>
         #}
         </div>
-        <div class="col-xl-2 col-sm-12 col-12" style=" margin:1%">
+        <div class="col-xl-2 col-sm-12 col-12 bloc">
             <!--pub-->
-            <div class="row" style="padding:1%">
-                <p class="col-xl-12 col-sm-3 col-3" style="border-style:solid; border-width:1px; border-color:#818D92">
+            <div class="row sous_bloc ">
+                <p class="pub col-xl-12 col-sm-3 col-3" >
                     <br>
                     <br>
                     <br>
                     <br>
                     <br>
                 </p>
-                <p class="col-xl-12  offset-xl-0  offset-sm-1 offset-1 col-sm-3 col-3" style="border-style:solid; border-width:1px; border-color:#818D92">
+                <p class="pub col-xl-12  offset-xl-0  offset-sm-1 offset-1 col-sm-3 col-3">
                     <br>
                     <br>
                     <br>
                     <br>
                     <br>
                 </p>
-                <p class="col-xl-12 offset-xl-0  offset-sm-1 offset-1 col-sm-3 col-3" style="border-style:solid; border-width:1px; border-color:#818D92">
+                <p class="pub col-xl-12 offset-xl-0  offset-sm-1 offset-1 col-sm-3 col-3">
                     <br>
                     <br>
                     <br>
@@ -143,6 +143,5 @@
                     <br>
                 </p>
             </div>
-        </div>
     </div>
 {% endblock %}

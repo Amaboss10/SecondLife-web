@@ -3,26 +3,25 @@
 {% block title %}{{titre_page}}{% endblock %}
 
 {% block body %}
-    <div class="row" style="margin:1%">
-        <div class="col-xl-2 col-sm-6 col-12" style="text-align:center; padding-bottom:0.5%; margin:2%">
-            <h3 style="padding-bottom:1%">{{utilisateur.pseudoUser}}</h3>
+    <div class="row bloc">
+        <div class="col-xl-2 col-sm-6 col-12 profil">
+            <h3>{{utilisateur.pseudoUser}}</h3>
             <img src={{utilisateur.lienImagePersonne}} alt="image_de_profil"></a><br>
             <h6 class="pseudo">Pseudo : {{utilisateur.pseudoUser}}</h6>
             <h6 class="adresse">Localisation : {{utilisateur.adresseUser}}</h6>
             <h6 class="nb_Annonces_publiees">Nombre d'annonces publiées : {{utilisateur.annonces|length}}</h6>
             <h6 class="ancieneté">Inscrit depuis  {{utilisateur.dateInscriptionUser| date('M Y')}}</h6>
-            <br>
-            <button type="submit" class="btn btn-sm btn-outline-secondary">contacter l'utilisateur</button>
+            <button type="submit" class="haut_bouton btn btn-sm btn-outline-secondary">contacter l'utilisateur</button>
         </div>
 
         <div class="col-xl-7 col-sm-6 col-12">
-            <div style="margin:2%">
+            <div class="bloc">
                 <!--Annonces de l'utilisateur-->
-                <h3 style="padding-bottom:0.5%">Annonces de l'utilisateur</h3>
+                <h3>Annonces de l'utilisateur</h3>
                 {% if utilisateur.annonces %}
                     {% for annonce in utilisateur.annonces %}
                     <a href={{path('secondLife_afficher_annonce',{'id':annonce.idAnnonce})}}>
-                        <div class="annonce row" style="border-style:solid; border-width:1px; border-color:#818D92; margin-bottom:3%; padding:1.5%">
+                        <div class="annonce row">
                             <a href={{path('secondLife_afficher_annonce',{'id':annonce.idAnnonce})}} class="link-dark"><h4 class="titre_annonce">{{annonce.titreAnnonce}}</h4></a>
                             
                             <div class="col image_annonce">
@@ -36,16 +35,16 @@
                                 <span class="date_publication_annonce">{{annonce.datePubliAnnonce|date('d/m/Y')}}</span>
                             </div>
 
-                            <div class="col autres_infos_annonces" style="text-align:center">
-                                <div style="text-align:center; padding-bottom:2%">
+                            <div class="col autres_infos_annonces bouton">
+                                <div class="autres_infos">
                                     <span class="prix_annonce" >{{annonce.prixAnnonce | number_format(0, '${.}', '${,}')}} €</span>
                                 </div>
 
-                                <form class="lien_ajouter_favoris" style="text-align:center; padding-bottom:2%"  action={{ path('secondLife_ajouter_aux_favoris_utilisateur',{'id':annonce.idAnnonce}) }} method='POST'>
-                                    <button class="btn btn-sm btn-outline-secondary">Ajouter aux favoris</button>
+                                <form class="lien_ajouter_favoris autre_infos" action={{ path('secondLife_ajouter_aux_favoris_utilisateur',{'id':annonce.idAnnonce}) }} method='POST'>
+                                    <button class="bas_bouton btn btn-sm btn-outline-secondary">Ajouter aux favoris</button>
                                 </form>
-                                <div style="text-align:center">
-                                    <a href="" class="lien_contacter_vendeur"><button class="btn btn-sm btn-outline-secondary btn_contacter_vendeur">Contacter le vendeur</button></a>
+                                <div class="autres_infos">
+                                    <a href="" class="bouton lien_contacter_vendeur"><button class="btn btn-sm btn-outline-secondary btn_contacter_vendeur">Contacter le vendeur</button></a>
                                 </div>
                             </div>
                         </div>
@@ -56,13 +55,13 @@
                 {% endif %}      
             </div>
 
-            <div style="margin:2%">
+            <div class="bloc">
                 <!--QUELQUES SUGGESTIONS-->
                 {% if annoncesSuggerees %}
                     <h3>Annonces pouvant vous interresser</h3>
                     {% for annonce in annoncesSuggerees %}
                     <a href={{path('secondLife_afficher_annonce',{'id':annonce.idAnnonce})}}>
-                        <div class="annonce row" style="border-style:solid; border-width:1px; border-color:#818D92; margin-bottom:3%; padding:1.5%">
+                        <div class="annonce row">
                             <a href={{path('secondLife_afficher_annonce',{'id':annonce.idAnnonce})}} class="link-dark"><h4 class="titre_annonce">{{annonce.titreAnnonce}}</h4></a>
                             
                             <div class="col image_annonce">
@@ -76,15 +75,15 @@
                                 <span class="date_publication_annonce">{{annonce.datePubliAnnonce|date('d/m/Y')}}</span>
                             </div>
 
-                            <div class="col autres_infos_annonces" style="text-align:center">
-                                <div style="text-align:center; padding-bottom:2%">
+                            <div class="col autres_infos_annonces bouton" >
+                                <div class="autres_infos">
                                     <span class="prix_annonce" >{{annonce.prixAnnonce | number_format(0, '${.}', '${,}')}} €</span>
                                 </div> 
-                                <form class="lien_ajouter_favoris"  action={{ path('secondLife_ajouter_aux_favoris_utilisateur',{'id':annonce.idAnnonce}) }} method='POST'>
+                                <form class="lien_ajouter_favoris bas_bouton"  action={{ path('secondLife_ajouter_aux_favoris_utilisateur',{'id':annonce.idAnnonce}) }} method='POST'>
                                     <button class="btn btn-sm btn-outline-secondary">Ajouter aux favoris</button>
                                 </form>
                                 
-                                <a href="" class="lien_contacter_vendeur"><button class="btn btn-sm btn-outline-secondary btn_contacter_vendeur">Contacter le vendeur</button></a>
+                                <a href="" class="lien_contacter_vendeur bas_bouton"><button class="btn btn-sm btn-outline-secondary btn_contacter_vendeur">Contacter le vendeur</button></a>
                             </div>
                         </div>
                     </a>
@@ -94,22 +93,22 @@
         </div>
         <div class="col-xl-2 col-sm-12 col-12">
             <!--pub-->
-            <div class="row" style="padding:1%">
-                <p class="col-xl-12 col-sm-3 col-3" style="border-style:solid; border-width:1px; border-color:#818D92">
+            <div class="row sous_bloc">
+                <p class="pub col-xl-12 col-sm-3 col-3">
                     <br>
                     <br>
                     <br>
                     <br>
                     <br>
                 </p>
-                <p class="col-xl-12  offset-xl-0  offset-sm-1 offset-1 col-sm-3 col-3" style="border-style:solid; border-width:1px; border-color:#818D92">
+                <p class="pub col-xl-12  offset-xl-0  offset-sm-1 offset-1 col-sm-3 col-3">
                     <br>
                     <br>
                     <br>
                     <br>
                     <br>
                 </p>
-                <p class="col-xl-12 offset-xl-0  offset-sm-1 offset-1 col-sm-3 col-3" style="border-style:solid; border-width:1px; border-color:#818D92">
+                <p class="pub col-xl-12 offset-xl-0  offset-sm-1 offset-1 col-sm-3 col-3">
                     <br>
                     <br>
                     <br>

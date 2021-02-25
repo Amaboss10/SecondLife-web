@@ -3,17 +3,17 @@
 {% block title %}{{titre_page}}{% endblock %}
 
 {% block body %}
-    <div class="row">
-        <div class="col-xl-10 xol-sm-12 xol-12" style="padding:2%">
+    <div class="row bloc">
+        <div class="col-xl-10 col-sm-12 col-12 sous_bloc">
             <div class="row">
-                <h1 class="col" style="padding-bottom:0.5%">{{ titre_page }}</h1>
-                <form action={{ path('secondLife_afficher_mon_profil',{'id_personne':app.user }) }} method='GET'>
-                    <button type="submit" class="col-xl-2 col-sm-2 col-4 offset-xl-10 offset-sm-4 btn btn-sm btn-outline-secondary" style="margin-right:2%">voir mon profil</button>
+                <h1 class="col">{{ titre_page }}</h1>
+                <form class=" bouton_droit" action={{ path('secondLife_afficher_mon_profil',{'id_personne':app.user }) }} method='GET'>
+                    <button type="submit" class="col-xl-2 col-sm-2 col-4 offset-xl-10 offset-sm-4 btn btn-sm btn-outline-secondary">voir mon profil</button>
                 </form>
                 
             </div>
             <br>
-            <div class="row infos_personnelles" style="border-style:solid; border-width:1px; border-color:#818D92; margin:1%; padding:1%">
+            <div class="row infos_personnelles">
                 <h3 style="padding-bottom:0.5%"> Mes informations personnelles <h3>
                 <div class="row">
                     <input class="col-xl-3 col-sm-6 col-12 form-label col-form-label-sm " type="file" id="image" name="image">
@@ -35,15 +35,15 @@
                     </div>
                 </div>
             </div>
-            <div class="row gerer_annonces" style="border-style:solid; border-width:1px; border-color:#818D92; margin:1%; margin-top:2%; margin-bottom:2%; padding:1%">
-                <h3  style="padding-bottom:0.5%"> Gérer mes annonces </h3>
+            <div class="row gerer_annonces">
+                <h3> Gérer mes annonces </h3>
                 <div class="row justify-content-around" style="margin-left:1%">
                     <a class="btn"  href={{path('secondLife_creer_annonce')}} class="link-secondary"><button type="button" class="col-xl-2 col-sm-4 col-5 btn btn-sm btn-outline-secondary">Ajouter une annonce</button></a>
                     <a class="btn"  href={{path('secondLife_gerer_mes_annonces')}} class="link-secondary"><button type="button" class="col-xl-2 col-sm-4 col-5 btn btn-sm btn-outline-secondary">Gérer mes annonces </button></a>
                 </div>
             </div>
-            <div class="row parametres" style="border-style:solid; border-width:1px; border-color:#818D92; margin:1%; padding:1%">
-                <h3  style="padding-bottom:0.5%">Paramètres</h3>
+            <div class="row parametres">
+                <h3>Paramètres</h3>
                 <div class="col-xl-4 col-sm-4 col-12">
                     <input type="email" class="form-control form-text bg-light" placeholder="Email : name@exemple.com">
                     <br>
@@ -62,31 +62,31 @@
                         <button type="button" class="col btn btn-sm btn-outline-secondary">modifier le mot de passe</button>
                     </div>
                 </div>
-                <div class="col-xl-4 col-sm-4 col-12" style="margin-top:4%;vertical-align:middle">
-                    <div style="text-align:center">
+                <div class="col-xl-4 col-sm-4 col-12 supprimer">
+                    <div class="bouton">
                         <button type="button" class="col btn btn-sm btn-outline-secondary">supprimer mon compte</button>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-xl-2 col-sm-12 col-12 pub" >
+        <div class="col-xl-2 col-sm-12 col-12" >
             <!--pub-->
-           <div class="row" style="padding:1%">
-                <p class="col-xl-12 col-sm-3 col-3" style="border-style:solid; border-width:1px; border-color:#818D92">
+           <div class="row sous_bloc" >
+                <p class="pub col-xl-12 col-sm-3 col-3">
                     <br>
                     <br>
                     <br>
                     <br>
                     <br>
                 </p>
-                <p class="col-xl-12  offset-xl-0  offset-sm-1 offset-1 col-sm-3 col-3" style="border-style:solid; border-width:1px; border-color:#818D92">
+                <p class="pub col-xl-12  offset-xl-0  offset-sm-1 offset-1 col-sm-3 col-3">
                     <br>
                     <br>
                     <br>
                     <br>
                     <br>
                 </p>
-                <p class="col-xl-12 offset-xl-0  offset-sm-1 offset-1 col-sm-3 col-3" style="border-style:solid; border-width:1px; border-color:#818D92">
+                <p class="pub col-xl-12 offset-xl-0  offset-sm-1 offset-1 col-sm-3 col-3">
                     <br>
                     <br>
                     <br>

@@ -108,3 +108,91 @@ h1,h2,h3,.h, .espace_bas{
 .label{
     margin-top:2%;
 }
+
+.index{
+    margin:1%; 
+    padding:1%; 
+    border-style:groove; 
+    border-width:2px; 
+    border-color:#818D92;
+}
+
+.sous_index{
+    padding-bottom:0.5%; 
+    padding-top:7%;
+}
+
+.prix{
+    padding-left:0%;
+}
+
+.recherche{
+    text-align:center;
+    margin-top:10%;
+    margin-bottom:5%;
+}
+
+.no_annonces{
+    margin-top:10%; 
+    text-align:center;
+}
+
+.favoris{
+    border-style:solid; 
+    border-width:1px; 
+    border-color:#818D92; 
+    padding:3%; 
+    margin-bottom:5%;
+}
+
+.infos_personnelles,.parametres{
+    border-style:solid;
+    border-width:1px; 
+    border-color:#818D92;
+     margin:1%; 
+     padding:1%;
+}
+
+.gerer_annonces{
+    border-style:solid; 
+    border-width:1px; 
+    border-color:#818D92; 
+    margin:1%; 
+    margin-top:2%; 
+    margin-bottom:2%; 
+    padding:1%;
+}
+
+.supprimer{
+    margin-top:4%;
+    vertical-align:middle;
+}
+
+.profil{
+    text-align:center;
+    padding-bottom:0.5%; 
+    margin:2%;
+}
+
+.connexion{
+    padding-bottom:2%; 
+    text-align:center;
+}
+
+.inscription{
+    margin:2%; 
+    padding:1%;
+}
+
+.inscription_elem{
+    margin: auto; 
+    margin-top:6%;
+     margin-bottom:6%;
+}
+
+.p1{
+    font-size:xx-small;
+}
+.p2{
+    font-size:x-small;
+}

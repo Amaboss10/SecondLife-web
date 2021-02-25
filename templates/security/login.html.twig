@@ -4,8 +4,8 @@
 
 {% block body %}
     <div class="row justify-content-center">
-        <div class="col-xl-4 col-sm-12 col-12" style="margin:2%">
-            <h1 style="padding-bottom:2%; text-align:center">Se connecter</h1>
+        <div class="col-xl-4 col-sm-12 col-12 bloc">
+            <h1 class="connexion">Se connecter</h1>
 
             <form action="{{ path('secondlife_connexion') }}" method="post">
                 <div class="row">
@@ -18,7 +18,7 @@
                     <input type="password" name="_password" class="col form-control form-text bg-light"  required>
                 </div>
                 <br>
-                <div style="text-align:center; margin-top:2%">
+                <div class="bouton haut_bouton">
                     <input type="submit" class="btn btn-lg btn-outline-success" value="Se connecter">
                 </div>
             </form>

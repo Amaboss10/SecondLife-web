@@ -4,30 +4,30 @@
 
 {% block body %}
     <div class="row">
-        <div class="col-xl-2 col-sm-4 col-12" style="margin:1%; padding:1%; border-style:groove; border-width:2px; border-color:#818D92">
+        <div class="col-xl-2 col-sm-4 col-12 index">
             {{form_start(form)}}
             {{form_errors(form)}}
 
-            <h2 class="form-label col-form-label-lg" style="padding-bottom:0.5%">Trier par :</h2>
+            <h2 class="form-label col-form-label-lg">Trier par :</h2>
                 {{form_errors(form.tri)}}
                 {{form_widget(form.tri,{'attr':{'class':'col-12 form-control form-select form-select-sm bg-light'}})}}
             <br>
             <br>
-            <h2 class="form-label col-form-label-lg" style="padding-bottom:0.5%">Filtrer par :</h2>
-                {{form_label(form.q,"Mot clé :",{'label_attr':{'class':'form-label col-form-label-sm ','style':'padding-bottom:0.5%'}})}}
+            <h2 class="form-label col-form-label-lg">Filtrer par :</h2>
+                {{form_label(form.q,"Mot clé :",{'label_attr':{'class':'form-label col-form-label-sm h'}})}}
                 {{form_errors(form.q)}}
-                {{form_widget(form.q,{'attr':{'class':'form-control form-text bg-light','style':'margin:1%'}})}}
+                {{form_widget(form.q,{'attr':{'class':'form-control form-text bg-light bloc'}})}}
                 
-                {{form_label(form.categories,"Catégories:",{'label_attr':{'class':'form-label col-form-label-sm','style':'padding-bottom:0.5%; padding-top:7%'}})}}
+                {{form_label(form.categories,"Catégories:",{'label_attr':{'class':'form-label col-form-label-sm sous_index'}})}}
                 {{form_errors(form.categories)}}
-                {{form_widget(form.categories,{'attr':{'class':'categorie form-control form-select form-select-sm bg-light','style':'margin:1%'}})}}
+                {{form_widget(form.categories,{'attr':{'class':'categorie form-control form-select form-select-sm bg-light bloc'}})}}
 
-                {{form_label(form.sous_categories,"Sous-Catégories:",{'label_attr':{'class':'form-label col-form-label-sm','style':'padding-bottom:0.5%; padding-top:7%'}})}}
+                {{form_label(form.sous_categories,"Sous-Catégories:",{'label_attr':{'class':'form-label col-form-label-sm sous_index'}})}}
                 {{form_errors(form.sous_categories)}}
-                {{form_widget(form.sous_categories,{'attr':{'class':'sous_categorie form-control form-select form-select-sm bg-light','style':'margin:1%'}})}}
+                {{form_widget(form.sous_categories,{'attr':{'class':'sous_categorie form-control form-select form-select-sm bg-light bloc'}})}}
 
-                <div class="row" style="margin:1%">
-                    <label class="form-label col-form-label-sm" style="margin-left:0%; padding-left:0%; padding-top:7%">Prix :</label>
+                <div class="row bloc">
+                    <label class="form-label col-form-label-sm sous_index prix">Prix :</label>
                     {{form_errors(form.prix_min)}}
                     {{form_widget(form.prix_min,{'attr':{'class':'col form-control form-text bg-light'}})}}
 
@@ -35,18 +35,18 @@
                     {{form_widget(form.prix_max,{'attr':{'class':'col form-control form-text bg-light'}})}}
                 </div>
 
-                {{form_label(form.modes_livraison,"Modes de livraison :",{'label_attr':{'class':"form-label col-form-label-sm",'style':'padding-bottom:0.5%; padding-top:7%'}})}}
+                {{form_label(form.modes_livraison,"Modes de livraison :",{'label_attr':{'class':"form-label col-form-label-sm sous_index"}})}}
                 {{form_errors(form.modes_livraison)}}
-                {{form_widget(form.modes_livraison,{'attr':{'class':'form-control form-select form-select-sm bg-light','style':'margin:1%'}})}}
+                {{form_widget(form.modes_livraison,{'attr':{'class':'form-control form-select form-select-sm bg-light bloc'}})}}
 
-                {{form_label(form.marques,"Marques :",{'label_attr':{'class':'form-label col-form-label-sm','style':'padding-bottom:0.5%; padding-top:7%'}})}}
+                {{form_label(form.marques,"Marques :",{'label_attr':{'class':'form-label col-form-label-sm sous_index'}})}}
                 {{form_errors(form.marques)}}
-                {{form_widget(form.marques,{'attr':{'class':'form-control form-select form-select-sm bg-light','style':'margin:1%'}})}}
+                {{form_widget(form.marques,{'attr':{'class':'form-control form-select form-select-sm bg-light bloc'}})}}
 
-                {{form_label(form.lieux,"Ville :",{'label_attr':{'class':'form-label col-form-label-sm','style':'padding-top:7%'}})}}
+                {{form_label(form.lieux,"Ville :",{'label_attr':{'class':'form-label col-form-label-sm sous_index'}})}}
                 {{form_errors(form.lieux)}}
                 {{form_widget(form.lieux,{'attr':{'class':'form-control form-text  bg-light'}})}}
-                <div style="text-align:center; margin-top:10%; margin-bottom:5%">
+                <div class="recherche">
                     {{form_widget(form.save,{'label':'Rechercher', 'attr':{'class':'btn btn-lg btn-outline-success'}})}}
                 </div>
 
@@ -102,10 +102,10 @@
             #}
         </div>
         
-        <div class="col-xl-7 col-sm-7 col-12" style="margin:1%">
+        <div class="col-xl-7 col-sm-7 col-12 bloc" >
             <!--annonces-->
             {% if annonces==null %}
-            <h1 class="no_annonces" style="margin-top:10%; text-align:center">Pas d'annonces correspondantes</h1>
+            <h1 class="no_annonces">Pas d'annonces correspondantes</h1>
             {% else %}
                 <p class="nb_annonces">{{nb_results}} résultats</p>
             {% endif %}
@@ -115,7 +115,7 @@
                     {# on affiche uniquement les annonces qui n'ont pas encore été vendues#}
                     {% if annonce.etatAnnonce== 'Disponible' %}
                     <a href={{path('secondLife_afficher_annonce',{'id':annonce.idAnnonce})}}>
-                        <div class="annonce row" style="border-style:solid; border-width:1px; border-color:#818D92; margin-bottom:3%; padding:1.5%">
+                        <div class="annonce row">
                             <a href={{path('secondLife_afficher_annonce',{'id':annonce.idAnnonce})}} class="link-dark"><h4 class="titre_annonce">{{annonce.titreAnnonce}}</h4></a>
                             
                             <div class="col image_annonce">
@@ -130,14 +130,14 @@
                             </div>
 
                             <div class="col autres_infos_annonces">
-                                <div style="text-align:center; padding-bottom:2%">
+                                <div class="autres_infos">
                                     <span class="prix_annonce" >{{annonce.prixAnnonce | number_format(0, '${.}', '${,}')}} €</span>
                                 </div>
-                                <form class="lien_ajouter_favoris"  style="text-align:center; padding-bottom:2%" action={{ path('secondLife_ajouter_aux_favoris_utilisateur',{'id':annonce.idAnnonce}) }} method='POST'>
+                                <form class="lien_ajouter_favoris autres_infos" action={{ path('secondLife_ajouter_aux_favoris_utilisateur',{'id':annonce.idAnnonce}) }} method='POST'>
                                     <button class="btn btn-sm btn-outline-secondary">Ajouter aux favoris</button>
                                 </form>
                                 
-                                <div  style="text-align:center">
+                                <div class="autres_infos">
                                     <a href="" class="lien_contacter_vendeur"><button class="btn_contacter_vendeur">Contacter le vendeur</button></a>
                                 </div>
                             </div>
@@ -150,24 +150,24 @@
 
         {#<div class="pagination">{{knp_pagination_render(annonces)}}</div>
         #}
-        <div class="col-xl-2 col-sm-12 col-12" style="margin:1%">
+        <div class="col-xl-2 col-sm-12 col-12 bloc" >
             <!--pub-->
-            <div class="row" style="padding:1%">
-                <p class="col-xl-12 col-sm-3 col-3" style="border-style:solid; border-width:1px; border-color:#818D92">
+            <div class="row sous_bloc">
+                <p class="pub col-xl-12 col-sm-3 col-3">
                     <br>
                     <br>
                     <br>
                     <br>
                     <br>
                 </p>
-                <p class="col-xl-12  offset-xl-0  offset-sm-1 offset-1 col-sm-3 col-3" style="border-style:solid; border-width:1px; border-color:#818D92">
+                <p class="pub col-xl-12  offset-xl-0  offset-sm-1 offset-1 col-sm-3 col-3">
                     <br>
                     <br>
                     <br>
                     <br>
                     <br>
                 </p>
-                <p class="col-xl-12 offset-xl-0  offset-sm-1 offset-1 col-sm-3 col-3" style="border-style:solid; border-width:1px; border-color:#818D92">
+                <p class="pub col-xl-12 offset-xl-0  offset-sm-1 offset-1 col-sm-3 col-3">
                     <br>
                     <br>
                     <br>
