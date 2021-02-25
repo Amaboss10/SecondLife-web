@@ -1,0 +1,15 @@
+header,footer{
+    text-align:center;
+}
+ul{
+    vertical-align: middle;
+}
+
+.bouton_cacher{
+    border:none; 
+    color:white;
+}
+
+h5{
+    padding-bottom:1%;
+}

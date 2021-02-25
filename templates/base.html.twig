@@ -5,10 +5,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>{% block title %}{% endblock %}</title>
         {% block stylesheets %}{{ encore_entry_link_tags('app') }}{% endblock %}
-       <!--<link rel="stylesheet" href="./assets/styles/style.css">-->
+        <link rel="stylesheet" href="{{asset('style_user.css')}}">
     </head>
     <body class="container-fluid">
-        <header class="row" style="text-align:center">
+        <header class="row" >
            
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
                 <!--le logo-->
@@ -29,7 +29,7 @@
                 </button>
 
                 <div class="col collapse navbar-collapse" id="navbarSupportedContent" >
-                    <ul class="row navbar-nav menu" style="vertical-align:middle">
+                    <ul class="row navbar-nav menu">
 {#                   
                         <li class="col nav-item page_creer_annonce"><a class="nav-link" href={{path('secondLife_creer_annonce')}} class="link-secondary">créer une annonce</a></li>
                         <li class=" col nav-item page_faq"><a class="nav-link" href={{path('secondLife_faq')}} class="link-secondary">FAQ/Aide</a></li>
@@ -67,14 +67,18 @@
             {% block body %}{% endblock %}
         </div>
 
-        <footer class="row bg-dark text-white" style="text-align:center">
+        <footer class="row bg-dark text-white">
             <div class="col a_propos col-xl-3 col-sm-6 col-6">
-                <h5 class="titre_section_footer" style="padding-bottom:2%">A propos</h3>
-                <span class="qui_sommes_nous"><a href={{path('secondLife_qui_sommes_nous')}} class="link-secondary">Qui sommes-nous?</a></span>    
+                <button class="bg-dark bouton_cacher" type="button" data-bs-toggle="collapse" data-bs-target="#apropos" aria-controls="apropos" aria-expanded="false">
+                    <h5 class="titre_section_footer" style="padding-bottom:2%">A propos</h5>
+                </button>
+                <div class="collapse" id="apropos">
+                    <span class="qui_sommes_nous apropos" ><a href={{path('secondLife_qui_sommes_nous')}} class="link-secondary">Qui sommes-nous?</a></span>    
+                </div>
             </div>
 
             <div class="col reseaux_sociaux  col-xl-3 col-sm-6 col-6">
-                <h5 class="titre_section_footer" style="padding-bottom:0.5%">Reseaux sociaux</h3>
+                <h5 class="titre_section_footer">Reseaux sociaux</h3>
                 <div>
                     <div class="row" style="margin:10%">
                         <a href="https://www.facebook.com/" target="blank" class="facebook col"><img src="../../logo_facebook.png" alt="logo_facebook"></a><br>
@@ -88,7 +92,7 @@
             </div>
 
             <div class="col informations_legales  col-xl-3 col-sm-6 col-6">
-                <h5 class="titre_section_footer" style="padding-bottom:0.5%">Informations légales</h3>
+                <h5 class="titre_section_footer">Informations légales</h3>
                 <div>
                     <span class="mentions_legales"><a href={{path('secondLife_mentions_legales')}} class="link-secondary">Mentions légales</a></span><br>     
                     <span class="conditions_generales_utilisation"><a href={{path('secondLife_conditions_generales_utilisation')}} class="link-secondary">Conditions générales d'utilisation</a></span>
@@ -96,7 +100,7 @@
             </div>
 
             <div class="col applications_mobiles  col-xl-3 col-sm-6 col-6">
-                <h5 class="titre_section_footer" style="padding-bottom:0.5%">Applications mobiles</h3>
+                <h5 class="titre_section_footer">Applications mobiles</h3>
                 <div>
                     <div class="row"  style="margin:10%">
                         <a href="https://www.playstore.com" target="blank" class="lien_application "><img src="../../image_googleplay.png" alt="image_playstore"></a><br>
