@@ -4,10 +4,10 @@
 
 {% block body %}
     <div class="row">
-        <div class="col-xl-8 col-sm-12 col-12"  style="margin:1%">
-            <div style="margin-bottom:1%">
+        <div class="col-xl-8 col-sm-12 col-12 bloc">
+            <div class="bloc">
                 <div class="row">
-                    <h1 class="col" style="padding-bottom:0.5%">{{ titre_page }}</h1>
+                    <h1 class="col">{{ titre_page }}</h1>
 
                     <form class="btn col offset-xl-6 col-xl-3"  action={{path('secondLife_creer_annonce')}} method='GET' class="link-secondary">
                         <button type="submit" class="btn btn-lg btn-outline-secondary">cree une annonce</button>
@@ -21,7 +21,7 @@
                 <p>Vous avez {{nb_annonces}} annonces</p>
                 {% for annonce in mesAnnonces %}
                 <a href={{path('secondLife_afficher_annonce',{'id':annonce.idAnnonce})}}>
-                    <div class="annonce row" style="border-style:solid; border-width:1px; border-color:#818D92; margin-bottom:3%; padding:1.5%">
+                    <div class="annonce row">
                         <a href={{path('secondLife_afficher_annonce',{'id':annonce.idAnnonce})}} class="link-dark"><h4 class="titre_annonce">{{annonce.titreAnnonce}}</h4></a>
                         
                         <div class="col image_annonce">
@@ -36,10 +36,10 @@
                         </div>
 
                         <div class="col autres_infos_annonces">
-                            <div style="text-align:center; padding-bottom:2%">
+                            <div class="autres_infos">
                                 <span class="prix_annonce" >{{annonce.prixAnnonce | number_format(0, '${.}', '${,}')}} €</span>
                             </div>
-                            <form class="lien_ajouter_favoris" style="text-align:center; padding-bottom:2%"  action={{ path('secondLife_ajouter_aux_favoris_utilisateur',{'id':annonce.idAnnonce}) }} method='POST'>
+                            <form class="lien_ajouter_favoris autres_infos"  action={{ path('secondLife_ajouter_aux_favoris_utilisateur',{'id':annonce.idAnnonce}) }} method='POST'>
                                 <button class="btn btn-sm btn-outline-secondary" >Ajouter aux favoris</button>
                             </form>
 
@@ -49,7 +49,7 @@
                             </form>
                             {% endif %}
                             
-                            <div style="text-align:center">
+                            <div class="autres_infos">
                                 <a href="" class="lien_contacter_vendeur"><button class="btn btn-sm btn-outline-secondary btn_contacter_vendeur" >Contacter le vendeur</button></a>
                             </div>
                         </div>
@@ -62,24 +62,24 @@
             </div>
         </div>
 
-        <div class="col-xl-3 col-sm-12 col-12" style="margin:1%">
+        <div class="col-xl-3 col-sm-12 col-12 bloc">
             <!--pub-->
-           <div class="row" style="padding:1%">
-                <p class="col-xl-12 col-sm-3 col-3" style="border-style:solid; border-width:1px; border-color:#818D92">
+           <div class="row sous_bloc">
+                <p class="pub col-xl-12 col-sm-3 col-3" >
                     <br>
                     <br>
                     <br>
                     <br>
                     <br>
                 </p>
-                <p class="col-xl-12  offset-xl-0  offset-sm-1 offset-1 col-sm-3 col-3" style="border-style:solid; border-width:1px; border-color:#818D92">
+                <p class="pub col-xl-12  offset-xl-0  offset-sm-1 offset-1 col-sm-3 col-3" >
                     <br>
                     <br>
                     <br>
                     <br>
                     <br>
                 </p>
-                <p class="col-xl-12 offset-xl-0  offset-sm-1 offset-1 col-sm-3 col-3" style="border-style:solid; border-width:1px; border-color:#818D92">
+                <p class="pub col-xl-12 offset-xl-0  offset-sm-1 offset-1 col-sm-3 col-3" >
                     <br>
                     <br>
                     <br>

@@ -3,24 +3,24 @@
 {% block title %}{{titre_page}}{% endblock %}
 
 {% block body %}
-    <div class="row" style="margin:1%">
+    <div class="row bloc">
         <div class="annonce_vendeur col-xl-6 col-sm-6 col-12"  >
             <div class="annonce">
-                <div class="titre_favoris">
-                    <h3 class="titre_annonce" >{{annonce.titreAnnonce}}</h3>
-                    <form action={{ path('secondLife_ajouter_aux_favoris_utilisateur',{'id':annonce.idAnnonce}) }} method='GET' style=" text-align:right">
+                <div class="titre_favoris row">
+                    <h3 class="titre_annonce col" >{{annonce.titreAnnonce}}</h3>
+                    <form action={{ path('secondLife_ajouter_aux_favoris_utilisateur',{'id':annonce.idAnnonce}) }} method='GET' class="bouton_droit col">
                         <button class="btn btn-outline-secondary btn-sm" type="submit" >Ajouter aux favoris </button>
                     </form>
                 </div>
                 
-                <div class="images_annonce" style="margin:2%; text-align:center">
+                <div class="images_annonce ">
                     {% for image in annonce.imagesAnnonce %}
                     <img src={{image.lienPhotoAnnonce}} alt="Image de l'annonce">
                     {% endfor %}
                 </div>
                 
-                <div class="info_boutons row" style="margin:2%; padding-bottom:1%">
-                    <div class="info_annonce column" style="padding-bottom:3%; padding-top:3%">
+                <div class="info_boutons row">
+                    <div class="info_annonce column">
                         <h6>Categorie : {{annonce.categorie}}</h6>
                         <h6>Sous-categorie : {{annonce.sousCategorie}}</h6>
                         <h6>Marque : {{annonce.marque}}</h6>
@@ -28,14 +28,14 @@
                         <h6>Poids : {{annonce.poidsAnnonce}} Grammes</h6>
                         <h6>Etat : {{annonce.etatAnnonce}}</h6>
                         <div class="row">
-                            <h6 class="col">Description :</h6>
-                            <p class="col" style="word-wrap : break-word"> {{annonce.descriptionAnnonce}}</p>
+                            <h6 class="col-2">Description :</h6>
+                            <p class="col description"> {{annonce.descriptionAnnonce}}</p>
                         </div>
                         <h6>Date publication : {{annonce.datePubliAnnonce|date("m/d/Y - H:i:s")}}</h6>
                     </div>
                     
                     <div class="btns_annonce">
-                        <form action={{ path('secondLife_afficher_annonce',{'id':annonce.idAnnonce}) }} method='GET' style="text-align:center">
+                        <form action={{ path('secondLife_afficher_annonce',{'id':annonce.idAnnonce}) }} method='GET' class="bouton">
                             <button class="btn btn-outline-secondary btn-sm" type="submit" >Contacter le vendeur </button>
                         </form>
                     </div>
@@ -43,7 +43,7 @@
             </div>
 
             <a href={{ path('secondLife_afficher_utilisateur',{'id_personne':annonce.utilisateur.idPersonne}) }} class="link-dark" style="text-align:center">
-                <div class="vendeur panel "style="border: 1px solid grey; padding:1%" >
+                <div class="vendeur panel" >
                     <h2 style="padding-bottom:1%">Informations du vendeur</h2>
                     <h6 class="pseudo">Pseudo : {{annonce.utilisateur.pseudoUser}}</h6>
                     <h6 class="adresse">Localisation : {{annonce.utilisateur.adresseUser}}</h6>
@@ -55,21 +55,21 @@
         </div>
 
         <div class="annonces_similaires col-xl-4 col-sm-6 col-12" >
-            <h2 style="padding-bottom:0.5%">Annonces similaires</h2>
+            <h2 >Annonces similaires</h2>
             {% for annonce_ in annonces %}
                 {% if not annonce_ is same as(annonce) and annonce_.etatAnnonce=='Disponible' %}
                 <div class=" annonce col-md-4">
-                    <div class="panel" style="border: 1px solid grey">
-                        <div class="row" style="margin-right: 2px">
-                            <div class="images_annonce column">
-                                <div class="panel" style="margin: 1px">
+                    <div class="panel">
+                        <div class="row espace_droit" >
+                            <div class="images_annonce col">
+                                <div class="panel bloc" >
                                     <div class="panel-body"><img src="https://placehold.it/130x130?text=IMG" class="img-responsive"
                                                 alt="Image de l'annonce">
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="info_annonce column" style="margin-top: 3px">
+                            <div class="info_annonce col">
                                 <h6>{{annonce_.titreAnnonce}}</h6>
                                 <h6>{{annonce_.categorie}}</h6>
                                 <h6>{{annonce_.sousCategorie}}</h6>
@@ -78,13 +78,13 @@
                                 <h6>{{annonce_.datePubliAnnonce|date("m/d/Y")}}</h6>
                             </div>
 
-                            <div class="btns_annonce column" style="margin-top: 20px">
-                                <form action={{ path('secondLife_afficher_annonce',{'id':annonce_.idAnnonce}) }} method='GET'>
-                                    <button class="btn btn-outline-dark btn-sm" type="submit" style="width: 100%">Afficher </button>
+                            <div class="btns_annonce col">
+                                <form class="autres_infos" action={{ path('secondLife_afficher_annonce',{'id':annonce_.idAnnonce}) }} method='GET'>
+                                    <button class="btn btn-outline-dark btn-sm" type="submit">Afficher </button>
                                 </form>
                             
-                                <form action={{ path('secondLife_afficher_annonce',{'id':annonce_.idAnnonce}) }} method='GET'>
-                                    <button class="btn btn-outline-dark btn-sm" type="submit"  style="width: 100%">Contacter le vendeur </button>
+                                <form class="autres_infos" action={{ path('secondLife_afficher_annonce',{'id':annonce_.idAnnonce}) }} method='GET'>
+                                    <button class="btn btn-outline-dark btn-sm" type="submit" >Contacter le vendeur </button>
                                 </form>
 
                             </div>
@@ -97,22 +97,22 @@
 
         <div class="col-xl-2 col-sm-12 col-12" >
         <!--pub-->
-            <div class="row" style="padding:1%">
-                <p class="col-xl-12 col-sm-3 col-3" style="border-style:solid; border-width:1px; border-color:#818D92">
+            <div class="row sous_bloc" >
+                <p class="pub col-xl-12 col-sm-3 col-3 " >
                     <br>
                     <br>
                     <br>
                     <br>
                     <br>
                 </p>
-                <p class="col-xl-12  offset-xl-0  offset-sm-1 offset-1 col-sm-3 col-3" style="border-style:solid; border-width:1px; border-color:#818D92">
+                <p class="pub col-xl-12  offset-xl-0  offset-sm-1 offset-1 col-sm-3 col-3" >
                     <br>
                     <br>
                     <br>
                     <br>
                     <br>
                 </p>
-                <p class="col-xl-12 offset-xl-0  offset-sm-1 offset-1 col-sm-3 col-3" style="border-style:solid; border-width:1px; border-color:#818D92">
+                <p class=" pub col-xl-12 offset-xl-0  offset-sm-1 offset-1 col-sm-3 col-3">
                     <br>
                     <br>
                     <br>

@@ -1,8 +1,17 @@
-header,footer{
+header,footer,.bouton{
     text-align:center;
 }
+
 ul{
     vertical-align: middle;
+}
+
+h5{
+    padding-bottom:1%;
+}
+
+h1,h2{
+    padding-bottom:0.5%;
 }
 
 .bouton_cacher{
@@ -10,6 +19,70 @@ ul{
     color:white;
 }
 
-h5{
+.bloc{
+    margin:1%;
+}
+.sous_bloc{
+    padding:1%;
+}
+.annonce{
+    border-style:solid; 
+    border-width:1px; 
+    border-color:#818D92; 
+    margin-bottom:3%; 
+    padding:1.5%;
+}
+
+.autres_infos{
+    text-align:center; 
+    padding-bottom:2%;
+}
+.pub{
+    border-style:solid; 
+    border-width:1px; 
+    border-color:#818D92;
+}
+
+.espace_bas{
+    padding-bottom:0.5%;
+}
+
+.espace_haut{
+    padding-top:1.2%;
+}
+.haut_bouton{
+    margin-top: 3%;
+}
+.bouton_droit{
+    text-align: right;
+}
+
+.images_annonce{
+    margin:2%; 
+    text-align:center;
+}
+
+.info_boutons{
+    margin:2%; 
     padding-bottom:1%;
+}
+
+.info_annonce{
+    padding-bottom:3%; 
+    padding-top:3%;
+}
+
+.description{
+    word-wrap : break-word;
+}
+
+.vendeur{
+    border-style:solid; 
+    border-width:1px; 
+    border-color:#818D92; 
+    padding:1%;
+}
+
+.espace_droit{
+    margin-right: 2px;
 }
