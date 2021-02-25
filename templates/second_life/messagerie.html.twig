@@ -4,37 +4,37 @@
 
 {% block body %}
 <div class="row">
-    <div class="col-xl-2 col-sm-3 col-12" style="margin:1%">
+    <div class="col-xl-2 col-sm-3 col-12 bloc" >
         <h3 style="padding-bottom:0.5%" >{{ titre_page }}</h3>
-        <div style="border-style:solid; border-width:1px; border-color:#818D92; margin:3%; padding:10%; padding-top:5%; padding-bottom:5%; text-align:center">
-            <div class="row" style="text-align:center">
-                <button type="button" class="btn btn-sm btn-outline-secondary" style="margin-bottom:5%">Boite de reception</button>
+        <div class="messagerie">
+            <div class="row bouton">
+                <button type="button" class="bas_bouton btn btn-sm btn-outline-secondary">Boite de reception</button>
             </div>
-            <div class="row" style="text-align:center">
-                <button type="button" class="btn btn-sm btn-outline-secondary" style="margin-bottom:5%">Messages non lus</button>
+            <div class="row bouton">
+                <button type="button" class="bas_bouton btn btn-sm btn-outline-secondary" >Messages non lus</button>
             </div>
-            <div class="row" style="text-align:center">
+            <div class="row bouton">
                 <button type="button" class="btn btn-sm btn-outline-secondary">Messages envoyés</button>
             </div>
         </div>
-        <p  style="margin:1%">
+        <p  class="bloc">
         <!--pub-->
-            <div class="row" style="padding:1%">
-                <p class="col-xl-12 col-sm-3 col-3" style="border-style:solid; border-width:1px; border-color:#818D92">
+            <div class="row bloc">
+                <p class=" pub col-xl-12 col-sm-3 col-3">
                     <br>
                     <br>
                     <br>
                     <br>
                     <br>
                 </p>
-                <p class="col-xl-12  offset-xl-0  offset-sm-1 offset-1 col-sm-3 col-3" style="border-style:solid; border-width:1px; border-color:#818D92">
+                <p class="pub col-xl-12  offset-xl-0  offset-sm-1 offset-1 col-sm-3 col-3">
                     <br>
                     <br>
                     <br>
                     <br>
                     <br>
                 </p>
-                <p class="col-xl-12 offset-xl-0  offset-sm-1 offset-1 col-sm-3 col-3" style="border-style:solid; border-width:1px; border-color:#818D92">
+                <p class="pub col-xl-12 offset-xl-0  offset-sm-1 offset-1 col-sm-3 col-3">
                     <br>
                     <br>
                     <br>
@@ -44,8 +44,8 @@
             </div>
         </p>
     </div>
-    <div class="col-xl-3 col-sm-9 col-12">
-        <div style="padding-bottom:1.5%">
+    <div class="col-xl-3 col-sm-9 col-12 bloc">
+        <div class="h">
             <label class="form-label col-form-label-sm">Tier par :</label>
                 <select id="tri" class="form-control form-select form-select-sm bg-light" name="tri">
                     <option value="importance">Importance</option>
@@ -54,16 +54,47 @@
                 </select>
         </div>
         
-        <p style="background-color:red">
-            <br>
-            <br>
+        <p>
+            <div class="message">
+                <p>message</p>
+            </div>
+            <div class="message">
+                <p>message</p>
+            </div>
+            <div class="message">
+                <p>message</p>
+            </div>
         </p>
     </div>
-    <div class="col-xl-6 col-sm-12 col-12"  style="background-color:green">
-         <p>
-            <br>
-            <br>
-        </p>
+    <div class="col-xl-6 col-sm-12 col-12 bloc" >
+         <div class="col-xl-10 col-sm-12 col-12">
+            <div class="row">
+                <div class="col-xl-2 col-sm-2 col-2">
+                    <!--A changer-->
+                    <img src="image_profil.png" class="img-thumbnail" alt="photo de profil">
+                </div>
+                <div class="col-xl-10 col-sm-10 col-10">
+                    <div class="row">
+                        <label class="label col-2 form-label col-form-label-sm">Expéditeur  : </label>
+                        <input type="text" class=" col form-control form-text" placeholder="Viiper">
+                    </div>
+                    <div class="row">
+                        <label class="label col-2 form-label col-form-label-sm">Destinataire  : </label>
+                        <input type="text" class="col form-control form-text" placeholder="Scubrina">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <label class="col-xl-2 col-sm-2 col-2 form-label col-form-label-sm">Objet  : </label>
+                <input type="text" class="col-xl-10 col-sm-10 col-10 form-control form-text" placeholder="Demande de renseignement">
+            </div>
+            <div class="row">
+                <label class="col-xl-4 col-sm-4 col-2 form-label col-form-label-sm">contenu du message  : </label>
+                <textarea class="col-xl-10 col-sm-10 col-10 form-control form-text" id="description" name="descrition" rows="10" cols="50">
+        
+                </textarea>
+            </div>
+        </div>
     </div>
 </div>
 

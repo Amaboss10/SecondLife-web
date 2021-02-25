@@ -10,7 +10,7 @@ h5{
     padding-bottom:1%;
 }
 
-h1,h2{
+h1,h2,h3,.h, .espace_bas{
     padding-bottom:0.5%;
 }
 
@@ -41,10 +41,6 @@ h1,h2{
     border-style:solid; 
     border-width:1px; 
     border-color:#818D92;
-}
-
-.espace_bas{
-    padding-bottom:0.5%;
 }
 
 .espace_haut{
@@ -85,4 +81,30 @@ h1,h2{
 
 .espace_droit{
     margin-right: 2px;
+}
+
+.messagerie{
+    border-style:solid; 
+    border-width:1px; 
+    border-color:#818D92; 
+    margin:3%; 
+    padding:10%; 
+    padding-top:5%; 
+    padding-bottom:5%; 
+    text-align:center;
+}
+
+.bas_bouton{
+    margin-bottom:5%;
+}
+
+.message{
+    border-style:solid; 
+    border-width:1px; 
+    border-color:#818D92;
+    margin-bottom: 1%;
+}
+
+.label{
+    margin-top:2%;
 }

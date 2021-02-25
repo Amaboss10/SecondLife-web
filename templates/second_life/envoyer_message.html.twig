@@ -4,49 +4,70 @@
 
 {% block body %}
     <h1>{{ titre_page }}</h1>
-    <div class="row">
-        <div class="col-xl-10 col-sm-12 col-12">
-            <div class="row">
-                <div class="col-xl-2 col-sm-2 col-2">
-                    <!--A changer-->
-                    <img src="image_profil.png" class="img-thumbnail" alt="photo de profil">
-                </div>
-                <div class="col-xl-10 col-sm-10 col-10">
-                    <div class="row">
-                        <label class="col form-label col-form-label-lg">Expéditeur  : </label>
-                        <input type="text" class="col form-control form-text" placeholder="Viiper">
+        <div class="row">
+            <div class="col-xl-6 col-sm-12 col-12 bloc" >
+            <div class="col-xl-10 col-sm-12 col-12">
+                <div class="row">
+                    <div class="col-xl-2 col-sm-2 col-2">
+                        <!--A changer-->
+                        <img src="image_profil.png" class="img-thumbnail" alt="photo de profil">
                     </div>
-                    <div class="row">
-                        <label class="col form-label col-form-label-lg">Destinataire  : </label>
-                        <input type="text" class="col form-control form-text" placeholder="Scubrina">
+                    <div class="col-xl-10 col-sm-10 col-10">
+                        <div class="row">
+                            <label class="label col-2 form-label col-form-label-sm">Expéditeur  : </label>
+                            <input type="text" class=" col form-control form-text" placeholder="Viiper">
+                        </div>
+                        <div class="row">
+                            <label class="label col-2 form-label col-form-label-sm">Destinataire  : </label>
+                            <input type="text" class="col form-control form-text" placeholder="Scubrina">
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="row">
-                <label class="col-xl-2 col-sm-2 col-2 form-label col-form-label-lg">Objet  : </label>
-                <input type="text" class="col-xl-10 col-sm-10 col-10 form-control form-text" placeholder="Demande de renseignement">
-            </div>
-            <div class="row">
-                <label class="col-xl-2 col-sm-2 col-2 form-label col-form-label-lg">contenu du message  : </label>
-                <textarea class="col-xl-10 col-sm-10 col-10 form-control form-text" id="description" name="descrition" rows="10" cols="50">
-        
-                </textarea>
-            </div>
+                <div class="row">
+                    <label class="col-xl-2 col-sm-2 col-2 form-label col-form-label-sm">Objet  : </label>
+                    <input type="text" class="col-xl-10 col-sm-10 col-10 form-control form-text" placeholder="Demande de renseignement">
+                </div>
+                <div class="row">
+                    <label class="col-xl-4 col-sm-4 col-2 form-label col-form-label-sm">contenu du message  : </label>
+                    <textarea class="col-xl-10 col-sm-10 col-10 form-control form-text" id="description" name="descrition" rows="10" cols="50">
+            
+                    </textarea>
+                </div>
 
-            <div class="row">
-                <label class="col-xl-2 col-sm-2 col-2 form-label col-form-label-lg">Pieces Jointes  : </label>
-                <input class="col-xl-10 col-sm-10 col-10" type="file" id="image" name="image">
-            </div>
-            <div class="row">
-                <button type="button" class="col btn btn-sm btn-outline-secondary">Envoyer</button>
+                <div class="row espace_haut">
+                    <label class=" col-xl-2 col-sm-2 col-2 form-label col-form-label-sm">Pieces Jointes  : </label>
+                    <input class="col-xl-10 col-sm-10 col-10" type="file" id="image" name="image">
+                </div>
+                <div class="bouton">
+                    <button type="button" class="haut_bouton col-xl-2 col-sm-2 col-2 btn btn-lg btn-outline-success">Envoyer</button>
+                </div>
             </div>
         </div>
         <div class="col-xl-2 col-sm-12 col-12 publicité" style="background-color:blue">
             <!--pub-->
-            <p>
-                <br>
-                <br>
-            </p>
+            <div class="row bloc">
+                <p class=" pub col-xl-12 col-sm-3 col-3">
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                </p>
+                <p class="pub col-xl-12  offset-xl-0  offset-sm-1 offset-1 col-sm-3 col-3">
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                </p>
+                <p class="pub col-xl-12 offset-xl-0  offset-sm-1 offset-1 col-sm-3 col-3">
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                </p>
+            </div>
         </div>
     </div>
    

@@ -4,23 +4,23 @@
 
 {% block body %}
    <div class="row">
-        <div class="col col-xl-5 col-sm-12 col-12" style="margin:1%">
-            <div style=" margin:2%; padding:1%">
+        <div class="col col-xl-5 col-sm-12 col-12 bloc">
+            <div class="sous_bloc">
                 {{form_start(form)}}
                 {{form_errors(form)}}
 
-                <h1 style="padding-bottom:0.5%">
+                <h1>
                     {% if etat %} Modifier une annonce
                     {% else %} Créer une annonce
                     {% endif %}
                 </h1>
-                    <div class="row titre" style="padding-bottom:0.5%">
+                    <div class="row titre h">
                         {{form_label(form.titre_annonce,'Titre de l\'annonce*',{'label_attr':{'class':"col-3  form-label col-form-label-sm"}})}}
                         {{form_errors(form.titre_annonce)}}
                         {{form_widget(form.titre_annonce,{'attr':{'class':"col form-control form-text bg-light"}})}}
                     </div>
 
-                    <div class="row categorie_objet"  style="padding-bottom:0.5%">
+                    <div class="row categorie_objet h">
                         {{form_label(form.categorie,'Catégorie*',{'label_attr':{'class':"col-3 form-label col-form-label-sm"}})}}
                         {{form_errors(form.categorie)}}
                         {{form_widget(form.categorie,{'attr':{'class':"col form-control form-select form-select-sm bg-light"}})}}
@@ -32,11 +32,11 @@
                         {{form_widget(form.sous_categorie,{'attr':{'class':"col form-control form-select form-select-sm bg-light"}})}}
                     </div>
 
-                    <div class="row prix"  style="padding-bottom:0.5%">
+                    <div class="row prix h" >
                         {{form_label(form.prix_annonce,'Prix* ',{'label_attr':{'class':"col-3 form-label col-form-label-sm"}})}}
                         {{form_errors(form.prix_annonce)}}
                         {{form_widget(form.prix_annonce,{'attr':{'class':"col form-control form-text bg-light"}})}}
-                        <p class="col-1" style="padding-top:1.2%"> Euros</p>
+                        <p class="col-1 espace_haut"> Euros</p>
                     </div>
                     
                     <div class="row marque_objet">
@@ -46,20 +46,20 @@
                     
                     </div>
 
-                    <div class="row poids"  style="padding-bottom:0.5%; padding-right:2.5%">
+                    <div class="row poids h">
                         {{form_label(form.poids_annonce,'Poids ',{'label_attr':{'class':"col-3 form-label col-form-label-sm"}})}}
                         {{form_errors(form.poids_annonce)}}
                         {{form_widget(form.poids_annonce,{'attr':{'class':"col form-control form-text bg-light"}})}}
-                        <p class="col-1" style="padding-top:1.2%"> grammes</p>
+                        <p class="col-1 espace_haut"> grammes</p>
                     </div>
 
-                    <div class="row description"  style="padding-bottom:0.5%">
+                    <div class="row description h" >
                         {{form_label(form.description_annonce,'Description* ',{'label_attr':{'class':"col-3 form-label col-form-label-sm"}})}}
                         {{form_errors(form.description_annonce)}}
                         {{form_widget(form.description_annonce,{'attr':{'class':"col form-control form-text bg-light", 'rows':"10",'cols':"50"}})}}
                     </div>
 
-                    <div class="row image_objet"  style="padding-bottom:0.5%; padding-top:2%">
+                    <div class="row image_objet h espace_haut">
                         {{form_label(form.images_annonce,'Images ',{'label_attr':{'class':"col-3 form-label col-form-label-sm"}})}}
                         {{form_errors(form.images_annonce)}}
                         {{form_widget(form.images_annonce,{'attr':{'class':"col"}})}}
@@ -76,8 +76,8 @@
                         {% endif %}
                     </div>
                     
-                    <div style="text-align:center">
-                        <button type="submit" class="btn btn-lg btn-outline-success"  style="margin-top:3%">
+                    <div clas="bouton">
+                        <button type="submit" class="btn btn-lg btn-outline-success haut_bouton" >
                         {% if etat %} Modifier l'annonce
                         {% else %} Créer l'annonce
                         {% endif %}
