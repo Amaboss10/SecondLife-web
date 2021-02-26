@@ -6,8 +6,8 @@
 {% block body %}
     <h1>{{titre_page}}</h1>
 
-    <table class="table">
-        <thead>
+    <table class="table table-light" style="border: 1px solid black">
+        <thead class="thead-dark">
             <tr>
                 <th>Id</th>
                 <th>Nom_marque</th>
@@ -20,8 +20,12 @@
                 <td>{{ marque.id }}</td>
                 <td>{{ marque.nomMarque }}</td>
                 <td>
+                <div style="margin-bottom:5px">
                     <a class="btn btn-sm btn-outline-secondary " href="{{ path('secondLife_admin_afficher_annonces_de_la_marque', {'id': marque.id}) }}">Afficher les annonces  {{marque.nomMarque}}</a>
+                </div>
+                   <div style="margin-bottom:5px">
                     <a class="btn btn-sm btn-outline-secondary" href="{{ path('secondLife_admin_modifier_marque', {'id': marque.id}) }}">Modifier {{marque.nomMarque}}  </a>
+                </div>
                 </td>
             </tr>
         {% else %}
@@ -32,6 +36,7 @@
         </tbody>
     </table>
 
-    <a class="btn btn-sm btn-outline-secondary" href="{{ path('secondLife_admin_creer_marque') }}">Créer/Ajouter une marque</a>
-    
+    <div style="text-align : right;margin-bottom : 10px">
+    <a class="btn btn-sm btn-outline-success" href="{{ path('secondLife_admin_creer_marque') }}">Créer/Ajouter une marque</a>
+    </div>
 {% endblock %}
