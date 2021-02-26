@@ -197,3 +197,9 @@ h1,h2,h3,.h, .espace_bas{
 .p2{
     font-size:x-small;
 }
+.lien{
+    margin-left:1%;
+}
+.barre_recherche{
+    padding-right:2%;
+}

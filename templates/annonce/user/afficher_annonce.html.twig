@@ -42,9 +42,9 @@
                 </div>
             </div>
 
-            <a href={{ path('secondLife_afficher_utilisateur',{'id_personne':annonce.utilisateur.idPersonne}) }} class="link-dark" style="text-align:center">
+            <a href={{ path('secondLife_afficher_utilisateur',{'id_personne':annonce.utilisateur.idPersonne}) }} class="link-dark bouton">
                 <div class="vendeur panel" >
-                    <h2 style="padding-bottom:1%">Informations du vendeur</h2>
+                    <h2>Informations du vendeur</h2>
                     <h6 class="pseudo">Pseudo : {{annonce.utilisateur.pseudoUser}}</h6>
                     <h6 class="adresse">Localisation : {{annonce.utilisateur.adresseUser}}</h6>
                     <h6 class="nb_Annonces_publiees">Nombre d'annonces publiées : {{annonce.utilisateur.annonces|length}}</h6>

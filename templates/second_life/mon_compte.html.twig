@@ -14,7 +14,7 @@
             </div>
             <br>
             <div class="row infos_personnelles">
-                <h3 style="padding-bottom:0.5%"> Mes informations personnelles <h3>
+                <h3> Mes informations personnelles <h3>
                 <div class="row">
                     <input class="col-xl-3 col-sm-6 col-12 form-label col-form-label-sm " type="file" id="image" name="image">
                     <div class=" offset-xl-0 col-xl-3 offset-md-6 col-sm-6 col-12">
@@ -29,7 +29,7 @@
                     </div>
                     <div class=" offset-xl-0 col-xl-3 offset-md-6  col-sm-6 col-12">
                         <input type="date" class="form-label col-form-label-sm col-12 bg-lightc" id="anniversaire" name="anniversaire">
-                        <div style="text-align:center">
+                        <div class="bouton">
                             <button type="button" class="btn btn-sm btn-outline-secondary">Modifier mes informations</button>
                         </div>
                     </div>
@@ -37,7 +37,7 @@
             </div>
             <div class="row gerer_annonces">
                 <h3> Gérer mes annonces </h3>
-                <div class="row justify-content-around" style="margin-left:1%">
+                <div class="row justify-content-around lien">
                     <a class="btn"  href={{path('secondLife_creer_annonce')}} class="link-secondary"><button type="button" class="col-xl-2 col-sm-4 col-5 btn btn-sm btn-outline-secondary">Ajouter une annonce</button></a>
                     <a class="btn"  href={{path('secondLife_gerer_mes_annonces')}} class="link-secondary"><button type="button" class="col-xl-2 col-sm-4 col-5 btn btn-sm btn-outline-secondary">Gérer mes annonces </button></a>
                 </div>
@@ -47,7 +47,7 @@
                 <div class="col-xl-4 col-sm-4 col-12">
                     <input type="email" class="form-control form-text bg-light" placeholder="Email : name@exemple.com">
                     <br>
-                    <div style="text-align:center">
+                    <div class="bouton">
                         <form action={{ path('secondLife_mon_compte') }}>
                             <button type="submit" class="col btn btn-sm btn-outline-secondary">modifier adresse mail</button>
                         </form>
@@ -58,7 +58,7 @@
                     <input type="password" class="form-control form-text bg-light" placeholder="ancien mot de passe">
                     <input type="password" class="form-control form-text bg-light" placeholder="nouveau mot de passe">
                     <br>
-                    <div style="text-align:center">
+                    <div class="bouton">
                         <button type="button" class="col btn btn-sm btn-outline-secondary">modifier le mot de passe</button>
                     </div>
                 </div>
