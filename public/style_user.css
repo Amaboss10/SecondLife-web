@@ -14,11 +14,12 @@ h1,h2,h3,.h, .espace_bas{
     padding-bottom:0.5%;
 }
 
-.bouton_cacher{
-    border:none; 
-    color:white;
+.titre_section_footer{
+    padding-bottom:2%;
 }
-
+.resaux{
+    margin:10%;
+}
 .bloc{
     margin:1%;
 }
@@ -187,7 +188,7 @@ h1,h2,h3,.h, .espace_bas{
 .inscription_elem{
     margin: auto; 
     margin-top:6%;
-     margin-bottom:6%;
+    margin-bottom:6%;
 }
 
 .p1{
