@@ -1,0 +1,99 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{titre_page}}{% endblock %}
+
+{% block body %}
+    <div class="row bloc">
+        <div class="col-xl-10 col-sm-12 col-12 sous_bloc">
+            <div class="row">
+                <h1 class="col">{{ titre_page }}</h1>
+                <form class=" bouton_droit" action={{ path('secondLife_afficher_mon_profil',{'id_personne':app.user }) }} method='GET'>
+                    <button type="submit" class="col-xl-2 col-sm-2 col-4 offset-xl-10 offset-sm-4 btn btn-sm btn-outline-secondary">voir mon profil</button>
+                </form>
+                
+            </div>
+            <br>
+            <div class="row infos_personnelles">
+                <h3 style="padding-bottom:0.5%"> Mes informations personnelles <h3>
+                <div class="row">
+                    <input class="col-xl-3 col-sm-6 col-12 form-label col-form-label-sm " type="file" id="image" name="image">
+                    <div class=" offset-xl-0 col-xl-3 offset-md-6 col-sm-6 col-12">
+                        <input type="text" class="form-control form-text bg-light" placeholder="Pseudo : Viiper">
+                        <input type="text" class="form-control form-text bg-light" placeholder=" DUPOND">
+                        <input type="text" class="form-control form-text bg-light" placeholder=" Richard">
+                    </div>
+                    <div class=" offset-xl-0 col-xl-3 offset-md-6 col-sm-6 col-12">
+                        <input type="tel" class="form-control form-text bg-light" placeholder=" 06 48 97 16 52">
+                        <input type="text" class="form-control form-text bg-light" placeholder="Paris">
+                        <input type="number" min="9999" max"99999" class="form-control form-text bg-light" placeholder="75000">
+                    </div>
+                    <div class=" offset-xl-0 col-xl-3 offset-md-6  col-sm-6 col-12">
+                        <input type="date" class="form-label col-form-label-sm col-12 bg-lightc" id="anniversaire" name="anniversaire">
+                        <div style="text-align:center">
+                            <button type="button" class="btn btn-sm btn-outline-secondary">Modifier mes informations</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row gerer_annonces">
+                <h3> Gérer mes annonces </h3>
+                <div class="row justify-content-around" style="margin-left:1%">
+                    <a class="btn"  href={{path('secondLife_creer_annonce')}} class="link-secondary"><button type="button" class="col-xl-2 col-sm-4 col-5 btn btn-sm btn-outline-secondary">Ajouter une annonce</button></a>
+                    <a class="btn"  href={{path('secondLife_gerer_mes_annonces')}} class="link-secondary"><button type="button" class="col-xl-2 col-sm-4 col-5 btn btn-sm btn-outline-secondary">Gérer mes annonces </button></a>
+                </div>
+            </div>
+            <div class="row parametres">
+                <h3>Paramètres</h3>
+                <div class="col-xl-4 col-sm-4 col-12">
+                    <input type="email" class="form-control form-text bg-light" placeholder="Email : name@exemple.com">
+                    <br>
+                    <div style="text-align:center">
+                        <form action={{ path('secondLife_mon_compte') }}>
+                            <button type="submit" class="col btn btn-sm btn-outline-secondary">modifier adresse mail</button>
+                        </form>
+                        
+                    </div>
+                </div>
+                <div class="col-xl-4 col-sm-4 col-12">
+                    <input type="password" class="form-control form-text bg-light" placeholder="ancien mot de passe">
+                    <input type="password" class="form-control form-text bg-light" placeholder="nouveau mot de passe">
+                    <br>
+                    <div style="text-align:center">
+                        <button type="button" class="col btn btn-sm btn-outline-secondary">modifier le mot de passe</button>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-sm-4 col-12 supprimer">
+                {#{{ include('utilisateur/user/_delete_form.html.twig') }}#}
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-2 col-sm-12 col-12" >
+            <!--pub-->
+           <div class="row sous_bloc" >
+                <p class="pub col-xl-12 col-sm-3 col-3">
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                </p>
+                <p class="pub col-xl-12  offset-xl-0  offset-sm-1 offset-1 col-sm-3 col-3">
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                </p>
+                <p class="pub col-xl-12 offset-xl-0  offset-sm-1 offset-1 col-sm-3 col-3">
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                </p>
+            </div>
+        </div>
+    </div>
+   
+
+{% endblock %}

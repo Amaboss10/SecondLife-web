@@ -165,16 +165,20 @@ class UtilisateurController extends AbstractController
 
     
 
-    /**
-     * @Route("/user/monCompte/supprimerMonCompte", name="supprimer_mon_compte", methods={"DELETE"})
-     */
-    public function supprimerUtilisateurUser(Request $request, UserInterface $user,UtilisateurRepository $utilisateurRepository): Response
+    ///**
+     //* @Route("/user/monCompte/supprimerMonCompte", name="supprimer_mon_compte", methods={"DELETE"})
+     //*/
+    /*public function supprimerUtilisateurUser(Request $request, UserInterface $user,UtilisateurRepository $utilisateurRepository): Response
     {
         $utilisateur=$utilisateurRepository->find($user);
         if ($this->isCsrfTokenValid('delete'.$utilisateur->getIdPersonne(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             
             foreach ($utilisateur->getAnnonces() as $annonce) {
+                foreach ($annonce->getImagesAnnonce() as $imageannonce) {
+                    $annonce->removeImagesAnnonce($imageannonce);
+                    $entityManager->remove($imageannonce);
+                }
                 $utilisateur->removeAnnonce($annonce);
                 $entityManager->remove($annonce);
             }
@@ -187,6 +191,6 @@ class UtilisateurController extends AbstractController
             $entityManager->flush();
         }
         return $this->redirectToRoute('app_logout');
-    }
+    }*/
 
 }

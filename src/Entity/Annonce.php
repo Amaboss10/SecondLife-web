@@ -97,7 +97,7 @@ class Annonce
         $this->images_annonce[] = $imageAnnonce;
         
         $this->est_valide=false;
-        $this->etat_annonce='Pas vendu';
+        $this->etat_annonce='Disponible';
         $this->date_publi_annonce=new DateTime();
     }
 

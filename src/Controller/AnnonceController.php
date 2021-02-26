@@ -3,15 +3,11 @@
 namespace App\Controller;
  
 use App\Entity\Annonce;
-use App\Form\AnnonceType;
 use App\Entity\PhotoAnnonce;
-use App\Repository\MarqueRepository;
 use App\Repository\AnnonceRepository;
-use App\Repository\CategorieRepository;
 use App\Form\CreerModifierAnnonceFormType;
 use App\Repository\FavorisRepository;
 use App\Repository\PhotoAnnonceRepository;
-use App\Repository\SousCategorieRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -53,12 +49,6 @@ class AnnonceController extends AbstractController
             'id'=>$annonce->getIdAnnonce()
         ));    
 
-        /*return $this->render('annonce/admin/afficher_annonce_admin.html.twig', [
-            //'annonces' =>$annonces ,
-            //'nb_annonces'=>count($annonces),
-            'titre_page'=>$annonce->getTitreAnnonce(),
-            'annonce'=>$annonce
-        ]);*/
     }
 
     /**
@@ -80,7 +70,7 @@ class AnnonceController extends AbstractController
             $annonces=$annonceRepository->findBy(['utilisateur'=>$annonce->getUtilisateur()],null,4,null);
         }
         else{
-            $annonces=$annonceRepository->findAll();
+            $annonces=$annonceRepository->findXAnnonces(4);
         }
 
         return $this->render('annonce/admin/afficher_annonce_admin.html.twig', [
@@ -129,8 +119,7 @@ class AnnonceController extends AbstractController
     {
         if ($this->isCsrfTokenValid('delete'.$annonce->getIdAnnonce(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
-
-            
+     
             //on retire l'annonce de tous les listes d'annonces favorites
             $lesfavoris=$favorisRepos->findBy(['id_annonce'=>$annonce]);
             foreach ($lesfavoris as $favoris) {
@@ -153,25 +142,17 @@ class AnnonceController extends AbstractController
     }
 
     //UTILISATEUR
-    //annonces/marque
 
     /**
      * @Route("/user/annonces/creer", name="creer_annonce")
-     * @Route("/user/annonces/modifier/{id}",name="modifier_annonce")
+     * @Route("/user/annonces/{id}/modifier",name="modifier_annonce")
      */
-    public function creerModifierAnnonce(UserInterface $user,Annonce $annonce=null,Request $request,AnnonceRepository $annonceRepository, MarqueRepository $marqueRepository,CategorieRepository $categorieRepository,SousCategorieRepository $sousCategorieRepository): Response
-    {
-        //RECUPERATION DES DONNEES POUR CONSTRUIRE LE FORMULAIRE DYNAMIQUEMENT
-        $marques=$marqueRepository->findAll();
-        $categories=$categorieRepository->findAll();
-        $sous_categories=$sousCategorieRepository->findAll();
-
-        $annonces=null;
-        //$annonces=$annonceRepository->findBy(['utilisateur'=>$this->getUser()]);
+    public function creerModifierAnnonce(UserInterface $user,Annonce $annonce=null,Request $request,AnnonceRepository $annonceRepository): Response
+    {        
+        $annonces=$annonceRepository->findBy(['utilisateur'=>$user]);
         $titre="Mes annonces";
         if($annonces==null){
             $titre="Quelques annonces";
-            //$annonces=$annonceRepository->findAnnoncesDisponibles();
             $annonces=$annonceRepository->findBy(['etat_annonce'=>'Disponible'],['date_publi_annonce'=>'DESC'],6,null);
         }
         
@@ -215,9 +196,6 @@ class AnnonceController extends AbstractController
         }
         return $this->render('annonce/user/creer_modifier_annonce.html.twig', [
             'titre_page'=>'Creer une annonce',
-            'marques'=>$marques,
-            'categories'=>$categories,
-            'sous_categories'=>$sous_categories,
             'annonce'=>$annonce,
             'form'=>$form->createView(),
             'etat'=>$annonce->getIdAnnonce() !==null,
@@ -225,8 +203,6 @@ class AnnonceController extends AbstractController
             'annonces'=>$annonces
         ]);
     }
-
-   
 
     /**
      * @Route("/user/annonces/{id}/afficher", name="afficher_annonce")
@@ -247,7 +223,7 @@ class AnnonceController extends AbstractController
             $annonces=$annonceRepository->findBy(['utilisateur'=>$annonce->getUtilisateur()],null,4,null);
         }
         else{
-            $annonces=$annonceRepository->findAll();
+            $annonces=$annonceRepository->findXAnnonces(4);
         }
         return $this->render('annonce/user/afficher_annonce.html.twig', [
             'titre_page'=>$annonce->getTitreAnnonce(),
@@ -308,7 +284,6 @@ class AnnonceController extends AbstractController
      */
     public function confirmerVenteAnnonce(Annonce $annonce,AnnonceRepository $annonceRepository): Response
     {
-
         $annonce->setEtatAnnonce('Vendu');
 
         $entityManager=$this->getDoctrine()->getManager();
@@ -318,40 +293,6 @@ class AnnonceController extends AbstractController
         return $this->redirectToRoute('secondLife_afficher_annonce',array(
             'id'=>$annonce->getIdAnnonce()
         ));    
-
     }
-
-    ///**
-    // * @Route("/new", name="annonce_new", methods={"GET","POST"})
-    // */
-    /*public function new(Request $request): Response
-    {
-        $annonce = new Annonce();
-        $form = $this->createForm(AnnonceType::class, $annonce);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($annonce);
-            $entityManager->flush();
-
-            return $this->redirectToRoute('annonce_index');
-        }
-
-        return $this->render('annonce/new.html.twig', [
-            'annonce' => $annonce,
-            'form' => $form->createView(),
-        ]);
-    }*/
-
-    ///**
-    // * @Route("/{id}", name="annonce_show", methods={"GET"})
-    // */
-    /*public function show(Annonce $annonce): Response
-    {
-        return $this->render('annonce/show.html.twig', [
-            'annonce' => $annonce,
-        ]);
-    }*/
 
 }

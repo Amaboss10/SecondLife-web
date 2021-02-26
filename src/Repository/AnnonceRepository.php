@@ -8,7 +8,6 @@ use App\Entity\Utilisateur;
 use App\Data\FiltreAnnonceData;
 use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use phpDocumentor\Reflection\Types\Integer;
 
 /**
  * @method Annonce|null find($id, $lockMode = null, $lockVersion = null)
@@ -52,55 +51,54 @@ class AnnonceRepository extends ServiceEntityRepository
     }
     */
 
-
-public function findAnnoncesDisponibles(){
-    $query=$this->createQueryBuilder('a')
-                    ->where('a.etat_annonce = :etat')
-                    ->orderBy('a.date_publi_annonce','DESC')
-                    ->setParameter('etat','Disponible');
-    return $query->getQuery()->getResult();
-}
-
-public function findMesAnnonces(Utilisateur $utilisateur){
-    $query=$this->createQueryBuilder('a')
-                    ->where('a.utilisateur = :user')
-                    ->orderBy('a.date_publi_annonce','DESC')
-                    ->setParameter('user',$utilisateur);
-    return $query->getQuery()->getResult();
-}
-
-public function findAnnoncesByMarque(Marque $marque)
-{
-    $query=$this->createQueryBuilder('a')
-                ->where('a.marque = :marque')
-                ->orderBy('a.date_publi_annonce','DESC')
-                ->setParameter('marque',$marque);
-    return $query->getQuery()->getResult();
-}
-public function findXAnnoncesNotUtilisateur(int $nombre,Utilisateur $user){
-    $query=$this->createQueryBuilder('a')
-                ->where('a.utilisateur <> :user')
-                ->orderBy('a.date_publi_annonce','DESC')
-                ->setParameter('user',$user)
-                ->setMaxResults($nombre);
-
-    return $query->getQuery()->getResult();
-}
-public function findAnnonceAleat()
-    {
-        return $this->createQueryBuilder('m')
-                    //->orderBy('RAND()')
-                    ->setMaxResults(1)
-                    ->getQuery()
-                    ->getResult();
+    public function findAnnoncesDisponibles(){
+        $query=$this->createQueryBuilder('a')
+                        ->where('a.etat_annonce = :etat')
+                        ->orderBy('a.date_publi_annonce','DESC')
+                        ->setParameter('etat','Disponible');
+        return $query->getQuery()->getResult();
     }
 
+    public function findMesAnnonces(Utilisateur $utilisateur){
+        $query=$this->createQueryBuilder('a')
+                        ->where('a.utilisateur = :user')
+                        ->orderBy('a.date_publi_annonce','DESC')
+                        ->setParameter('user',$utilisateur);
+        return $query->getQuery()->getResult();
+    }
 
-public function findAnnoncesFiltrees(FiltreAnnonceData $search)
+    public function findAnnoncesByMarque(Marque $marque)
+    {
+        $query=$this->createQueryBuilder('a')
+                    ->where('a.marque = :marque')
+                    ->orderBy('a.date_publi_annonce','DESC')
+                    ->setParameter('marque',$marque);
+        return $query->getQuery()->getResult();
+    }
+
+    public function findXAnnonces(int $nombre){
+        $query=$this->createQueryBuilder('a')
+                    ->orderBy('a.date_publi_annonce','DESC')
+                    ->setMaxResults($nombre);
+
+        return $query->getQuery()->getResult();
+    }
+
+    public function findXAnnoncesNotUtilisateur(int $nombre,Utilisateur $user){
+        $query=$this->createQueryBuilder('a')
+                    ->where('a.utilisateur <> :user')
+                    ->orderBy('a.date_publi_annonce','DESC')
+                    ->setParameter('user',$user)
+                    ->setMaxResults($nombre);
+
+        return $query->getQuery()->getResult();
+    }
+
+    public function findAnnoncesFiltrees(FiltreAnnonceData $search)
     {   
-         $query=$this->createQueryBuilder('a')
-                    ->where('a.etat_annonce = :etat')
-                    ->setParameter('etat','pas vendu');
+        $query=$this->createQueryBuilder('a')
+                ->where('a.etat_annonce = :etat')
+                ->setParameter('etat','pas vendu');
         //tri
         if(!empty($search->tri)){
             if($search->tri==='prix_croissant'){
@@ -118,7 +116,6 @@ public function findAnnoncesFiltrees(FiltreAnnonceData $search)
             else{
                 $query->orderBy('a.prix_annonce','DESC');
             }
-
         }
         else
         {
@@ -130,8 +127,6 @@ public function findAnnoncesFiltrees(FiltreAnnonceData $search)
                 ->andWhere('a.titre_annonce LIKE :q 
                 OR a.description_annonce LIKE :q  
                 OR a.poids_annonce LIKE :q
-                OR a.lieu LIKE :q
-                OR a.mode_livraison LIKE :q
                 ')
                 ->setParameter('q',$search->q);
         }
@@ -141,28 +136,18 @@ public function findAnnoncesFiltrees(FiltreAnnonceData $search)
                 ->andWhere('a.categorie IN (:categories)')
                 ->setParameter('categories',$search->categories);
         }
-        
         //souscategorie
         if(!empty($search->sous_categories)){
             $query=$query
                 ->andWhere('a.sous_categorie IN (:sous_categories)')
                 ->setParameter('sous_categories',$search->sous_categories);
         }
-        
         //marque
         if(!empty($search->marques)){
             $query=$query
                 ->andWhere('a.marque IN (:marques)')
                 ->setParameter('marques',$search->marques);
         }
-        
-        //mode de livraison
-        if(!empty($search->modes_livraison)){
-            $query=$query
-                ->andWhere('a.mode_livraison IN (:modes_livraison)')
-                ->setParameter('modes_livraison',$search->modes_livraison);
-        }
-        
         //prix min
         if(!empty($search->prix_min)){
             $query=$query
@@ -175,20 +160,6 @@ public function findAnnoncesFiltrees(FiltreAnnonceData $search)
                 ->andWhere('a.prix_annonce <= :max')
                 ->setParameter('max',$search->prix_max);
         }
-
-        //lieux
-        if(!empty($search->lieux)){
-            $query=$query
-                ->andWhere('a.lieu LIKE :lieux')
-                ->setParameter('lieux','%{search->lieux}%');
-        }
-        return $query->getQuery()->getResult();
-        
-        /*return $this->paginator->paginate(
-            $query,
-            1,
-            15 //nb elements par page
-        );*/
+        return $query->getQuery()->getResult();       
     }
-    
 }
