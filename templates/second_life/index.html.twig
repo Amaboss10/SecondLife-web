@@ -11,8 +11,7 @@
             <h2 class="form-label col-form-label-lg">Trier par :</h2>
                 {{form_errors(form.tri)}}
                 {{form_widget(form.tri,{'attr':{'class':'col-12 form-control form-select form-select-sm bg-light'}})}}
-            <br>
-            <br>
+            
             <h2 class="form-label col-form-label-lg">Filtrer par :</h2>
                 {{form_label(form.q,"Mot clé :",{'label_attr':{'class':'form-label col-form-label-sm h'}})}}
                 {{form_errors(form.q)}}
@@ -35,71 +34,17 @@
                     {{form_widget(form.prix_max,{'attr':{'class':'col form-control form-text bg-light'}})}}
                 </div>
 
-                {{form_label(form.modes_livraison,"Modes de livraison :",{'label_attr':{'class':"form-label col-form-label-sm sous_index"}})}}
-                {{form_errors(form.modes_livraison)}}
-                {{form_widget(form.modes_livraison,{'attr':{'class':'form-control form-select form-select-sm bg-light bloc'}})}}
-
+                
                 {{form_label(form.marques,"Marques :",{'label_attr':{'class':'form-label col-form-label-sm sous_index'}})}}
                 {{form_errors(form.marques)}}
                 {{form_widget(form.marques,{'attr':{'class':'form-control form-select form-select-sm bg-light bloc'}})}}
 
-                {{form_label(form.lieux,"Ville :",{'label_attr':{'class':'form-label col-form-label-sm sous_index'}})}}
-                {{form_errors(form.lieux)}}
-                {{form_widget(form.lieux,{'attr':{'class':'form-control form-text  bg-light'}})}}
                 <div class="recherche">
                     {{form_widget(form.save,{'label':'Rechercher', 'attr':{'class':'btn btn-lg btn-outline-success'}})}}
                 </div>
 
             {{form_end(form)}}
-            {#
-                <form>
-                    <label class="form-label col-form-label-sm">Tier par :</label>
-                    <select id="tri" class="form-control form-select form-select-sm" name="tri">
-                        <option value="prix_croissant">Prix Croissant</option>
-                        <option value="prix_decroissant">Prix Décroissant</option>
-                        <option value="plus_recent">Plus Récent</option>
-                        <option value="plus_ancien">Plus Ancien</option>
-                    </select>
-                    <br>
-                    <label class="form-label col-form-label-sm">Filtrer par :</label>
-                    <select id="fitre" class="form-control form-select form-select-sm" name="fitre">
-                        <option value="telephonie">Téléphonie</option>
-                        <option value="ordinateur">Ordinateur</option>
-                        <option value="console">Console</option>
-                        <option value="television">Télévision</option>
-                    </select>
-                    <br>
-                    <div class="row">
-                        <input type="text" class="col form-control form-text" placeholder="Prix min">
-                        <input type="text" class="col form-control form-text" placeholder="Prix max">
-                    </div>
-                    <br>
-                    <select id="livraison" class="form-control form-select form-select-sm" name="livraison">
-                        <option value="remise_en_main_propre">Remise en main propre</option>
-                        <option value="la_poste">La Poste</option>
-                        <option value="mondial-relay">Mondial Relay</option>
-                    </select>
-                    <br>
-                    <select id="marque" class="form-control form-select form-select-sm" name="marques">
-                        <option value="samsung">Samsung</option>
-                        <option value="apple">Apple</option>
-                        <option value="huawei">Huawei</option>
-                        <option value="sony">Sony</option>
-                        <option value="acer">Acer</option>
-                        <option value="asus">Asus</option>
-                        <option value="msi">MSI</option>
-                        <option value="xiaomi">Xiaomi</option>
-                        <option value="toshiba">Toshiba</option>
-                        <option value="philips">Philips</option>
-                        <option value="dell">Dell</option>
-                        <option value="hp">HP</option>
-                        <option value="autres">Autres</option>
-                    </select>
-                    <br>
-                    <input type="text" class="form-control form-text" placeholder="Limoges">
-                    <br>
-                </form>
-            #}
+           
         </div>
         
         <div class="col-xl-7 col-sm-7 col-12 bloc" >
@@ -109,6 +54,14 @@
             {% else %}
                 <p class="nb_annonces">{{nb_results}} résultats</p>
             {% endif %}
+
+            <div class="tri-date btn btn-secondary">
+                {{knp_pagination_sortable(annonces,'Date de publication','a.datePubliAnnonce')}}
+            </div>
+            <div class="tri-prix btn btn-secondary">
+                {{knp_pagination_sortable(annonces,'Prix','a.prix_annonce')}}
+            </div>
+            
                 
             <div class="resultats">
                 {% for annonce in annonces %}
@@ -131,7 +84,7 @@
 
                             <div class="col autres_infos_annonces">
                                 <div class="autres_infos">
-                                    <span class="prix_annonce" >{{annonce.prixAnnonce | number_format(0, '${.}', '${,}')}} €</span>
+                                    <span class="prix_annonce" >{{annonce.prixAnnonce | number_format(0, '.', ',')}} €</span>
                                 </div>
                                 <form class="lien_ajouter_favoris autres_infos" action={{ path('secondLife_ajouter_aux_favoris_utilisateur',{'id':annonce.idAnnonce}) }} method='POST'>
                                     <button class="btn btn-sm btn-outline-secondary">Ajouter aux favoris</button>
@@ -145,11 +98,12 @@
                     </a>  
                     {% endif %}
                 {% endfor %}
+                <div class="pagination col-xl-7 col-sm-7 col-12 filtre-js-pagination"style="margin:1%; text-align:center"  >
+                        {{knp_pagination_render(annonces)}}
+                </div>
             </div>
         </div>
 
-        {#<div class="pagination">{{knp_pagination_render(annonces)}}</div>
-        #}
         <div class="col-xl-2 col-sm-12 col-12 bloc" >
             <!--pub-->
             <div class="row sous_bloc">
@@ -177,6 +131,5 @@
             </div>
         </div>
     </div>
-    
     
 {% endblock %}

@@ -14,13 +14,13 @@ class UtilisateurType extends AbstractType
         $builder
             ->add('nom_personne')
             ->add('prenom_personne')
-            ->add('mail_personne')
-            ->add('mdp_personne')
+            //->add('mail_personne')
+            //->add('mdp_personne')
             ->add('lien_image_personne')
             ->add('pseudo_user')
             ->add('adresse_user')
             ->add('date_naiss_user')
-            ->add('date_inscription_user')
+            //->add('date_inscription_user')
         ;
     }
 

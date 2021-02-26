@@ -69,14 +69,6 @@ class SearchAnnonceFormType extends AbstractType
                     'placeholder'=>'Prix max'
                 ]
             ])
-            ->add('modes_livraison',ChoiceType::class,[
-                'label'=>'Modes de livraison',
-                'required'=>false,
-                'choices'=>[
-                    'Remise en main propre'=>'remise_en_main_propre',
-                    'Remise via transporteur(poste, collissimo,..)'=>'remise_via_transporteur'
-                ]
-            ])
             ->add('marques',EntityType::class,[
                 'label'=>'Marques',
                 'required'=>false,
@@ -84,13 +76,6 @@ class SearchAnnonceFormType extends AbstractType
                 'multiple'=>true,
                 'choice_label'=>'nomMarque',
                 
-            ])
-            ->add('lieux',TextType::class,[
-                'label'=>'Ville',
-                'required'=>false,
-                'attr'=>[
-                    'placeholder'=>'Ville ou Departement ou Region'
-                ]
             ])
             ->add('save',SubmitType::class,['label'=>'Rechercher'])
             ;

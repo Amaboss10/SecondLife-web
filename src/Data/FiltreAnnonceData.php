@@ -34,25 +34,15 @@ class FiltreAnnonceData
      */
     public $prix_max;
     /**
-     * les modes de livraison
-     */
-    public $modes_livraison;
-    /**
      * les marques
      */
     public $marques;
-    /**
-     * les lieux
-     */
-    public $lieux;
-
+    
     public function __construct()
     {
         $this->categories=new ArrayCollection();
         $this->sous_categories=new ArrayCollection();
         $this->marques=new ArrayCollection();
-        $this->modes_livraison=new ArrayCollection();
-        $this->lieux=new ArrayCollection();
     }
 
     public function getQ(): ?string
@@ -83,20 +73,7 @@ class FiltreAnnonceData
     {
         return $this->marques;
     }
-    /**
-     * @return Collection|string[]
-     */
-    public function getLieux(): Collection
-    {
-        return $this->lieux;
-    }
-    /**
-     * @return Collection|string[]
-     */
-    public function getModesLivraison() :Collection
-    {
-        return $this->modes_livraison;
-    }
+    
     public function getPrixMin(): float
     {
         return $this->prix_min;
