@@ -1,0 +1,141 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block title %}{{titre_page}}{% endblock %}
+
+{% block body %}
+
+<style>
+    textarea {
+        overflow-y: scroll;
+        height: auto;
+        resize: none;
+    }
+
+    .bouton {
+        float: right;
+        margin-right: 3px;
+
+    }
+
+    .separateur {
+        height: 10px;
+    }
+</style>
+
+<div class="container-fluid">
+    <h3>Rédiger/Envoyer un message</h3>
+    <div class="row">
+        <div class="col-sm-8">
+            <div style="border: 2px solid grey;margin : 5px">
+                <form style="margin:5px">
+                    <div class="form-group row">
+                        <label for="objet" class="col-sm-2 col-form-label">Expéditeur</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="emailExpediteur"
+                                placeholder="mail de l'Expediteur" name="emailExpediteur">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="objet" class="col-sm-2 col-form-label">Destinataire</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="emailDestinataire"
+                                placeholder="mail du destinataire" name="emailDestinataire">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="objet" class="col-sm-2 col-form-label">Objet</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="objetEmail" placeholder="objet du mail"
+                                name="objetEmail">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="contenu" class="col-sm-2 col-form-label">Contenu du message</label>
+                        <div class="col-sm-10">
+                            <textarea class="form-control" id="contenu" rows="7"></textarea>
+                        </div>
+                    </div>
+                </form>
+                <form style="margin:5px">
+                    <div class="form-group">
+                        <label for="fileupload">Parcourir les fichiers</label>
+                        <input type="file" class="form-control-file" id="fileupload" multiple>
+                    </div>
+                </form>
+                <div class="bouton" style="padding-bottom: 5px;"><button type="submit"
+                        class="btn btn-primary">Envoyer</button>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+
+        </div>
+
+        <div class="col-sm-4">
+            <div class="panel">
+                <div class="panel" style="min-height: 140px; border: 1px solid grey">
+                    <div class="panel-heading">
+                        <h5>PUBLICITE</h5>
+                    </div>
+
+                </div>
+            </div>
+            <div class="separateur"></div>
+            <div class="panel">
+                <div class="panel" style="min-height: 140px; border: 1px solid grey">
+                    <div class="panel-heading">
+                        <h5>PUBLICITE</h5>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="separateur"></div>
+
+            <div class="panel">
+                <div class="panel" style="min-height: 140px; border: 1px solid grey">
+                    <div class="panel-heading">
+                        <h5>PUBLICITE</h5>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="separateur"></div>
+
+            <div class="panel">
+                <div class="panel" style="min-height: 140px; border: 1px solid grey">
+                    <div class="panel-heading">
+                        <h5>PUBLICITE</h5>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="separateur"></div>
+
+            <div class="panel">
+                <div class="panel" style="min-height: 140px; border: 1px solid grey">
+                    <div class="panel-heading">
+                        <h5>PUBLICITE</h5>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="separateur"></div>
+
+            <div class="panel">
+                <div class="panel" style="min-height: 140px; border: 1px solid grey">
+                    <div class="panel-heading">
+                        <h5>PUBLICITE</h5>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div><br><br>
+
+{% endblock %}

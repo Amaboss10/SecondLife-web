@@ -7,17 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{% block title %}{% endblock %}</title>
     {% block stylesheets %}{{ encore_entry_link_tags('app') }}{% endblock %}
+    <link rel="stylesheet" href="{{asset('style_user.css')}}">
 
     <!--<link rel="stylesheet" href="./assets/styles/style.css">-->
-    <style>
-                .column {
-                    float: left;
-                    width: 50%;
-                }
-    </style>
 </head>
-
-
 
 <body class="container-fluid">
     <header class="row" style="text-align:center">

@@ -5,51 +5,51 @@
 {% block body %}
 <h1>{{titre_page}}</h1>
 
-<div class="col-sm-8" style="border:1px solid grey">
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Nom_categorie</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for categorie in categories %}
-            <tr>
-                <td>{{ categorie.nomCategorie }}</td>
-                <td>
-                    <div offset-md-4" style="margin-bottom : 5px">
-                        <a class="btn btn-sm btn-outline-secondary"
-                            href="{{ path('secondLife_admin_afficher_annonces_par_categorie', {'id': categorie.id}) }}">Afficher
-                            les annonces de {{categorie.nomCategorie}}</a>
-                    </div>
-                    <div style="margin-bottom : 5px">
-                        <a class="btn btn-sm btn-outline-secondary"
-                            href="{{ path('secondLife_admin_afficher_sous_categories_par_categorie', {'id': categorie.id}) }}">Afficher
-                            les sous-categories de {{categorie.nomCategorie}}</a>
-                    </div>
-                    <div style="margin-bottom : 5px">
-                        <a class="btn btn-sm btn-outline-secondary"
-                            href="{{ path('secondLife_admin_modifier_categorie', {'id': categorie.id}) }}">Modifier la
-                            categorie {{categorie.nomCategorie}}</a>
-                    </div>
-                    <div style="margin-bottom : 5px">
-                        {{ include('categorie/admin/_delete_form.html.twig') }}
-                    </div>
-                </td>
-            </tr>
-            {% else %}
-            <tr>
-                <td colspan="3" style="margin-top:10%; text-align:center">Il n y a aucune catégorie</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-</div>
-<div style="margin-bottom: 10px"></div>
-<div class="col-sm-8"  style="text-align:right">
-     <a class=" btn btn-sm btn-outline-primary" href="{{ path('secondLife_admin_creer_categorie') }}">Créer une
-    catégorie</a>
-</div>
-<div style="margin-bottom: 10px"></div>
-{% endblock %}
+    <div style="border:1px solid grey ;margin-bottom: 10px">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Nom_categorie</th>
+                    <th>actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for categorie in categories %}
+                <tr>
+                    <td>{{ categorie.nomCategorie }}</td>
+                    <td>
+                        <div offset-md-4" style="margin-bottom : 5px">
+                            <a class="btn btn-sm btn-outline-secondary"
+                                href="{{ path('secondLife_admin_afficher_annonces_par_categorie', {'id': categorie.id}) }}">Afficher
+                                les annonces de {{categorie.nomCategorie}}</a>
+                        </div>
+                        <div style="margin-bottom : 5px">
+                            <a class="btn btn-sm btn-outline-secondary"
+                                href="{{ path('secondLife_admin_afficher_sous_categories_par_categorie', {'id': categorie.id}) }}">Afficher
+                                les sous-categories de {{categorie.nomCategorie}}</a>
+                        </div>
+                        <div style="margin-bottom : 5px">
+                            <a class="btn btn-sm btn-outline-secondary"
+                                href="{{ path('secondLife_admin_modifier_categorie', {'id': categorie.id}) }}">Modifier
+                                la
+                                categorie {{categorie.nomCategorie}}</a>
+                        </div>
+                        <div style="margin-bottom : 5px">
+                            {{ include('categorie/admin/_delete_form.html.twig') }}
+                        </div>
+                    </td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="3" style="margin-top:10%; text-align:center">Il n y a aucune catégorie</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div "></div>
+    <div style="text-align:right; margin-bottom: 10px">
+        <a class=" btn btn-sm btn-outline-success" href="{{ path('secondLife_admin_creer_categorie') }}">Créer une
+            catégorie</a>
+    </div>
+    {% endblock %}

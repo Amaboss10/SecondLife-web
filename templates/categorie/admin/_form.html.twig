@@ -1,4 +1,6 @@
+
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn-sm btn-outline-sucess">{{ button_label|default('Valider') }}</button>
+    {{ form_widget(form,{'attr':{'class':'form-control form-text  bg-light'}}) }}
+    <button type="submit" class="btn btn-sm btn-primary">{{ button_label|default('Valider') }}</button>
 {{ form_end(form) }}
+

@@ -1,5 +1,5 @@
 <form method="post" action="{{ path('secondLife_admin_supprimer_sous_categorie', {'id': souscategorie.id}) }}" onsubmit="return confirm('voulez vous supprimer la sous categorie '.{{souscategorie.nomSousCategorie}}.'?');">
     <input type="hidden" name="_method" value="DELETE">
     <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ souscategorie.id) }}">
-    <button class="btn btn-lg btn-outline-success ">Supprimer</button>
+    <button class="btn btn-sm btn-outline-danger ">Supprimer</button>
 </form>
