@@ -44,12 +44,12 @@
                             </form>
 
                             {% if annonce.etatAnnonce == 'Disponible' %}
-                            <form class="lien_modifier_etat" style="text-align:center; padding-bottom:2%"  action={{ path('secondLife_confirmer_vente',{'id':annonce.idAnnonce}) }} method='GET'>
+                            <form class="lien_modifier_etat autres_infos"  action={{ path('secondLife_confirmer_vente',{'id':annonce.idAnnonce}) }} method='GET'>
                                 <button class="btn btn-sm btn-outline-secondary" >Confirmer la vente</button>
                             </form>
                             {% endif %}
 
-                            <form class="lien_ajouter_favoris" style="text-align:center; padding-bottom:2%"  action={{ path('secondLife_modifier_annonce',{'id':annonce.idAnnonce}) }} method='POST'>
+                            <form class="lien_ajouter_favoris autres_infos"  action={{ path('secondLife_modifier_annonce',{'id':annonce.idAnnonce}) }} method='POST'>
                                 <button class="btn btn-sm btn-outline-secondary" >Modifier annonce</button>
                             </form>
                             

@@ -13,7 +13,10 @@ h5{
 h1,h2,h3,.h, .espace_bas{
     padding-bottom:0.5%;
 }
-
+.pagination{
+    margin:1%; 
+    text-align:center;
+}
 .titre_section_footer{
     padding-bottom:2%;
 }
