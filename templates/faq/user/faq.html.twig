@@ -3,7 +3,7 @@
 {% block title %}{{titre_page}}{% endblock %}
 
 {% block body %}
-    <h1>{{ titre_page }}</h1>
+    <h1 class="bloc">{{ titre_page }}</h1>
     <div class="row bloc">
         <div class="col-12 col-sm-12 col-xl-7">
             <h2>Foire aux questions</h2>
@@ -20,15 +20,13 @@
                         <div class="col">
                             {% for rubrique in categorie_faq.faqs %}
                                 <div class="rubrique row">
-                                    <button class="titre_rubrique btn btn-sm btn-outline-secondary col-12 col-sm-4 col-xl-2" type="button" data-bs-toggle="collapse" data-bs-target="#q1" aria-expanded="false" aria-controls="q1" >{{rubrique.titreProbleme}}</button>
                                     
-                                    <div class="detail_rubrique col-12 col-sm-8 col-xl-6 collapse" id="q1">
-                                        <div class="card card-body">
+                                    <div class="detail_rubrique col-12 col-sm-12 col-xl-12">
+
                                             <h3 class="titre_probleme" >{{rubrique.titreProbleme}}</h3>
-                                        
+                                            
                                             <p class="description_probleme">{{rubrique.descriptionProbleme}}</p>
                                             <p class="date_probleme">{{rubrique.dateProbleme|date('d/m/Y')}}</p>
-                                        
                                         {#
                                             <video class="lien_tutoriel" controls poster>
                                                 <source src={{rubrique.lienTutoriel}} type="video/mp4">
@@ -37,7 +35,7 @@
                                                 </p>
                                             </video>
                                         #}
-                                        </div>
+
                                     </div>                            
                                 </div> 
                             {% endfor %}

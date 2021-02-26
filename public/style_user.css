@@ -29,7 +29,7 @@ h1,h2,h3,.h, .espace_bas{
 .sous_bloc{
     padding:1%;
 }
-.annonce{
+.annonce,.detail_rubrique{
     border-style:solid; 
     border-width:1px; 
     border-color:#818D92; 
