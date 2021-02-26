@@ -5,7 +5,7 @@
 {% block body %}
 <h1>Utilisateur index</h1>
 
-<table class="table">
+<table class="table table-striped" style="border: 1px solid black">
     <thead class="thead-dark">
         <tr>
 
@@ -37,6 +37,8 @@
                 <div style="margin-bottom : 5px">
                     <a class="btn btn-sm btn-outline-secondary"
                         href="{{ path('secondLife_admin_afficher_utilisateur', {'id_personne': utilisateur.idPersonne}) }}">Afficher</a>
+                        </div>
+                        <div style="margin-bottom : 5px">
                     <a class="btn btn-sm btn-outline-secondary"
                         href="{{ path('secondLife_admin_afficher_utilisateur', {'id_personne': utilisateur.idPersonne}) }}">Contacter</a>
                 </div>
