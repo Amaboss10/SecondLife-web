@@ -10,286 +10,134 @@
         width: 32%;
         text-align: left;
     }
-
-    .separateur {
-        height: 10px;
-    }
 </style>
-<div>
-    <h1 class="col-sm-12">{{ titre_page }}</h1>
-    <div class="row">
-        <div class="row">
-            <div class="tri row">
-                <div class="col-xl-2 col-sm-4 col-12">
-                {#TRI#}
-                    <form>
-                        <label class="form-label col-form-label-sm">Tier par :</label>
-                        <select id="tri" class="form-control form-select form-select-sm" name="tri">
-                            <option value="prix_croissant">Prix Croissant</option>
-                            <option value="prix_decroissant">Prix Décroissant</option>
-                            <option value="plus_recent">Plus Récent</option>
-                            <option value="plus_ancien">Plus Ancien</option>
-                        </select>
-                        <br>
-                    </form>
-                </div>
-            </div>
 
-            <div class="annonces row">
-                <h3 class="nb_annonces">{{nb_annonces}} annonces</h3>
+<h1>{{ titre_page }}</h1>
+<div class="col-md-3">
+    {#TRI#}
+    <form>
+        <label class="form-label col-form-label-sm">Tier par :</label>
+        <select id="tri" class="form-control form-select form-select-sm" name="tri">
+            <option value="prix_croissant">Prix Croissant</option>
+            <option value="prix_decroissant">Prix Décroissant</option>
+            <option value="plus_recent">Plus Récent</option>
+            <option value="plus_ancien">Plus Ancien</option>
+        </select>
+        <br>
+    </form>
+</div>
+
+<h3 class="nb_annonces">{{nb_annonces}} annonces</h3>
+
+<div class="row">
+    <div class="col-xl-2 col-sm-12 col-12 bloc">
+        <!--pub-->
+        <div class="row sous_bloc ">
+            <p class="pub col-xl-12 col-sm-3 col-3">
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+            </p>
+            <p class="pub col-xl-12  offset-xl-0  offset-sm-1 offset-1 col-sm-3 col-3">
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+            </p>
+            <p class="pub col-xl-12 offset-xl-0  offset-sm-1 offset-1 col-sm-3 col-3">
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+            </p>
+        </div>
+    </div>
+    <div class="col-xl-7 col-sm-12 col-12 bloc">
+        <div class="row bloc">
+            <div class="col-sm-12 col-12">
                 {% for annonce in annonces %}
-                <div class="annonce col-md-4">
-                    <div class="panel" style="border: 1px solid grey">
-                        <div class="row" style="margin-right: 2px">
-                            <h6>{{annonce.titreAnnonce}}</h6>
-                                
-                            <div class="images_annonce column">
-                                <div class="panel" style="margin: 1px">
-                                    <div class="panel-body"><img src="https://placehold.it/130x130?text=IMG" class="img-responsive"
-                                                alt="Image">
-                                    </div>
-                                </div>
-                            </div>
+                <div class="row" style="border:1px solid">
+                    <div class="panel col-sm-12 col-12">
 
-                            <div class="info_annonce column" style="margin-top: 3px">
-                                <h6>{{annonce.categorie}}</h6>
-                                <h6>{{annonce.sousCategorie}}</h6>
-                                <h6>{{annonce.marque}}</h6>
-                                <h6>Prix : {{annonce.prixAnnonce}}</h6>
-                                <h6>Publié le {{annonce.datePubliAnnonce|date("m/d/Y")}}</h6>
-                            </div>
-
-                            <div class="btns_annonce column" style="margin-top: 20px">
-                                <form action={{ path('secondLife_admin_afficher_annonce',{'id':annonce.idAnnonce}) }} method='GET'>
-                                    <button class="btn btn-outline-dark btn-sm" type="submit" formaction={{ path('secondLife_admin_afficher_annonce',{'id':annonce.idAnnonce}) }} style="width: 100%">Afficher </button>
+                        <h6>{{annonce.titreAnnonce}}</h6>
+                        <div class="btns_annonce column" style="margin-top: 20px">
+                            <div style="margin-bottom:10px">
+                                <form action={{ path('secondLife_admin_afficher_annonce',{'id':annonce.idAnnonce}) }}
+                                    method='GET'>
+                                    <button class="btn btn-outline-dark btn-sm" type="submit" formaction={{
+                                        path('secondLife_admin_afficher_annonce',{'id':annonce.idAnnonce}) }}
+                                        style="width: 100%">Afficher </button>
                                 </form>
-                                    
-                                {% if not annonce.estValide %}
-                                <form action={{ path('secondLife_admin_valider_annonce',{'id':annonce.idAnnonce}) }} method='GET'>
-                                    <button class="btn btn-outline-dark btn-sm" type="submit" formaction={{ path('secondLife_admin_valider_annonce',{'id':annonce.idAnnonce}) }} style="width: 100%">Valider </button>
+                            </div>
+
+                            {% if not annonce.estValide %}
+                            <div style="margin-bottom:10px">
+                                <form action={{ path('secondLife_admin_valider_annonce',{'id':annonce.idAnnonce}) }}
+                                    method='GET'>
+                                    <button class="btn btn-outline-dark btn-sm" type="submit" formaction={{
+                                        path('secondLife_admin_valider_annonce',{'id':annonce.idAnnonce}) }}
+                                        style="width: 100%">Valider </button>
                                 </form>
-                                {% endif %}
-
-                                {{ include('annonce/_delete_form.html.twig') }}
-            
                             </div>
+                            {% endif %}
+
+                            {{ include('annonce/_delete_form.html.twig') }}
+
                         </div>
-                    </div>
-                </div>    
-                {#
-                    <div class="col-md-4">
-                        <div class="panel" style="border: 1px solid grey">
-                            <div class="row" style="margin-right: 2px">
-                                <div class="column">
-                                    <div class="panel" style="margin: 1px">
 
-                                        <div class="panel-body"><img src="https://placehold.it/130x130?text=IMG" class="img-responsive"
-                                                alt="Image">
-                                        </div>
+                        <div class="info_annonce column" style="margin-top: 3px">
+                            <h6>{{annonce.categorie}}</h6>
+                            <h6>{{annonce.sousCategorie}}</h6>
+                            <h6>{{annonce.marque}}</h6>
+                            <h6>Prix : {{annonce.prixAnnonce}}</h6>
+                            <h6>Publié le {{annonce.datePubliAnnonce|date("m/d/Y")}}</h6>
+                        </div>
 
-                                    </div>
-                                </div>
-                                <div class="column" style="margin-top: 3px">
-                                    <h6>Titre Annonce</h6>
-                                    <h6>Categorie</h6>
-                                    <h6>Ref</h6>
-                                    <h6>Lieu/Date</h6>
-                                    <h6>PRIX</h6>
-                                </div>
-                                <div class="column" style="margin-top: 20px">
-                                    <button class="btn btn-outline-dark btn-sm" type="submit" style="width: 100%">Afficher</button>
-                                    <button class="btn btn-outline-dark btn-sm" type="submit" style="width: 100%">Valider </button>
-                                    <button class="btn btn-outline-dark btn-sm" type="submit" style="width: 100%">Supprimer </button>
+                        <div class="images_annonce column">
+                            <div class="panel" style="margin: 1px">
+                                <div class="panel-body"><img src="https://placehold.it/130x130?text=IMG"
+                                        class="img-responsive" alt="Image">
                                 </div>
                             </div>
                         </div>
-                    </div>
-                #}
 
-                <div class="separateur"></div>
-                {% endfor %}  
-            </div>
-        </div>
-
-        <div class="publicites row">
-            <div class="col-md-2">
-                <div class="panel panel-primary" style="min-height: 140px; border: 1px solid grey">
-                    <div class="panel-heading">
-                        <h5>PUBLICITE</h5>
                     </div>
                 </div>
-            </div>
+                <div class="clearfix" style="margin-bottom:10px"></div>
+                {% endfor %}
 
-            <div class="col-md-2">
-                <div class="panel panel-primary" style="min-height: 140px; border: 1px solid grey">
-                    <div class="panel-heading">
-                        <h5>PUBLICITE</h5>
-                    </div>
-                </div>
-            </div>
-
-            <div class="separateur"></div>      
             </div>
         </div>
+    </div>
+    <div class="col-xl-2 col-sm-12 col-12 bloc">
+    <!--pub-->
+    <div class="row sous_bloc ">
+        <p class="pub col-xl-12 col-sm-3 col-3">
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+        </p>
+        <p class="pub col-xl-12  offset-xl-0  offset-sm-1 offset-1 col-sm-3 col-3">
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+        </p>
+        <p class="pub col-xl-12 offset-xl-0  offset-sm-1 offset-1 col-sm-3 col-3">
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+        </p>
     </div>
 </div>
-    
-{#
-<div class="row">
-    <div class="col-md-4">
-        <div class="panel" style="border: 1px solid grey">
-            <div class="row" style="margin-right: 2px">
-                <div class="column">
-                    <div class="panel" style="margin: 1px">
-
-                        <div class="panel-body"><img src="https://placehold.it/130x130?text=IMG" class="img-responsive"
-                                alt="Image">
-                        </div>
-
-                    </div>
-                </div>
-                <div class="column" style="margin-top: 3px">
-                    <h6>Titre Annonce</h6>
-                    <h6>Categorie</h6>
-                    <h6>Ref</h6>
-                    <h6>Lieu/Date</h6>
-                    <h6>PRIX</h6>
-                </div>
-                <div class="column" style="margin-top: 20px">
-                    <button class="btn btn-outline-dark btn-sm" type="submit" style="width: 100%">Afficher</button>
-                    <button class="btn btn-outline-dark btn-sm" type="submit" style="width: 100%">Valider </button>
-                    <button class="btn btn-outline-dark btn-sm" type="submit" style="width: 100%">Supprimer </button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-md-4">
-        <div class="panel" style="border: 1px solid grey">
-            <div class="row" style="margin-right: 2px">
-                <div class="column">
-                    <div class="panel" style="margin: 1px">
-
-                        <div class="panel-body"><img src="https://placehold.it/130x130?text=IMG" class="img-responsive"
-                                alt="Image">
-                        </div>
-
-                    </div>
-                </div>
-                <div class="column" style="margin-top: 3px">
-                    <h6>Titre Annonce</h6>
-                    <h6>Categorie</h6>
-                    <h6>Ref</h6>
-                    <h6>Lieu/Date</h6>
-                    <h6>PRIX</h6>
-                </div>
-                <div class="column" style="margin-top: 20px">
-                    <button class="btn btn-outline-dark btn-sm" type="submit" style="width: 100%">Afficher</button>
-                    <button class="btn btn-outline-dark btn-sm" type="submit" style="width: 100%">Valider </button>
-                    <button class="btn btn-outline-dark btn-sm" type="submit" style="width: 100%">Supprimer </button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-md-2">
-        <div class="panel panel-primary" style="min-height: 140px; border: 1px solid grey">
-            <div class="panel-heading">
-                <h5>PUBLICITE</h5>
-            </div>
-
-        </div>
-    </div>
-
-    <div class="col-md-2">
-        <div class="panel panel-primary" style="min-height: 140px; border: 1px solid grey">
-            <div class="panel-heading">
-                <h5>PUBLICITE</h5>
-            </div>
-
-        </div>
-    </div>
-</div>
-<div class="separateur"></div>
-#}
-{#
-<div class="row">
-    <div class="col-md-4">
-        <div class="panel" style="border: 1px solid grey">
-            <div class="row" style="margin-right: 2px">
-                <div class="column">
-                    <div class="panel" style="margin: 1px">
-
-                        <div class="panel-body"><img src="https://placehold.it/130x130?text=IMG" class="img-responsive"
-                                alt="Image">
-                        </div>
-
-                    </div>
-                </div>
-                <div class="column" style="margin-top: 3px">
-                    <h6>Titre Annonce</h6>
-                    <h6>Categorie</h6>
-                    <h6>Ref</h6>
-                    <h6>Lieu/Date</h6>
-                    <h6>PRIX</h6>
-                </div>
-                <div class="column" style="margin-top: 20px">
-                    <button class="btn btn-outline-dark btn-sm" type="submit" style="width: 100%">Afficher</button>
-                    <button class="btn btn-outline-dark btn-sm" type="submit" style="width: 100%">Valider </button>
-                    <button class="btn btn-outline-dark btn-sm" type="submit" style="width: 100%">Supprimer </button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-md-4">
-        <div class="panel" style="border: 1px solid grey">
-            <div class="row" style="margin-right: 2px">
-                <div class="column">
-                    <div class="panel" style="margin: 1px">
-
-                        <div class="panel-body"><img src="https://placehold.it/130x130?text=IMG" class="img-responsive"
-                                alt="Image">
-                        </div>
-
-                    </div>
-                </div>
-                <div class="column" style="margin-top: 3px">
-                    <h6>Titre Annonce</h6>
-                    <h6>Categorie</h6>
-                    <h6>Ref</h6>
-                    <h6>Lieu/Date</h6>
-                    <h6>PRIX</h6>
-                </div>
-                <div class="column" style="margin-top: 20px">
-                    <button class="btn btn-outline-dark btn-sm" type="submit" style="width: 100%">Afficher</button>
-                    <button class="btn btn-outline-dark btn-sm" type="submit" style="width: 100%">Valider </button>
-                    <button class="btn btn-outline-dark btn-sm" type="submit" style="width: 100%">Supprimer </button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-md-2">
-        <div class="panel panel-primary" style="min-height: 140px; border: 1px solid grey">
-            <div class="panel-heading">
-                <h5>PUBLICITE</h5>
-            </div>
-
-        </div>
-    </div>
-
-    <div class="col-md-2">
-        <div class="panel panel-primary" style="min-height: 140px; border: 1px solid grey">
-            <div class="panel-heading">
-                <h5>PUBLICITE</h5>
-            </div>
-
-        </div>
-    </div>
-</div>
-<div class="separateur"></div>
-</div>
-#}
 
 {% endblock %}
