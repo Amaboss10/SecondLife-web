@@ -3,152 +3,176 @@
 {% block title %}{{titre_page}}{% endblock %}
 
 {% block body %}
-    <h1>{{titre_page}}</h1>
 
-    <div class="row">
-        <div class="annonce_vendeur col-xl-6 col-sm-6 col-12 ">
-            <div class="annonce col-xl-6 col-sm-6 col-12 ">
-                <h3 class="titre_annonce">{{annonce.titreAnnonce}}</h3>
-                <div class="images_annonce">
-                    {% for image in annonce.imagesAnnonce %}
-                    <img src={{image.lienPhotoAnnonce}} alt="Image de l'annonce">
-                    {% endfor %}
-                </div>
-                
-                <div class="info_boutons row">
-                    <div class="info_annonce column">
-                        <h6>Categorie : {{annonce.categorie}}</h6>
-                        <h6>Sous-categorie : {{annonce.sousCategorie}}</h6>
-                        <h6>Marque : {{annonce.marque}}</h6>
-                        <h6 class="prix_annonce">Prix : {{annonce.prixAnnonce}} Euros</h6>
-                        <h6>Poids : {{annonce.poidsAnnonce}} Grammes</h6>
-                        <h6>Etat : {{annonce.etatAnnonce}}</h6>
-                        <h6>Description : {{annonce.descriptionAnnonce}}</h6>
-                        <h6>Date publication : {{annonce.datePubliAnnonce|date("m/d/Y - H:i:s")}}</h6>
-                    </div>
-                    
-                    <div class="btns_annonce">
-                        {% if not annonce.estValide %}
-                        <form action={{ path('secondLife_admin_valider_annonce',{'id':annonce.idAnnonce}) }} method='GET'>
-                            <button class="btn btn-outline-dark btn-sm" type="submit" formaction={{ path('secondLife_admin_valider_annonce',{'id':annonce.idAnnonce}) }} style="width: 100%">Valider </button>
-                        </form>
-                        {% endif %}
 
-                        {{ include('annonce/_delete_form.html.twig') }}
+<h1>{{titre_page}}</h1>
 
-                        <form action={{ path('secondLife_admin_valider_annonce',{'id':annonce.idAnnonce}) }} method='GET'>
-                            <button class="btn btn-outline-dark btn-sm" type="submit" formaction={{ path('secondLife_admin_valider_annonce',{'id':annonce.idAnnonce}) }} style="width: 100%">Contacter le vendeur </button>
-                        </form>
-                    </div>
-                </div>
+
+<div class="row">
+    <div class="row panel col-md-6" style="border:solid 1px grey;margin-left:30px">
+        <div style="width:32%">
+            <h3 class="titre_annonce">{{annonce.titreAnnonce}}</h3>
+            <div class="images_annonce">
+                {% for image in annonce.imagesAnnonce %}
+                <img src={{image.lienPhotoAnnonce}} alt="Image de l'annonce">
+                {% endfor %}
             </div>
-
-            <a href={{path('secondLife_admin_afficher_utilisateur',{'id_personne':annonce.utilisateur.idPersonne})}}>
-                <div class="vendeur panel"style="border: 1px solid grey" >
-                    <h2>Informations du vendeur</h2>
-                    <h6 class="pseudo">Pseudo : {{annonce.utilisateur.pseudoUser}}</h6>
-                    <h6 class="nom">Nom : {{annonce.utilisateur.nomPersonne}}</h6>
-                    <h6 class="prenom">Prenom : {{annonce.utilisateur.prenomPersonne}}</h6>
-                    <h6 class="adresse">Localisation : {{annonce.utilisateur.adresseUser}}</h6>
-                    <h6 class="nb_Annonces_publiees">Nombre d'annonces publiées : {{annonce.utilisateur.annonces|length}}</h6>
-                    <h6 class="ancieneté">Inscrit depuis  {{annonce.utilisateur.dateInscriptionUser| date('M Y')}}</h6>
-                </div>
-            </a>
         </div>
 
-        <div class="annonces_similaires col-xl-6 col-sm-6 col-12 ">
-            <h2>Annonces similaires</h2>
-            {% for annonce_ in annonces %}
-                {% if not annonce_ is same as(annonce) %}
-                <div class="annonce col-md-4">
-                    <div class="panel" style="border: 1px solid grey">
-                        <div class="row" style="margin-right: 2px">
-                            <div class="images_annonce column">
-                                <div class="panel" style="margin: 1px">
-                                    <div class="panel-body"><img src="https://placehold.it/130x130?text=IMG" class="img-responsive"
-                                                alt="Image">
-                                    </div>
-                                </div>
-                            </div>
 
-                            <div class="info_annonce column" style="margin-top: 3px">
-                                <h6>{{annonce_.titreAnnonce}}</h6>
-                                <h6>{{annonce_.categorie}}</h6>
-                                <h6>{{annonce_.sousCategorie}}</h6>
-                                <h6>{{annonce_.marque}}</h6>
-                                <h6>{{annonce_.prixAnnonce}}</h6>
-                                <h6>{{annonce_.datePubliAnnonce|date("m/d/Y")}}</h6>
-                            </div>
+        <div style="width:36%">
+            <h6>Categorie : {{annonce.categorie}}</h6>
+            <h6>Sous-categorie : {{annonce.sousCategorie}}</h6>
+            <h6>Marque : {{annonce.marque}}</h6>
+            <h6 class="prix_annonce">Prix : {{annonce.prixAnnonce}} Euros</h6>
+            <h6>Poids : {{annonce.poidsAnnonce}} Grammes</h6>
+            <h6>Etat : {{annonce.etatAnnonce}}</h6>
+            <h6>Description : {{annonce.descriptionAnnonce}}</h6>
+            <h6>Date publication : {{annonce.datePubliAnnonce|date("m/d/Y - H:i:s")}}</h6>
+        </div>
 
-                            <div class="btns_annonce column" style="margin-top: 20px">
-                                <form action={{ path('secondLife_admin_afficher_annonce',{'id':annonce_.idAnnonce}) }} method='GET'>
-                                    <button class="btn btn-outline-dark btn-sm" type="submit" formaction={{ path('secondLife_admin_afficher_annonce',{'id':annonce_.idAnnonce}) }} style="width: 100%">Afficher </button>
-                                </form>
-                                
-                                {% if not annonce_.estValide %}
-                                <form action={{ path('secondLife_admin_valider_annonce',{'id':annonce_.idAnnonce}) }} method='GET'>
-                                    <button class="btn btn-outline-dark btn-sm" type="submit" formaction={{ path('secondLife_admin_valider_annonce',{'id':annonce_.idAnnonce}) }} style="width: 100%">Valider </button>
-                                </form>
-                                {% endif %}
+        <div style="width:32%;margin-top:30px">
+            {% if not annonce.estValide %}
+            <div style="margin-bottom:10px">
+                <form action={{ path('secondLife_admin_valider_annonce',{'id':annonce.idAnnonce}) }} method='GET'>
+                    <button class="btn btn-outline-dark btn-sm" type="submit" formaction={{
+                        path('secondLife_admin_valider_annonce',{'id':annonce.idAnnonce}) }} style="width: 100%">Valider
+                    </button>
+                </form>
+            </div>
+            {% endif %}
 
-                                {{ include('annonce/_delete_form.html.twig') }}
+            {{ include('annonce/_delete_form.html.twig') }}
+            <div style="margin-top:10px">
+                <form action={{ path('secondLife_admin_valider_annonce',{'id':annonce.idAnnonce}) }} method='GET'>
+                    <button class="btn btn-outline-dark btn-sm" type="submit" formaction={{
+                        path('secondLife_admin_valider_annonce',{'id':annonce.idAnnonce}) }}
+                        style="width: 100%">Contacter
+                        le vendeur </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="col-md-5" style="padding-left:20px">
+        <a href={{path('secondLife_admin_afficher_utilisateur',{'id_personne':annonce.utilisateur.idPersonne})}}>
+            <div class="vendeur panel" style="border: 1px solid grey">
+                <h2>Informations du vendeur</h2>
+                <h6 class="pseudo">Pseudo : {{annonce.utilisateur.pseudoUser}}</h6>
+                <h6 class="nom">Nom : {{annonce.utilisateur.nomPersonne}}</h6>
+                <h6 class="prenom">Prenom : {{annonce.utilisateur.prenomPersonne}}</h6>
+                <h6 class="adresse">Localisation : {{annonce.utilisateur.adresseUser}}</h6>
+                <h6 class="nb_Annonces_publiees">Nombre d'annonces publiées : {{annonce.utilisateur.annonces|length}}
+                </h6>
+                <h6 class="ancieneté">Inscrit depuis {{annonce.utilisateur.dateInscriptionUser| date('M Y')}}</h6>
+            </div>
+        </a>
+    </div>
+</div>
+</div>
+</div>
+
+<div class="container" style="margin-left:20px">
+    <h2>Annonces similaires</h2>
+    {% for annonce_ in annonces %}
+    {% if not annonce_ is same as(annonce) %}
+    <div class="row">
+        <div class="annonce col-sm-4">
+            <div class="panel">
+                <div class="row" style="margin-right: 2px">
+                    <div class="images_annonce column">
+                        <div class="panel" style="margin: 1px">
+                            <div class="panel-body"><img src="https://placehold.it/130x130?text=IMG"
+                                    class="img-responsive" alt="Image">
                             </div>
                         </div>
                     </div>
-                </div>    
-                {% endif %}
-            {% endfor %}
-        </div>
 
-        <div class="pub col col-xl-2 col-sm-12 col-12" style="background-color:blue" style="margin:1%">
-            <p>
-                    <br>
-                    <br>
-                </p>
+                    <div class="info_annonce column" style="margin-top: 3px">
+                        <h6>{{annonce_.titreAnnonce}}</h6>
+                        <h6>{{annonce_.categorie}}</h6>
+                        <h6>{{annonce_.sousCategorie}}</h6>
+                        <h6>{{annonce_.marque}}</h6>
+                        <h6>{{annonce_.prixAnnonce}}</h6>
+                        <h6>{{annonce_.datePubliAnnonce|date("m/d/Y")}}</h6>
+                    </div>
+
+                    <div class="btns_annonce column" style="margin-top: 20px">
+                        <div style="margin-bottom:10px">
+                            <form action={{ path('secondLife_admin_afficher_annonce',{'id':annonce_.idAnnonce}) }}
+                                method='GET'>
+                                <button class="btn btn-outline-dark btn-sm" type="submit" formaction={{
+                                    path('secondLife_admin_afficher_annonce',{'id':annonce_.idAnnonce}) }}
+                                    style="width: 100%">Afficher </button>
+                            </form>
+                        </div>
+
+                        {% if not annonce_.estValide %}
+                        <div style="margin-bottom:10px">
+                            <form action={{ path('secondLife_admin_valider_annonce',{'id':annonce_.idAnnonce}) }}
+                                method='GET'>
+                                <button class="btn btn-outline-dark btn-sm" type="submit" formaction={{
+                                    path('secondLife_admin_valider_annonce',{'id':annonce_.idAnnonce}) }}
+                                    style="width: 100%;margin-bottom:10px">Valider </button>
+                            </form>
+                            {% endif %}
+
+                            {{ include('annonce/_delete_form.html.twig') }}
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
+</div>
+
+{% endif %}
+{% endfor %}
+
+
 {#
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ annonce.idAnnonce }}</td>
-            </tr>
-            <tr>
-                <th>Titre_annonce</th>
-                <td>{{ annonce.titreAnnonce }}</td>
-            </tr>
-            <tr>
-                <th>Description_annonce</th>
-                <td>{{ annonce.descriptionAnnonce }}</td>
-            </tr>
-            <tr>
-                <th>Prix_annonce</th>
-                <td>{{ annonce.prixAnnonce }}</td>
-            </tr>
-            <tr>
-                <th>Poids_annonce</th>
-                <td>{{ annonce.poidsAnnonce }}</td>
-            </tr>
-            <tr>
-                <th>Etat_annonce</th>
-                <td>{{ annonce.etatAnnonce }}</td>
-            </tr>
-            <tr>
-                <th>Date_publi_annonce</th>
-                <td>{{ annonce.datePubliAnnonce ? annonce.datePubliAnnonce|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Est_valide</th>
-                <td>{{ annonce.estValide ? 'Yes' : 'No' }}</td>
-            </tr>
-        </tbody>
-    </table>
+<table class="table">
+    <tbody>
+        <tr>
+            <th>Id</th>
+            <td>{{ annonce.idAnnonce }}</td>
+        </tr>
+        <tr>
+            <th>Titre_annonce</th>
+            <td>{{ annonce.titreAnnonce }}</td>
+        </tr>
+        <tr>
+            <th>Description_annonce</th>
+            <td>{{ annonce.descriptionAnnonce }}</td>
+        </tr>
+        <tr>
+            <th>Prix_annonce</th>
+            <td>{{ annonce.prixAnnonce }}</td>
+        </tr>
+        <tr>
+            <th>Poids_annonce</th>
+            <td>{{ annonce.poidsAnnonce }}</td>
+        </tr>
+        <tr>
+            <th>Etat_annonce</th>
+            <td>{{ annonce.etatAnnonce }}</td>
+        </tr>
+        <tr>
+            <th>Date_publi_annonce</th>
+            <td>{{ annonce.datePubliAnnonce ? annonce.datePubliAnnonce|date('Y-m-d H:i:s') : '' }}</td>
+        </tr>
+        <tr>
+            <th>Est_valide</th>
+            <td>{{ annonce.estValide ? 'Yes' : 'No' }}</td>
+        </tr>
+    </tbody>
+</table>
 
-    <a href="{{ path('annonce_index') }}">back to list</a>
+<a href="{{ path('annonce_index') }}">back to list</a>
 
-    <a href="{{ path('annonce_edit', {'id': annonce.idAnnonce}) }}">edit</a>
+<a href="{{ path('annonce_edit', {'id': annonce.idAnnonce}) }}">edit</a>
 
-    {{ include('annonce/_delete_form.html.twig') }}
+{{ include('annonce/_delete_form.html.twig') }}
 #}
 {% endblock %}
