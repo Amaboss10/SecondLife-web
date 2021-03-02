@@ -16,7 +16,10 @@
             <div class="row infos_personnelles">
                 <h3> Mes informations personnelles <h3>
                 <div class="row">
-                    <input class="col-xl-3 col-sm-6 col-12 form-label col-form-label-sm " type="file" id="image" name="image">
+                    <div class=" offset-xl-0 col-xl-3 offset-md-6 col-sm-6 col-12">
+                        <img src="../../../{{utilisateur.lienImagePersonne}}" alt="photo de profil" height=50 width=150><br>
+                        <input class="col-xl-3 col-sm-6 col-12 form-label col-form-label-sm " type="file" id="image" name="image">
+                    </div>
                     <div class=" offset-xl-0 col-xl-3 offset-md-6 col-sm-6 col-12">
                         <input type="text" class="form-control form-text bg-light" placeholder="Pseudo : Viiper">
                         <input type="text" class="form-control form-text bg-light" placeholder=" DUPOND">
@@ -45,15 +48,15 @@
             <div class="row parametres">
                 <h3>Paramètres</h3>
                 <div class="col-xl-4 col-sm-4 col-12">
-                    <input type="email" class="form-control form-text bg-light" placeholder="Email : name@exemple.com">
-                    <br>
                     <div class="bouton">
-                        <form action={{ path('secondLife_mon_compte') }}>
+                        <form action={{ path('secondLife_mon_compte') }} method='POST'>
+                            <input type="email" name='email' class="form-control form-text bg-light" placeholder="Email : name@exemple.com">
+                            <br>
                             <button type="submit" class="col btn btn-sm btn-outline-secondary">modifier adresse mail</button>
-                        </form>
-                        
+                        </form>  
                     </div>
                 </div>
+
                 <div class="col-xl-4 col-sm-4 col-12">
                     <input type="password" class="form-control form-text bg-light" placeholder="ancien mot de passe">
                     <input type="password" class="form-control form-text bg-light" placeholder="nouveau mot de passe">
@@ -94,6 +97,4 @@
             </div>
         </div>
     </div>
-   
-
 {% endblock %}

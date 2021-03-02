@@ -45,6 +45,7 @@
             <a href={{ path('secondLife_afficher_utilisateur',{'id_personne':annonce.utilisateur.idPersonne}) }} class="link-dark bouton">
                 <div class="vendeur panel" >
                     <h2>Informations du vendeur</h2>
+                    <img src="../../../../{{annonce.utilisateur.lienImagePersonne}}" alt="profil du vendeur">
                     <h6 class="pseudo">Pseudo : {{annonce.utilisateur.pseudoUser}}</h6>
                     <h6 class="adresse">Localisation : {{annonce.utilisateur.adresseUser}}</h6>
                     <h6 class="nb_Annonces_publiees">Nombre d'annonces publiées : {{annonce.utilisateur.annonces|length}}</h6>

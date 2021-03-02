@@ -59,6 +59,7 @@
         <a href={{path('secondLife_admin_afficher_utilisateur',{'id_personne':annonce.utilisateur.idPersonne})}}>
             <div class="vendeur panel" style="border: 1px solid grey">
                 <h2>Informations du vendeur</h2>
+                <img src="../../../../{{annonce.utilisateur.lienImagePersonne}}" alt="profil du vendeur">
                 <h6 class="pseudo">Pseudo : {{annonce.utilisateur.pseudoUser}}</h6>
                 <h6 class="nom">Nom : {{annonce.utilisateur.nomPersonne}}</h6>
                 <h6 class="prenom">Prenom : {{annonce.utilisateur.prenomPersonne}}</h6>

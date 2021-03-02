@@ -28,7 +28,7 @@
             <td>{{ utilisateur.nomPersonne }}</td>
             <td>{{ utilisateur.prenomPersonne }}</td>
             <td>{{ utilisateur.mailPersonne }}</td>
-            <td><img src={{ utilisateur.lienImagePersonne }} alt="photo profil" width=100 height=75></td>
+            <td><img src="../../../../{{ utilisateur.lienImagePersonne }}" alt="photo profil" width=100 height=75></td>
             <td>{{ utilisateur.adresseUser }}</td>
             <td>{{ utilisateur.dateNaissUser ? utilisateur.dateNaissUser|date('Y-m-d') : '' }}</td>
             <td>{{ utilisateur.dateInscriptionUser ? utilisateur.dateInscriptionUser|date('Y-m-d H:i:s') : '' }}

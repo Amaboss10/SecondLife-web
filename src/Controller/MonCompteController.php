@@ -2,13 +2,17 @@
 
 namespace App\Controller;
 
+use App\Entity\Utilisateur;
 use App\Repository\AnnonceRepository;
 use App\Repository\FavorisRepository;
+use App\Repository\PersonneRepository;
 use App\Repository\UtilisateurRepository;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+
 /**
  * @Route("/secondLife", name="secondLife_")
  */
@@ -19,11 +23,14 @@ class MonCompteController extends AbstractController
      */
     public function monCompte(UserInterface $user,UtilisateurRepository $utilisateurRepository): Response
     {
-        
+        $utilisateur=$utilisateurRepository->find($user);
+        $formUser=null;
+        $formEmail=null;
+        $formPassword=null;
         return $this->render('mon_compte/user/mon_compte.html.twig', [
             'titre_page'=>'Mon compte',
-            'utilisateur'=>$utilisateur=$utilisateurRepository->find($user),
-        ]);
+            'utilisateur'=>$utilisateur,
+        ]); 
     }
 
     /**
@@ -55,4 +62,22 @@ class MonCompteController extends AbstractController
             'annoncesSuggerees'=>$annoncesSuggerees
         ]);   
     }
+
+    /*
+     * @Route("/user/monCompte/modifierEmail", name="modifier_mon_email", methods={"GET","POST"})
+     */
+    public function modifierMonEmail(Request $request,UtilisateurRepository $utilisateurRepository,UserInterface $user,PersonneRepository $personneRepository): Response
+    {
+        $email=$request->get('email');
+        $utilisateur=$utilisateurRepository->find($user);
+
+        $emails=$personneRepository->findBy(['mail_personne'=>$email]);
+        if(count($emails) == 0){
+            $entityManager = $this->getDoctrine()->getManager();
+            $utilisateur->setMailPersonne($email);
+            $entityManager->persist($utilisateur);
+            $entityManager->flush();
+        }
+        return $this->redirectToRoute('secondLife_accueil');
+    }   
 }

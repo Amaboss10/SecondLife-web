@@ -90,29 +90,7 @@ class UtilisateurController extends AbstractController
 
     }
 
-    ///**
-    // * @Route("/new", name="utilisateur_new", methods={"GET","POST"})
-    // */
-    /*public function new(Request $request): Response
-    {
-        $utilisateur = new Utilisateur();
-        $form = $this->createForm(UtilisateurType::class, $utilisateur);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($utilisateur);
-            $entityManager->flush();
-
-            return $this->redirectToRoute('utilisateur_index');
-        }
-
-        return $this->render('utilisateur/new.html.twig', [
-            'utilisateur' => $utilisateur,
-            'form' => $form->createView(),
-        ]);
-    }*/
-
+    
     //USER
     /**
      * @Route("user/utilisateurs/{id_personne}/afficher", name="afficher_utilisateur", methods={"GET"})
@@ -141,8 +119,6 @@ class UtilisateurController extends AbstractController
         ]);
     }
 
-    
-
     /**
      * @Route("/{id_personne}/edit", name="utilisateur_edit", methods={"GET","POST"})
      */
@@ -162,8 +138,6 @@ class UtilisateurController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
-
-    
 
     ///**
      //* @Route("/user/monCompte/supprimerMonCompte", name="supprimer_mon_compte", methods={"DELETE"})

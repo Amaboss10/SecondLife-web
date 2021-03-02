@@ -18,7 +18,7 @@
                 <tr>
                     <td>{{ categorie.nomCategorie }}</td>
                     <td>
-                        <div offset-md-4" style="margin-bottom : 5px">
+                        <div offset-md-4 style="margin-bottom : 5px">
                             <a class="btn btn-sm btn-outline-secondary"
                                 href="{{ path('secondLife_admin_afficher_annonces_par_categorie', {'id': categorie.id}) }}">Afficher
                                 les annonces de {{categorie.nomCategorie}}</a>
@@ -34,9 +34,8 @@
                                 la
                                 categorie {{categorie.nomCategorie}}</a>
                         </div>
-                        <div style="margin-bottom : 5px">
-                            {{ include('categorie/admin/_delete_form.html.twig') }}
-                        </div>
+                        
+                        
                     </td>
                 </tr>
                 {% else %}

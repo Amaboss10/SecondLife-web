@@ -12,7 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
- * @Route("/secondLife", name="secondLife_")
+ * @Route( name="secondLife_")
  */
 class SecondLifeController extends AbstractController
 {
@@ -49,7 +49,7 @@ class SecondLifeController extends AbstractController
     }
 
     /**
-     * @Route("/annonces/images/supprimer/{id}", name="supprimer_image_annonce")
+     * @Route("secondLife/annonces/images/supprimer/{id}", name="supprimer_image_annonce")
      */
     public function supprimerImageAnnonce(): Response
     {
@@ -59,7 +59,7 @@ class SecondLifeController extends AbstractController
     }
     
     /**
-     * @Route("/messagerie", name="messagerie")
+     * @Route("secondLife/messagerie", name="messagerie")
      */
     public function messagerie(): Response
     {
@@ -79,7 +79,7 @@ class SecondLifeController extends AbstractController
     }
 
     /**
-     * @Route("/quiSommesNous", name="qui_sommes_nous")
+     * @Route("secondLife/quiSommesNous", name="qui_sommes_nous")
      */
     public function qui_sommes_nous(): Response
     {
@@ -89,7 +89,7 @@ class SecondLifeController extends AbstractController
     }
 
     /**
-     * @Route("/mentionsLegales", name="mentions_legales")
+     * @Route("secondLife/mentionsLegales", name="mentions_legales")
      */
     public function mentions_legales(): Response
     {
@@ -99,7 +99,7 @@ class SecondLifeController extends AbstractController
     }
 
     /**
-     * @Route("/conditionsGeneralesUtilisation", name="conditions_generales_utilisation")
+     * @Route("secondLife/conditionsGeneralesUtilisation", name="conditions_generales_utilisation")
      */
     public function conditions_generales_utilisation(): Response
     {

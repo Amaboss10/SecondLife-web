@@ -100,13 +100,21 @@ class CategorieController extends AbstractController
      */
     public function delete(Request $request, Categorie $categorie): Response
     {
-        
-        if ($this->isCsrfTokenValid('delete'.$categorie->getId(), $request->request->get('_token'))) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->remove($categorie);
-            $entityManager->flush();
+        if(count($categorie->getAnnonces())==0){
+            if ($this->isCsrfTokenValid('delete'.$categorie->getId(), $request->request->get('_token'))) {
+                $entityManager = $this->getDoctrine()->getManager();
+                foreach ($categorie->getSousCategorie() as $sousCategorie) {
+                    //on retire la sous categorie de la liste de faq de la categorie
+                    $categorie->removeSousCategorie($sousCategorie);
+                    //on supprime la sous categorie
+                    $entityManager->remove($sousCategorie);
+                }
+                $entityManager->remove($categorie);
+                $entityManager->flush();
+            }    
         }
 
+        
         return $this->redirectToRoute('secondLife_admin_gerer_categories');
     }
 }

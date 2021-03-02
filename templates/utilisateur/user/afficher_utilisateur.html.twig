@@ -6,7 +6,7 @@
     <div class="row bloc">
         <div class="col-xl-2 col-sm-6 col-12 profil">
             <h3>{{utilisateur.pseudoUser}}</h3>
-            <img src={{utilisateur.lienImagePersonne}} alt="image_de_profil"></a><br>
+            <img src="../../../../{{utilisateur.lienImagePersonne}}" alt="image_de_profil"></a><br>
             <h6 class="pseudo">Pseudo : {{utilisateur.pseudoUser}}</h6>
             <h6 class="adresse">Localisation : {{utilisateur.adresseUser}}</h6>
             <h6 class="nb_Annonces_publiees">Nombre d'annonces publiées : {{utilisateur.annonces|length}}</h6>
@@ -25,7 +25,7 @@
                             <a href={{path('secondLife_afficher_annonce',{'id':annonce.idAnnonce})}} class="link-dark"><h4 class="titre_annonce">{{annonce.titreAnnonce}}</h4></a>
                             
                             <div class="col image_annonce">
-                                <img src={{annonce.imagesAnnonce.first()}} alt={{annonce.titreAnnonce}}>
+                                <img src="../../../../images_annonces/{{annonce.imagesAnnonce.first()}}" alt={{annonce.titreAnnonce}}>
                             </div>
 
                             <div class="col infos_annonce">

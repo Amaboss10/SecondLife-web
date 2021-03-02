@@ -68,7 +68,7 @@
                             <h2>Images</h2>
                             {% for image in annonce.imagesAnnonce %}
                                 <div>
-                                    <img src="{{ image.lienPhotoAnnonce }}" alt="image annonce" >
+                                    <img src="../../../../images_annonces/{{ image.lienPhotoAnnonce }}" alt="image annonce" >
                                     <!--pas encore fonctionnel-->
                                     {#<a href="{{ path('secondLife_supprimer_image_annonce', {id: image.id})}}" data-delete data-token="{{ csrf_token('delete' ~ image.id )}}">Supprimer</a>#}
                                 </div>
@@ -111,12 +111,16 @@
                                 <div class="autres_infos">
                                     <span class="prix_annonce" >{{annonce.prixAnnonce | number_format(0, '${.}', '${,}')}} €</span>
                                 </div>
-                                <form class="lien_ajouter_favoris autres_infos"   action={{ path('secondLife_ajouter_aux_favoris_utilisateur',{'id':annonce.idAnnonce}) }} method='POST'>
-                                    <button class="btn btn-sm btn-outline-secondary" >Ajouter aux favoris</button>
-                                </form>
-                                <div class="bouton">
-                                    <a href="" class="lien_contacter_vendeur"><button class="btn btn-sm btn-outline-secondary btn_contacter_vendeur" >Contacter le vendeur</button></a>
-                                </div>
+                                {% if not annonce.utilisateur is same as(app.user) %}
+                                    <form class="lien_ajouter_favoris autres_infos"   action={{ path('secondLife_ajouter_aux_favoris_utilisateur',{'id':annonce.idAnnonce}) }} method='POST'>
+                                        <button class="btn btn-sm btn-outline-secondary" >Ajouter aux favoris</button>
+                                    </form>
+                                    
+                                    <div class="bouton">
+                                        <a href="" class="lien_contacter_vendeur"><button class="btn btn-sm btn-outline-secondary btn_contacter_vendeur" >Contacter le vendeur</button></a>
+                                    </div>
+                                {% endif %}
+                                
                             </div>
                         </div>
                     </a>  

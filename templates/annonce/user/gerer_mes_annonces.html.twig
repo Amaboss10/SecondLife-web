@@ -39,23 +39,13 @@
                             <div class="autres_infos">
                                 <span class="prix_annonce" >{{annonce.prixAnnonce | number_format(0, '${.}', '${,}')}} €</span>
                             </div>
-                            <form class="lien_ajouter_favoris autres_infos"  action={{ path('secondLife_ajouter_aux_favoris_utilisateur',{'id':annonce.idAnnonce}) }} method='POST'>
-                                <button class="btn btn-sm btn-outline-secondary" >Ajouter aux favoris</button>
-                            </form>
-
+                           
                             {% if annonce.etatAnnonce == 'Disponible' %}
                             <form class="lien_modifier_etat autres_infos"  action={{ path('secondLife_confirmer_vente',{'id':annonce.idAnnonce}) }} method='GET'>
                                 <button class="btn btn-sm btn-outline-secondary" >Confirmer la vente</button>
                             </form>
                             {% endif %}
-
-                            <form class="lien_ajouter_favoris autres_infos"  action={{ path('secondLife_modifier_annonce',{'id':annonce.idAnnonce}) }} method='POST'>
-                                <button class="btn btn-sm btn-outline-secondary" >Modifier annonce</button>
-                            </form>
-                            
-                            <div class="autres_infos">
-                                <a href="" class="lien_contacter_vendeur"><button class="btn btn-sm btn-outline-secondary btn_contacter_vendeur" >Contacter le vendeur</button></a>
-                            </div>
+ 
                         </div>
                     </div>
                 </a>

@@ -5,11 +5,13 @@
 
 {% block body %}
     <h1>{{titre_page}}</h1>
+    <div style="text-align : right;margin-bottom : 10px">
+    <a class="btn btn-sm btn-outline-success" href="{{ path('secondLife_admin_creer_marque') }}">Créer/Ajouter une marque</a>
+    </div>
 
     <table class="table table-striped" style="border: 1px solid black">
         <thead class="thead-dark">
             <tr>
-                <th>Id</th>
                 <th>Nom_marque</th>
                 <th>actions</th>
             </tr>
@@ -17,7 +19,6 @@
         <tbody>
         {% for marque in marques %}
             <tr>
-                <td>{{ marque.id }}</td>
                 <td>{{ marque.nomMarque }}</td>
                 <td>
                 <div style="margin-bottom:5px">

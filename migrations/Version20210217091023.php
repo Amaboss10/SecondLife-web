@@ -86,4 +86,5 @@ final class Version20210217091023 extends AbstractMigration
         $this->addSql('DROP TABLE sous_categorie');
         $this->addSql('DROP TABLE utilisateur');
     }
+    
 }
