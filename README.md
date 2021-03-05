@@ -2,9 +2,9 @@
  Projet: Développement d'une plateforme de vente de composants électroniques et accessoires d'occasion en ligne
  # 1. Pour tester avec le contenu de la base de données
   # 1.1.configuration BD sur Symfony
-    Dans le fichier .env, secondLifeUser est le nom de votre bd vous pouvez la modifier
+    Dans le fichier .env, secondLife est le nom de votre bd vous pouvez la modifier
     #DATABASE_URL="sqlite:///%kernel.project_dir%/var/data.db"
-    DATABASE_URL="mysql://root:@127.0.0.1:3306/secondLifeUser"
+    DATABASE_URL="mysql://root:@127.0.0.1:3306/secondLife"
     #DATABASE_URL="postgresql://db_user:db_password@127.0.0.1:5432/db_name?serverVersion=13&charset=utf8"
   # 1.2.Migration
     Si vous n'avez pas encore créer la base de donnees, taper la commande:
