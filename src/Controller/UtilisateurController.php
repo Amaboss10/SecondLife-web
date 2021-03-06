@@ -62,10 +62,15 @@ class UtilisateurController extends AbstractController
     /**
      * @Route("/admin/utilisateurs/{id_personne}/supprimer", name="admin_supprimer_utilisateur", methods={"DELETE"})
      */
-    public function supprimerUtilisateurAdmin(Request $request, Utilisateur $utilisateur): Response
+    public function supprimerUtilisateurAdmin(Request $request, Utilisateur $utilisateur,FavorisRepository $favorisRepository): Response
     {
+        $favoris=$favorisRepository->findBy(['id_utilisateur'=>$utilisateur]);
         if ($this->isCsrfTokenValid('delete'.$utilisateur->getIdPersonne(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
+            
+            foreach ($favoris as $fav) {
+                $entityManager->remove($fav);
+            }
             
             foreach ($utilisateur->getAnnonces() as $annonce) {
                 foreach ($annonce->getImagesAnnonce() as $imageannonce) {
@@ -75,6 +80,8 @@ class UtilisateurController extends AbstractController
                 $utilisateur->removeAnnonce($annonce);
                 $entityManager->remove($annonce);
             }
+
+            
 
             foreach($utilisateur->getConversations() as $conversation){
                 $utilisateur->removeConversation($conversation);

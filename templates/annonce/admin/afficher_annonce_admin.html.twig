@@ -7,28 +7,28 @@
 
 <h1>{{titre_page}}</h1>
 
-
 <div class="row">
-    <div class="row panel col-md-6" style="border:solid 1px grey;margin-left:30px">
-        <div style="width:32%">
+    <div class="row col-xl-6 col-sm-6 col-12" >
+        <div >
             <h3 class="titre_annonce">{{annonce.titreAnnonce}}</h3>
             <div class="images_annonce">
                 {% for image in annonce.imagesAnnonce %}
-                <img src={{image.lienPhotoAnnonce}} alt="Image de l'annonce">
+                <img src="../../../../{{image.lienPhotoAnnonce}}" alt="Image de l'annonce" width=150 height=150>
                 {% endfor %}
             </div>
         </div>
 
-
-        <div style="width:36%">
-            <h6>Categorie : {{annonce.categorie}}</h6>
-            <h6>Sous-categorie : {{annonce.sousCategorie}}</h6>
-            <h6>Marque : {{annonce.marque}}</h6>
-            <h6 class="prix_annonce">Prix : {{annonce.prixAnnonce}} Euros</h6>
-            <h6>Poids : {{annonce.poidsAnnonce}} Grammes</h6>
-            <h6>Etat : {{annonce.etatAnnonce}}</h6>
-            <h6>Description : {{annonce.descriptionAnnonce}}</h6>
-            <h6>Date publication : {{annonce.datePubliAnnonce|date("m/d/Y - H:i:s")}}</h6>
+        <div clas="row">
+            <div class="column">
+                <h6>Categorie : {{annonce.categorie}}</h6>
+                <h6>Sous-categorie : {{annonce.sousCategorie}}</h6>
+                <h6>Marque : {{annonce.marque}}</h6>
+                <h6 class="prix_annonce">Prix : {{annonce.prixAnnonce}} Euros</h6>
+                <h6>Poids : {{annonce.poidsAnnonce}} Grammes</h6>
+                <h6>Etat : {{annonce.etatAnnonce}}</h6>
+                <h6>Description : {{annonce.descriptionAnnonce}}</h6>
+                <h6>Date publication : {{annonce.datePubliAnnonce|date("m/d/Y - H:i:s")}}</h6>
+            </div>
         </div>
 
         <div style="width:32%;margin-top:30px">
@@ -45,21 +45,17 @@
             {{ include('annonce/_delete_form.html.twig') }}
             <div style="margin-top:10px">
                 <form action={{ path('secondLife_admin_valider_annonce',{'id':annonce.idAnnonce}) }} method='GET'>
-                    <button class="btn btn-outline-dark btn-sm" type="submit" formaction={{
-                        path('secondLife_admin_valider_annonce',{'id':annonce.idAnnonce}) }}
-                        style="width: 100%">Contacter
-                        le vendeur </button>
+                    <button class="btn btn-outline-dark btn-sm" type="submit" style="width: 100%">Contacter le vendeur 
+                    </button>
                 </form>
             </div>
         </div>
     </div>
 
-
-    <div class="col-md-5" style="padding-left:20px">
-        <a href={{path('secondLife_admin_afficher_utilisateur',{'id_personne':annonce.utilisateur.idPersonne})}}>
-            <div class="vendeur panel" style="border: 1px solid grey">
+    <a class="link-dark bouton" href={{path('secondLife_admin_afficher_utilisateur',{'id_personne':annonce.utilisateur.idPersonne})}}>
+        <div class="vendeur panel">
                 <h2>Informations du vendeur</h2>
-                <img src="../../../../{{annonce.utilisateur.lienImagePersonne}}" alt="profil du vendeur">
+                <img src="../../../../{{annonce.utilisateur.lienImagePersonne}}" alt="profil du vendeur" width=150 height=150>
                 <h6 class="pseudo">Pseudo : {{annonce.utilisateur.pseudoUser}}</h6>
                 <h6 class="nom">Nom : {{annonce.utilisateur.nomPersonne}}</h6>
                 <h6 class="prenom">Prenom : {{annonce.utilisateur.prenomPersonne}}</h6>
@@ -67,14 +63,11 @@
                 <h6 class="nb_Annonces_publiees">Nombre d'annonces publiées : {{annonce.utilisateur.annonces|length}}
                 </h6>
                 <h6 class="ancieneté">Inscrit depuis {{annonce.utilisateur.dateInscriptionUser| date('M Y')}}</h6>
-            </div>
-        </a>
-    </div>
-</div>
-</div>
+        </div>
+    </a>
 </div>
 
-<div class="container" style="margin-left:20px">
+<div class="container col-xl-4 col-sm-6 col-12" >
     <h2>Annonces similaires</h2>
     {% for annonce_ in annonces %}
     {% if not annonce_ is same as(annonce) %}
@@ -84,8 +77,8 @@
                 <div class="row" style="margin-right: 2px">
                     <div class="images_annonce column">
                         <div class="panel" style="margin: 1px">
-                            <div class="panel-body"><img src="https://placehold.it/130x130?text=IMG"
-                                    class="img-responsive" alt="Image">
+                            <div class="panel-body">
+                                <img src="../../../../{{annonce.imagesAnnonce.last()}}" width=150 height=150 class="img-responsive" alt="Image">
                             </div>
                         </div>
                     </div>
@@ -132,48 +125,4 @@
 {% endfor %}
 
 
-{#
-<table class="table">
-    <tbody>
-        <tr>
-            <th>Id</th>
-            <td>{{ annonce.idAnnonce }}</td>
-        </tr>
-        <tr>
-            <th>Titre_annonce</th>
-            <td>{{ annonce.titreAnnonce }}</td>
-        </tr>
-        <tr>
-            <th>Description_annonce</th>
-            <td>{{ annonce.descriptionAnnonce }}</td>
-        </tr>
-        <tr>
-            <th>Prix_annonce</th>
-            <td>{{ annonce.prixAnnonce }}</td>
-        </tr>
-        <tr>
-            <th>Poids_annonce</th>
-            <td>{{ annonce.poidsAnnonce }}</td>
-        </tr>
-        <tr>
-            <th>Etat_annonce</th>
-            <td>{{ annonce.etatAnnonce }}</td>
-        </tr>
-        <tr>
-            <th>Date_publi_annonce</th>
-            <td>{{ annonce.datePubliAnnonce ? annonce.datePubliAnnonce|date('Y-m-d H:i:s') : '' }}</td>
-        </tr>
-        <tr>
-            <th>Est_valide</th>
-            <td>{{ annonce.estValide ? 'Yes' : 'No' }}</td>
-        </tr>
-    </tbody>
-</table>
-
-<a href="{{ path('annonce_index') }}">back to list</a>
-
-<a href="{{ path('annonce_edit', {'id': annonce.idAnnonce}) }}">edit</a>
-
-{{ include('annonce/_delete_form.html.twig') }}
-#}
 {% endblock %}

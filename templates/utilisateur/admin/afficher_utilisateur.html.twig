@@ -7,13 +7,13 @@
 <div class="row bloc" >
     <div class="col-xl-2 col-sm-6 col-12 profil">
         <h3>{{utilisateur.pseudoUser}}</h3>
-        <img src="../../../../{{utilisateur.lienImagePersonne}}" alt="image_de_profil"></a><br>
+        <img src="../../../../{{utilisateur.lienImagePersonne}}" alt="image_de_profil" width=150 height=150></a><br>
         <h6 class="pseudo">Pseudo : {{utilisateur.pseudoUser}}</h6>
         <h6 class="adresse">Localisation : {{utilisateur.adresseUser}}</h6>
         <h6 class="nb_Annonces_publiees">Nombre d'annonces publiées : {{utilisateur.annonces|length}}</h6>
         <h6 class="ancieneté">Inscrit depuis {{utilisateur.dateInscriptionUser| date('M Y')}}</h6>
         <button type="submit" class="btn btn-sm btn-outline-secondary">contacter l'utilisateur</button>
-        {{ include('utilisateur/admin/_delete_form.html.twig') }}
+        {#{{ include('utilisateur/admin/_delete_form.html.twig') }}#}
     </div>
 
     
