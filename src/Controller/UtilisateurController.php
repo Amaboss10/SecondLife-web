@@ -28,11 +28,12 @@ class UtilisateurController extends AbstractController
     {
         return $this->render('utilisateur/admin/gerer_utilisateurs.html.twig', [
             'utilisateurs' => $utilisateurRepository->findAll(),
+            'titre_page'=>'Utilisateurs'
         ]);
     }
 
     /**
-     * @Route("admin/utilisateurs/{id_personne}/afficher", name="admin_afficher_utilisateur", methods={"GET"})
+     * @Route("/admin/utilisateurs/{id_personne}/afficher", name="admin_afficher_utilisateur", methods={"GET"})
      */
     public function afficherUtilisateurAdmin(Utilisateur $utilisateur,AnnonceRepository $annonceRepos,FavorisRepository $favorisRepos): Response
     {

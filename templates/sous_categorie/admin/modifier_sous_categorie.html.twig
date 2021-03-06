@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'base_admin.html.twig' %}
 
 {% block title %}{{titre_page}}{% endblock %}
 
@@ -7,7 +7,7 @@
 
     {{ include('sous_categorie/admin/_form.html.twig', {'button_label': 'Modifier'}) }}
 
-    <a href={{ path('secondLife_admin_afficher_sous_categories_par_categorie',{'id':sousCategorie.categorie.id)) }}>Afficher les sous categories de la categorie {{sous_categorie.categorie.nomCategorie}}</a>
+    <a class="btn btn-sm btn-outline-success" href={{ path('secondLife_admin_afficher_sous_categories_par_categorie',{'id':souscategorie.categorie.id}) }}>Afficher les sous categories de la categorie {{souscategorie.categorie.nomCategorie}}</a>
 
     {{ include('sous_categorie/admin/_delete_form.html.twig') }}
 {% endblock %}

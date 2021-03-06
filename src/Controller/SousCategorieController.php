@@ -79,7 +79,7 @@ class SousCategorieController extends AbstractController
 
         return $this->render('sous_categorie/admin/modifier_sous_categorie.html.twig', [
             'titre_page'=>'Modifier la sous-categorie',
-            'sous_categorie' => $sousCategorie,
+            'souscategorie' => $sousCategorie,
             'form' => $form->createView(),
         ]);
     }

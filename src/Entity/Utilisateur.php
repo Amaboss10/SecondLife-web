@@ -55,6 +55,7 @@ class Utilisateur extends Personne
         $this->date_inscription_user = new \DateTime('now');
         $this->conversations = new ArrayCollection();
         $this->annonces = new ArrayCollection();
+        $this->lien_image_personne='photo_profils/defaut.png';
     }
 
     public function getPseudoUser(): ?string

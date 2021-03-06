@@ -92,7 +92,7 @@ class Annonce
         $this->images_annonce = new ArrayCollection();
         //image_annonce par defaut
         $imageAnnonce=new PhotoAnnonce();
-        $imageAnnonce->setLienPhotoAnnonce("https://placehold.it/130x130?text=IMG")
+        $imageAnnonce->setLienPhotoAnnonce("images_annonce/defaut.png")
                      ->setAnnonce($this);
         $this->images_annonce[] = $imageAnnonce;
         

@@ -4,9 +4,9 @@
 
 {% block body %}
     <h1>{{titre_page}}</h1>
-    <a href="{{ path('secondLife_admin_gerer_categories') }}">Afficher toutes les categories</a>
+    <a class="btn btn-sm btn-outline-success" href="{{ path('secondLife_admin_gerer_categories') }}">Afficher toutes les categories</a>
 
     {{ include('sous_categorie/admin/_form.html.twig') }}
 
-    <a href="{{ path('secondLife_admin_gerer_categories') }}">Afficher toutes les categories</a>
+    <a  class="btn btn-sm btn-outline-success" href="{{ path('secondLife_admin_gerer_categories') }}">Afficher toutes les categories</a>
 {% endblock %}

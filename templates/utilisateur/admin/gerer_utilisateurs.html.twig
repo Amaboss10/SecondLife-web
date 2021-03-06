@@ -1,9 +1,9 @@
 {% extends 'base_admin.html.twig' %}
 
-{% block title %}Utilisateur index{% endblock %}
+{% block title %}{{titre_page}}{% endblock %}
 
 {% block body %}
-<h1>Utilisateur index</h1>
+<h1>{{titre_page}}</h1>
 
 <table class="table table-striped" style="border: 1px solid black">
     <thead class="thead-dark">
@@ -49,7 +49,7 @@
         </tr>
         {% else %}
         <tr>
-            <td colspan="11">no records found</td>
+            <td colspan="11">Pas d'utilisateurs trouvé</td>
         </tr>
         {% endfor %}
     </tbody>

@@ -38,7 +38,7 @@ class SecondLifeController extends AbstractController
         else {
             $annonces=$annonceRepository->findAnnoncesDisponibles();
         }
-        $annoncesPaginator=$paginator->paginate($annonces,$request->query->getInt('page',1),2);
+        $annoncesPaginator=$paginator->paginate($annonces,$request->query->getInt('page',1),8);
         
         return $this->render('second_life/index.html.twig', [
             'titre_page'=>'Accueil', 

@@ -28,11 +28,12 @@ class RegistrationType extends AbstractType
             ->add('date_naiss_user', DateType::class)
             ->add('lien_image_personne', FileType::class, [
                 'required' => false,
+                'mapped'=>false,
             ])
         ;
     }
 
-
+ 
 
     public function configureOptions(OptionsResolver $resolver)
     {

@@ -37,7 +37,7 @@
                 {% for favoris in mes_favoris %}
                     <div class="favoris row">
                         <div class="col">
-                            <img src="logo_site.png" class="img-thumbnail" alt="Image de l'annonce">
+                            <img src="../../../../{{favoris.idAnnonce.imagesAnnonce.last()}}" class="img-thumbnail" alt="Image de l'annonce">
                         </div>
                         <div class="col">
                             <p>{{favoris.idAnnonce.titreAnnonce}}</p>

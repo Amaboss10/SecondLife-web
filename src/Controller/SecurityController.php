@@ -34,9 +34,18 @@ class SecurityController extends AbstractController
         if($formInscription->isSubmitted() && $formInscription->isValid()){
             $hash = $encoder->encodePassword($user, $user->getPassword());
             $user->setMdpPersonne($hash);
-            if($user->getLienImagePersonne()== null){
-                $user->setLienImagePersonne("photo_profils/defaut.png");
+
+            //image
+            $image=$formInscription->get('lien_image_personne')->getData();
+            if(!empty($image)){
+                //generation nom de fichier
+                $fichier='photo_profils/'.md5(uniqid()).'.'.$image->guessExtension();
+                //copie de l'image dans photo_profils
+                $image->move($this->getParameter('photo_profils_directory'),$fichier);
+                //creation de l'image dans la bd
+                $user->setLienImagePersonne($fichier);
             }
+            
             
             $manager->persist($user);
             $manager->flush();
